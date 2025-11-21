@@ -1,314 +1,513 @@
-
-import React, { useState } from 'react';
-import { User, Briefcase, BookOpen, Code, FileText, Mail, MapPin, ExternalLink, Github, Linkedin, Globe, Menu, X } from 'lucide-react';
-
-// =================================================================================
-// YOUR DATA GOES HERE - EDIT THIS SECTION TO UPDATE YOUR WEBSITE
-// =================================================================================
-
-const userData = {
-  // 1. BASIC INFO
-  profile: {
-    name: "Kelin Zhong",
-    role: "Senior Data Scientist & Researcher",
-    bio: "2+ years of experience applying advanced statistical modeling and causal inference to support high-impact decision-making. Expert in designing reproducible workflows, maintaining and improving team pipelines on GitHub using Git, building interpretable models, and translating complex data insights for diverse stakeholders. Strong quantitative background, hands-on experience in R and Python, and a proven record of cross-disciplinary collaboration and publication.",
-    location: "Vernon, CT",
-    email: "kelin.zhong@uconn.edu",
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Portfolio</title>
     
-    // PROFILE PHOTO FROM LOCAL FOLDER
-    // 1. Create a folder named 'images' in your repo.
-    // 2. Upload your photo (e.g., 'profile-pic.jpg').
-    // 3. Use the path like below:
-    image: "./images/profile-pic.jpg",
+    <!-- 1. Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
     
-    social: {
-      github: "https://github.com",
-      linkedin: "https://linkedin.com",
-      researchgate: "https://researchgate.net/profile/your-profile",
-      twitter: "https://twitter.com/yourhandle", 
-      website: "" 
-    }
-  },
+    <!-- 2. React & ReactDOM -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    
+    <!-- 3. Babel -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    
+    <style>
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fadeIn { animation: fadeIn 0.3s ease-out forwards; }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #f1f5f9; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+    </style>
+</head>
+<body class="bg-slate-50">
 
-  // 2. SKILLS
-  skills: [
-    "Python (PyTorch, Pandas)", "React & JavaScript", "SQL & NoSQL", "AWS Cloud", "Technical Writing", "Docker"
-  ],
+    <div id="root"></div>
 
-  // 3. EXPERIENCE (Timeline with Photos)
-  experience: [
-    {
-      id: 1,
-      role: "Senior Data Engineer",
-      company: "TechFlow Solutions",
-      period: "2022 - Present",
-      description: "Leading a team of 5 engineers to optimize data pipelines. Reduced latency by 40% using Apache Spark.",
-      // IMAGE FROM LOCAL FOLDER
-      image: "./images/techflow-screenshot.jpg" 
-    },
-    {
-      id: 2,
-      role: "Junior Developer",
-      company: "WebCorp Inc.",
-      period: "2019 - 2022",
-      description: "Developed client-facing web applications using React. Collaborated with UX teams to improve accessibility.",
-      image: "" 
-    }
-  ],
-
-  // 4. PROJECTS
-  projects: [
-    {
-      id: 1,
-      title: "Automated Market Analyzer",
-      tech: ["Python", "TensorFlow", "API"],
-      description: "A bot that predicts stock trends with 85% accuracy using sentiment analysis on news headlines.",
-      link: "#"
-    },
-    {
-      id: 2,
-      title: "Personal Cloud Dashboard",
-      tech: ["React", "Node.js", "AWS"],
-      description: "A centralized dashboard to manage files across Google Drive, Dropbox, and AWS S3 buckets.",
-      link: "#"
-    }
-  ],
-
-  // 5. PUBLICATIONS
-  publications: [
-    {
-      id: 1,
-      title: "Optimizing Neural Networks for Mobile Devices",
-      publisher: "IEEE Conference on AI",
-      year: "2023",
-      link: "#"
-    },
-    {
-      id: 2,
-      title: "The Future of Web Assembly in Data Visualization",
-      publisher: "Medium / Towards Data Science",
-      year: "2022",
-      link: "#"
-    }
-  ]
-};
-
-// =================================================================================
-//  DO NOT EDIT BELOW THIS LINE UNLESS YOU KNOW REACT 
-// =================================================================================
-
-const App = () => {
-  const [activeTab, setActiveTab] = useState('about');
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-
-  const NavItem = ({ name, id, icon: Icon }) => (
-    <button
-      onClick={() => {
-        setActiveTab(id);
-        setIsMenuOpen(false);
-      }}
-      className={`flex items-center w-full p-3 mb-2 rounded-lg transition-all duration-200 ${
-        activeTab === id 
-          ? 'bg-blue-600 text-white shadow-md' 
-          : 'text-slate-600 hover:bg-slate-100'
-      }`}
-    >
-      <Icon size={20} className="mr-3" />
-      <span className="font-medium">{name}</span>
-    </button>
-  );
-
-  const renderContent = () => {
-    switch (activeTab) {
-      case 'about':
-        return (
-          <div className="animate-fadeIn">
-            <h2 className="text-3xl font-bold text-slate-800 mb-6 border-b pb-4">About Me</h2>
-            <p className="text-lg text-slate-600 mb-8 leading-relaxed">{userData.profile.bio}</p>
-            
-            <h3 className="text-xl font-semibold text-slate-800 mb-4">Technical Skills</h3>
-            <div className="flex flex-wrap gap-2">
-              {userData.skills.map((skill, index) => (
-                <span key={index} className="px-4 py-2 bg-slate-100 text-slate-700 rounded-full text-sm font-medium border border-slate-200">
-                  {skill}
-                </span>
-              ))}
-            </div>
-
-            <div className="mt-10 p-6 bg-blue-50 rounded-xl border border-blue-100">
-              <h3 className="text-lg font-semibold text-blue-900 mb-3">Contact Info</h3>
-              <div className="space-y-2 text-blue-800">
-                <div className="flex items-center"><MapPin size={18} className="mr-2"/> {userData.profile.location}</div>
-                <div className="flex items-center"><Mail size={18} className="mr-2"/> {userData.profile.email}</div>
-              </div>
-            </div>
-          </div>
-        );
-
-      case 'experience':
-        return (
-          <div className="animate-fadeIn">
-            <h2 className="text-3xl font-bold text-slate-800 mb-6 border-b pb-4">Experience</h2>
-            <div className="space-y-12">
-              {userData.experience.map((job) => (
-                <div key={job.id} className="relative pl-8 border-l-2 border-blue-200 hover:border-blue-500 transition-colors">
-                  <div className="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-blue-500 ring-4 ring-white"></div>
-                  <div className="mb-1 text-sm text-blue-600 font-bold uppercase tracking-wider">{job.period}</div>
-                  <h3 className="text-xl font-bold text-slate-800">{job.role}</h3>
-                  <div className="text-md text-slate-500 font-medium mb-3">{job.company}</div>
-                  <p className="text-slate-600 mb-4">{job.description}</p>
-                  
-                  {job.image && (
-                    <div className="mt-4">
-                      <img 
-                        src={job.image} 
-                        alt={`${job.company} work`}
-                        className="w-full md:w-2/3 h-48 object-cover rounded-lg shadow-sm border border-slate-100 hover:shadow-md transition-shadow" 
-                        onError={(e) => {
-                          e.target.src = "https://via.placeholder.com/400x300?text=Image+Not+Found"; // Fallback
-                          e.target.alt = "Image not found";
-                        }}
-                      />
-                    </div>
-                  )}
-                </div>
-              ))}
-            </div>
-          </div>
-        );
-
-      case 'projects':
-        return (
-          <div className="animate-fadeIn">
-            <h2 className="text-3xl font-bold text-slate-800 mb-6 border-b pb-4">Projects</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {userData.projects.map((project) => (
-                <div key={project.id} className="bg-white p-6 rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow">
-                  <div className="flex justify-between items-start mb-4">
-                    <h3 className="text-xl font-bold text-slate-800">{project.title}</h3>
-                    <a href={project.link} className="text-blue-500 hover:text-blue-700"><ExternalLink size={20}/></a>
-                  </div>
-                  <p className="text-slate-600 mb-4 h-20 overflow-hidden">{project.description}</p>
-                  <div className="flex flex-wrap gap-2 mt-auto">
-                    {project.tech.map((t, i) => (
-                      <span key={i} className="text-xs font-mono bg-slate-100 text-slate-600 px-2 py-1 rounded">
-                        {t}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        );
-
-      case 'publications':
-        return (
-          <div className="animate-fadeIn">
-            <h2 className="text-3xl font-bold text-slate-800 mb-6 border-b pb-4">Publications</h2>
-            <div className="space-y-4">
-              {userData.publications.map((pub) => (
-                <div key={pub.id} className="group flex items-start justify-between p-5 bg-slate-50 rounded-lg border border-slate-100 hover:bg-white hover:border-blue-200 transition-all">
-                  <div>
-                    <h3 className="text-lg font-semibold text-slate-800 group-hover:text-blue-600 transition-colors">
-                      {pub.title}
-                    </h3>
-                    <div className="text-slate-500 mt-1 flex items-center gap-2">
-                      <span>{pub.publisher}</span>
-                      <span className="w-1 h-1 bg-slate-400 rounded-full"></span>
-                      <span>{pub.year}</span>
-                    </div>
-                  </div>
-                  <a href={pub.link} className="text-slate-400 group-hover:text-blue-500">
-                    <ExternalLink size={18} />
-                  </a>
-                </div>
-              ))}
-            </div>
-          </div>
-        );
+    <script type="text/babel">
+        // =================================================================================
+        //  I. ICON DEFINITIONS
+        // =================================================================================
         
-      default: return null;
-    }
-  };
+        const Icon = ({ size = 24, className, children }) => (
+            <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
+                {children}
+            </svg>
+        );
 
-  return (
-    <div className="min-h-screen bg-slate-50 flex flex-col md:flex-row font-sans text-slate-900">
-      {/* Mobile Header */}
-      <div className="md:hidden bg-white p-4 shadow-sm flex justify-between items-center sticky top-0 z-50">
-        <span className="font-bold text-xl text-slate-800">{userData.profile.name}</span>
-        <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="text-slate-600">
-          {isMenuOpen ? <X /> : <Menu />}
-        </button>
-      </div>
+        const User = (props) => <Icon {...props}><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></Icon>;
+        const Briefcase = (props) => <Icon {...props}><rect width="20" height="14" x="2" y="7" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></Icon>;
+        const BookOpen = (props) => <Icon {...props}><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></Icon>;
+        const Code = (props) => <Icon {...props}><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></Icon>;
+        const Mail = (props) => <Icon {...props}><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></Icon>;
+        const MapPin = (props) => <Icon {...props}><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></Icon>;
+        const ExternalLink = (props) => <Icon {...props}><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" x2="21" y1="14" y2="3"/></Icon>;
+        const Github = (props) => <Icon {...props}><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></Icon>;
+        const Linkedin = (props) => <Icon {...props}><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></Icon>;
+        const Globe = (props) => <Icon {...props}><circle cx="12" cy="12" r="10"/><line x1="2" x2="22" y1="12" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></Icon>;
+        const Menu = (props) => <Icon {...props}><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></Icon>;
+        const X = (props) => <Icon {...props}><path d="M18 6 6 18"/><path d="m6 6 12 12"/></Icon>;
+        const Mic = (props) => <Icon {...props}><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" x2="12" y1="19" y2="22"/><line x1="8" x2="16" y1="22" y2="22"/></Icon>;
+        const GraduationCap = (props) => <Icon {...props}><path d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z"/><path d="M22 10v6"/><path d="M6 12.5V16a6 2 0 0 0 12 0v-3.5"/></Icon>;
 
-      {/* Sidebar / Navigation */}
-      <aside className={`
-        fixed inset-0 md:static md:inset-auto md:w-72 bg-white border-r border-slate-200 p-6 flex flex-col z-40 transition-transform duration-300 ease-in-out
-        ${isMenuOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'}
-      `}>
-        <div className="mb-10 text-center md:text-left">
-          {/* Profile Image Rendering */}
-          {userData.profile.image ? (
-             <img 
-                src={userData.profile.image} 
-                alt={userData.profile.name} 
-                className="w-32 h-32 rounded-full mx-auto md:mx-0 mb-4 shadow-lg object-cover border-4 border-white ring-1 ring-slate-100"
-                onError={(e) => {
-                  e.target.style.display = 'none';
-                  e.target.nextSibling.style.display = 'flex';
-                }}
-             />
-          ) : null}
-          
-          {/* Fallback Initial if image fails or isn't present */}
-          <div 
-            className="w-24 h-24 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full mx-auto md:mx-0 mb-4 shadow-lg flex items-center justify-center text-white text-2xl font-bold"
-            style={{ display: userData.profile.image ? 'none' : 'flex' }}
-          >
-            {userData.profile.name.charAt(0)}
-          </div>
+        // =================================================================================
+        //  👇 DATA SECTION
+        // =================================================================================
 
-          <h1 className="text-2xl font-bold text-slate-900">{userData.profile.name}</h1>
-          <p className="text-slate-500 text-sm mt-1">{userData.profile.role}</p>
-          
-          <div className="flex gap-4 mt-4 justify-center md:justify-start flex-wrap">
-            {userData.profile.social.github && (
-              <a href={userData.profile.social.github} target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-slate-900 transition-colors"><Github size={20}/></a>
-            )}
-            {userData.profile.social.linkedin && (
-              <a href={userData.profile.social.linkedin} target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-blue-700 transition-colors"><Linkedin size={20}/></a>
-            )}
-            {userData.profile.social.researchgate && (
-              <a href={userData.profile.social.researchgate} target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-emerald-600 transition-colors" title="ResearchGate"><BookOpen size={20}/></a>
-            )}
-            {userData.profile.social.twitter && (
-              <a href={userData.profile.social.twitter} target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-sky-500 transition-colors" title="Twitter"><Globe size={20}/></a>
-            )}
-            {userData.profile.social.website && (
-              <a href={userData.profile.social.website} target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-purple-600 transition-colors" title="Website"><Globe size={20}/></a>
-            )}
-          </div>
-        </div>
+        const userData = {
+          profile: {
+            name: "Kelin Zhong",
+            role: "Statistical Consultant & Researcher",
+            bio: "2+ years of experience in statistical modeling, causal inference, and building reproducible Git/GitHub workflows. Proficient in R and Python, adaptable across teams, and experienced in developing interpretable models and communicating insights to diverse stakeholders.",
+            location: "Vernon, CT",
+            
+            // 👇 UPDATED: You can now list multiple emails separated by commas inside the brackets
+            email: ["kelin.zhong@uconn.edu", "kelinzhonguconn@gmail.com"],
+            
+            image: "./images/profile.jpg", 
+            
+            social: {
+              github: "https://github.com/KelinZhong",
+              linkedin: "www.linkedin.com/in/kelin-zhong",
+              researchgate: "https://www.researchgate.net/profile/Kelin-Zhong",
+              website: ""
+            }
+          },
 
-        <nav className="flex-1 space-y-2">
-          <NavItem id="about" name="Profile" icon={User} />
-          <NavItem id="experience" name="Experience" icon={Briefcase} />
-          <NavItem id="projects" name="Projects" icon={Code} />
-          <NavItem id="publications" name="Publications" icon={BookOpen} />
-        </nav>
+          skills: {
+            "Statistical Methods": [
+                "Python", "JavaScript (ES6+)", "SQL", "R", "C++"
+            ],
+            "Machine Learning": [
+                "Random Forest", "XGBoost", "Regularization (Ridge/Lasso)", "Principal Component Analysis (PCA)"
+            ],
+            "Programming & Tools": [
+                "R", "Python", "SQL", "Git/GitHub", "Stan", "LaTeX", "High Performance Computing (HPC)"
+            ],
+            "Core Competencies": [
+              "Data Wrangling", "ETL", "Statistical Consulting", "Reproducible Research", "Data Visualization"
+            ],
+            "Soft Skills": [
+                "Scientific Communications", "Team Collaboration", "Stakeholder Engagement", "Problem Solving"
+            ],
+            "Languages": [
+                "English (Fluent)", "Mandarin (Native)", "Cantonese (Native)"
+            ]
+          },
 
-        <div className="mt-auto pt-6 border-t border-slate-100 text-xs text-slate-400 text-center md:text-left">
-          &copy; 2025 {userData.profile.name}
-        </div>
-      </aside>
+          experience: [
+            {
+              id: 1,
+              role: "Statistical Consultant",
+              company: "UConn Health",
+              period: "Jan 2024 – Present",
+              // 👇 CHANGED TO BULLET POINTS
+              description: [
+                "Provided statistical consulting and analytical support for 30+ research projects, contributing to over 9 peer-reviewed publications.",
+                "Built reproducible R workflows for ETL, model development, and visualization; maintained and optimized team GitHub pipelines using Git to strengthen version control, transparency, and operational efficiency.",
+                "Translated complex concepts and statistical outputs into actionable insights for collaborators and led consultations on model assumptions, diagnostics, and interpretation."
+              ],
+              image: "" 
+            },
+            {
+              id: 2,
+              role: "Research Assistant",
+              company: "UConn Health",
+              period: "Oct 2023 – Present",
+              description: [
+                "Applied Target Trial Emulation and Mendelian Randomization to analyze UK Biobank and EHR datasets (500K+ participants), identifying potential therapeutic targets for aging-related outcomes.",
+                "Developed reproducible R codebases for ETL, exploratory analysis, and visualization of large-scale genetic and clinical data.",
+                "Collaborated with 30+ clinicians and researchers, translating findings into actionable hypotheses and contributing to cross-functional research outputs."
+              ],
+              image: "" 
+            },
+            {
+              id: 3,
+              role: "Research Assistant",
+              company: "University of Connecticut",
+              period: "May 2021 – Present",
+              description: [
+                "Developed and evaluated Bayesian and Frequentist inference methods (EM, Gibbs Sampling, HMC) for longitudinal and censored data models.",
+                "Ran large-scale MCMC simulations on Linux-based HPC clusters to ensure model accuracy, robustness, and computational efficiency.",
+                "Built, developed and maintained R packages (ARpLMEC, SMNlmec) for robust linear mixed-effects modeling of censored and longitudinal data under heavy-tailed distributions."
+              ],
+              image: ""
+            },
+            {
+              id: 4,
+              role: "Instructor",
+              company: "University of Connecticut",
+              period: "Feb 2023 – Dec 2023",
+              description: [
+                "Taught undergraduate statistical methods (STAT 3025), designing coursework, assessments, and hands-on exercises to strengthen applied statistical literacy."
+              ],
+              image: ""
+            }
+          ],
 
-      {/* Main Content Area */}
-      <main className="flex-1 p-6 md:p-12 max-w-4xl mx-auto w-full overflow-y-auto">
-        {renderContent()}
-      </main>
-    </div>
-  );
-};
+          internships: [
+            {
+              id: 1,
+              role: "Manager Assistant",
+              company: "Guangzhou Rural Commercial Bank",
+              period: "Jun 2019 – Jul 2019",
+              description: [
+                "Supported data migration and audit documentation during a system upgrade, completing tasks ahead of schedule."
+              ],
+              image: ""
+            },
+            {
+              id: 2,
+              role: "Customer Manager Assistant",
+              company: "Ping An Bank",
+              period: "Jul 2016 – Aug 2016",
+              description: [
+                "Assisted with private placement operations and financial data processing, gaining familiarity with banking workflows."
+              ],
+              image: ""
+            },
+            {
+              id: 3,
+              role: "Intern & Trainee",
+              company: "Axa China Region Insurance Company Limited",
+              period: "Aug 2015 – Aug 2015",
+              description: [
+                "Applied financial indicators (PE, PB, ROE, EBITDA) to develop a predictive model for the Hang Seng Index."
+              ],
+              image: "./images/AXA.jpg"
+            }
+          ],
 
-export default App;
+          projects: [
+            {
+              id: 1,
+              title: "Automated Market Analyzer",
+              tech: ["Python", "TensorFlow", "API"],
+              description: "A bot that predicts stock trends with 85% accuracy using sentiment analysis on news headlines.",
+              link: "#"
+            }
+          ],
+
+          publications: [
+            {
+              id: 1,
+              title: "Autoregressive Bayesian modeling of censored HIV longitudinal data using the multivariate Student’s-t distribution",
+              authors: "K Zhong, LM Castro, P Zhang, VH Lachos",
+              publisher: "Japanese Journal of Statistics and Data Science",
+              year: "2025",
+              link: "#"
+            },
+            {
+              id: 2,
+              title: "Bayesian Analysis of Censored Linear Mixed‐Effects Models for Heavy‐Tailed Irregularly Observed Repeated Measures",
+              authors: "K Zhong, FL Schumacher, LM Castro, VH Lachos",
+              publisher: "Statistics in Medicine",
+              year: "2025",
+              link: "#"
+            },
+             {
+              id: 3,
+              title: "Linear Mixed-effects Models for Censored Data with Serial Correlation Errors Using the Multivariate Student’s t-distribution",
+              authors: "K Zhong, RC Olivari, AM Garay, VH Lachos",
+              publisher: "The New England Journal of Statistics in Data Science",
+              year: "2024",
+              link: "#"
+            },
+            // Co-Author Papers
+            {
+              id: 4,
+              title: "A Five-Year Review of Temporal Bone Fractures at a Level One Trauma Center and Examination of the Impact of the COVID-19 Pandemic",
+              authors: "WM Jongbloed, D Campbell, CL Kuo, K Zhong, NJ Cavanagh",
+              publisher: "Surgeries",
+              year: "2025",
+              link: "#"
+            },
+            {
+              id: 5,
+              title: "Angiographic Characteristics and Associated Risk Factors of Premature Coronary Artery Disease among South Asians: A Systematic Review",
+              authors: "S Passey, J Jha, M Iverson, K Zhong, CL Kuo, S Arora, A Qamar...",
+              publisher: "The American Journal of Cardiology",
+              year: "2025",
+              link: "#"
+            },
+            {
+              id: 6,
+              title: "Micro-computed tomography assessment of regional and overall accuracy of thermoformed retainers and intraoral scanners",
+              authors: "ML Montes, MA Zakhary, SF Cobos, CL Kuo, KK Zhong, SA Arqub...",
+              publisher: "American Journal of Orthodontics and Dentofacial Orthopedics",
+              year: "2025",
+              link: "#"
+            },
+            {
+              id: 7,
+              title: "Healthcare disparities in Merkel cell carcinoma (MCC) in immune checkpoint inhibitor (ICI) era: A SEER study of survival disparities in older adults",
+              authors: "J Arunachalam, K Zhong, CL Kuo, KS Gunturu, BJ Byrne",
+              publisher: "Journal of Clinical Oncology",
+              year: "2025",
+              link: "#"
+            },
+            {
+              id: 8,
+              title: "Software Versus Cognitive Fusion For The Detection Of Clinically Significant Prostate Cancer: Does ‘Lesion Density’ Matter?",
+              authors: "V Dubovik, D Buller, B Rosenfeld, W Martin, A Sherman, W Faust...",
+              publisher: "Journal of Urology",
+              year: "2025",
+              link: "#"
+            },
+            {
+              id: 9,
+              title: "Comparison of safety and efficacy of ultrasound-accelerated thrombolysis vs. standard catheter-directed thrombolysis for the management of acute pulmonary embolism-a systematic review...",
+              authors: "S Passey, H Jain, J Jha, K Zhong...",
+              publisher: "Journal of Thrombosis and Thrombolysis",
+              year: "2025",
+              link: "#"
+            },
+            {
+              id: 10,
+              title: "The Influence of Sexual Orientation and Gender Identity on the Otolaryngology Residency Experience",
+              authors: "WM Jongbloed, HA Newsome, L Kashat, K Parham, EA Faucett, CL Kuo, K Zhong...",
+              publisher: "OTO open",
+              year: "2025",
+              link: "#"
+            },
+            {
+              id: 11,
+              title: "A survey of general dentists on the involvement of endodontists in restorative procedures",
+              authors: "GB Deese, MT Spoto, Q Zhu, RH Aseltine Jr, CL Kuo, K Zhong, O Dort...",
+              publisher: "The Journal of the American Dental Association",
+              year: "2025",
+              link: "#"
+            },
+            {
+              id: 12,
+              title: "The Effect of a Pilot Medical Humanities Curriculum and Narrative Medicine on Empathy, Connectedness, and Self-reported General Well-being in an Otolaryngology Residency Program",
+              authors: "W Jongbloed, KR Kavanagh, CL Kuo, K Zhong, H Newsome",
+              publisher: "Research Output",
+              year: "2024",
+              link: "#"
+            }
+          ]
+
+          presentations: [
+            {
+              id: 1,
+              title: "ICSA Applied Statistics Symposium",
+              role: "Invited Speaker",
+              year: "2025",
+              location: "Storrs, CT"
+            },
+            {
+              id: 2,
+              title: "2024 Annual Aging Research Day",
+              role: "Poster Presenter",
+              year: "2024",
+              location: "Hartford, CT",
+              image: "./images/aging.jpg"
+            },
+            {
+              id: 3,
+              title: "37th New England Statistics Symposium",
+              role: "Invited Speaker",
+              year: "2024",
+              location: "Storrs, CT"
+            },
+            {
+              id: 4,
+              title: "ICSA Applied Statistics Symposium",
+              role: "Invited Speaker",
+              year: "2022",
+              location: "Gainesville, FL"
+            }
+          ]
+        };
+
+        // =================================================================================
+        //  ⛔ LOGIC SECTION
+        // =================================================================================
+
+        const App = () => {
+          const [activeTab, setActiveTab] = React.useState('about');
+          const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+
+          const NavItem = ({ name, id, icon: Icon }) => (
+            <button
+              onClick={() => { setActiveTab(id); setIsMenuOpen(false); }}
+              className={`flex items-center w-full p-3 mb-2 rounded-lg transition-all duration-200 ${
+                activeTab === id ? 'bg-blue-600 text-white shadow-md' : 'text-slate-600 hover:bg-slate-100'
+              }`}
+            >
+              <Icon size={20} className="mr-3" />
+              <span className="font-medium">{name}</span>
+            </button>
+          );
+
+          const renderContent = () => {
+            switch (activeTab) {
+              case 'about':
+                return (
+                  <div className="animate-fadeIn">
+                    <h2 className="text-3xl font-bold text-slate-800 mb-6 border-b pb-4">About Me</h2>
+                    <p className="text-lg text-slate-600 mb-8 leading-relaxed">{userData.profile.bio}</p>
+                    
+                    <h3 className="text-xl font-semibold text-slate-800 mb-6">Technical Skills</h3>
+                    
+                    <div className="space-y-6">
+                        {Object.entries(userData.skills).map(([category, skillList]) => (
+                            <div key={category}>
+                                <h4 className="text-sm font-bold text-slate-500 uppercase tracking-wider mb-3">{category}</h4>
+                                <div className="flex flex-wrap gap-2">
+                                    {skillList.map((skill, index) => (
+                                        <span key={index} className="px-3 py-1.5 bg-white text-slate-700 rounded-md text-sm font-medium border border-slate-200 shadow-sm">
+                                            {skill}
+                                        </span>
+                                    ))}
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+
+                    <div className="mt-10 p-6 bg-blue-50 rounded-xl border border-blue-100">
+                      <h3 className="text-lg font-semibold text-blue-900 mb-3">Contact Info</h3>
+                      <div className="space-y-3 text-blue-800">
+                        <div className="flex items-center">
+                            <MapPin size={18} className="mr-2 flex-shrink-0"/> 
+                            {userData.profile.location}
+                        </div>
+                        
+                        {/* 👇 UPDATED EMAIL RENDERING Logic */}
+                        <div className="flex items-start">
+                            <Mail size={18} className="mr-2 mt-1 flex-shrink-0"/> 
+                            <div className="flex flex-col gap-1">
+                                {Array.isArray(userData.profile.email) 
+                                    ? userData.profile.email.map((email, idx) => <div key={idx}>{email}</div>)
+                                    : <div>{userData.profile.email}</div>
+                                }
+                            </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                );
+
+              case 'experience':
+                return (
+                  <div className="animate-fadeIn">
+                    <h2 className="text-3xl font-bold text-slate-800 mb-6 border-b pb-4">Experience</h2>
+                    <div className="space-y-12">
+                      {userData.experience.map((job) => (
+                        <div key={job.id} className="relative pl-8 border-l-2 border-blue-200 hover:border-blue-500 transition-colors">
+                          <div className="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-blue-500 ring-4 ring-white"></div>
+                          <div className="mb-1 text-sm text-blue-600 font-bold uppercase tracking-wider">{job.period}</div>
+                          <h3 className="text-xl font-bold text-slate-800">{job.role}</h3>
+                          <div className="text-md text-slate-500 font-medium mb-3">{job.company}</div>
+                          <p className="text-slate-600 mb-4">{job.description}</p>
+                          {job.image && (
+                            <div className="mt-4">
+                              <img src={job.image} alt={`${job.company} work`} className="w-full md:w-2/3 h-48 object-cover rounded-lg shadow-sm border border-slate-100" 
+                                onError={(e) => { e.target.style.display = 'none'; }} />
+                            </div>
+                          )}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                );
+
+              case 'projects':
+                return (
+                  <div className="animate-fadeIn">
+                    <h2 className="text-3xl font-bold text-slate-800 mb-6 border-b pb-4">Projects</h2>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                      {userData.projects.map((project) => (
+                        <div key={project.id} className="bg-white p-6 rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow">
+                          <div className="flex justify-between items-start mb-4">
+                            <h3 className="text-xl font-bold text-slate-800">{project.title}</h3>
+                            <a href={project.link} className="text-blue-500 hover:text-blue-700"><ExternalLink size={20}/></a>
+                          </div>
+                          <p className="text-slate-600 mb-4 h-20 overflow-hidden">{project.description}</p>
+                          <div className="flex flex-wrap gap-2 mt-auto">
+                            {project.tech.map((t, i) => (
+                              <span key={i} className="text-xs font-mono bg-slate-100 text-slate-600 px-2 py-1 rounded">{t}</span>
+                            ))}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                );
+
+              case 'publications':
+                return (
+                  <div className="animate-fadeIn">
+                    <h2 className="text-3xl font-bold text-slate-800 mb-6 border-b pb-4">Publications</h2>
+                    <div className="space-y-4">
+                      {userData.publications.map((pub) => (
+                        <div key={pub.id} className="group flex items-start justify-between p-5 bg-slate-50 rounded-lg border border-slate-100 hover:bg-white hover:border-blue-200 transition-all">
+                          <div>
+                            <h3 className="text-lg font-semibold text-slate-800 group-hover:text-blue-600 transition-colors">{pub.title}</h3>
+                            <div className="text-slate-500 mt-1 flex items-center gap-2">
+                              <span>{pub.publisher}</span><span className="w-1 h-1 bg-slate-400 rounded-full"></span><span>{pub.year}</span>
+                            </div>
+                          </div>
+                          <a href={pub.link} className="text-slate-400 group-hover:text-blue-500"><ExternalLink size={18} /></a>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                );
+              default: return null;
+            }
+          };
+
+          return (
+            <div className="min-h-screen bg-slate-50 flex flex-col md:flex-row font-sans text-slate-900">
+              <div className="md:hidden bg-white p-4 shadow-sm flex justify-between items-center sticky top-0 z-50">
+                <span className="font-bold text-xl text-slate-800">{userData.profile.name}</span>
+                <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="text-slate-600">{isMenuOpen ? <X /> : <Menu />}</button>
+              </div>
+
+              <aside className={`fixed inset-0 md:static md:inset-auto md:w-72 bg-white border-r border-slate-200 p-6 flex flex-col z-40 transition-transform duration-300 ease-in-out ${isMenuOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'}`}>
+                <div className="mb-10 text-center md:text-left">
+                  {userData.profile.image && (
+                     <img src={userData.profile.image} alt={userData.profile.name} className="w-32 h-32 rounded-full mx-auto md:mx-0 mb-4 shadow-lg object-cover border-4 border-white ring-1 ring-slate-100"
+                        onError={(e) => { e.target.style.display = 'none'; e.target.nextSibling.style.display = 'flex'; }} />
+                  )}
+                  <div className="w-32 h-32 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full mx-auto md:mx-0 mb-4 shadow-lg flex items-center justify-center text-white text-4xl font-bold" style={{ display: userData.profile.image ? 'none' : 'flex' }}>
+                    {userData.profile.name.charAt(0)}
+                  </div>
+                  <h1 className="text-2xl font-bold text-slate-900">{userData.profile.name}</h1>
+                  <p className="text-slate-500 text-sm mt-1">{userData.profile.role}</p>
+                  <div className="flex gap-4 mt-4 justify-center md:justify-start flex-wrap">
+                    {userData.profile.social.github && <a href={userData.profile.social.github} target="_blank" className="text-slate-400 hover:text-slate-900"><Github size={20}/></a>}
+                    {userData.profile.social.linkedin && <a href={userData.profile.social.linkedin} target="_blank" className="text-slate-400 hover:text-blue-700"><Linkedin size={20}/></a>}
+                    {userData.profile.social.researchgate && <a href={userData.profile.social.researchgate} target="_blank" className="text-slate-400 hover:text-emerald-600"><BookOpen size={20}/></a>}
+                    {userData.profile.social.twitter && <a href={userData.profile.social.twitter} target="_blank" className="text-slate-400 hover:text-sky-500"><Globe size={20}/></a>}
+                    {userData.profile.social.website && <a href={userData.profile.social.website} target="_blank" className="text-slate-400 hover:text-purple-600"><Globe size={20}/></a>}
+                  </div>
+                </div>
+                <nav className="flex-1 space-y-2">
+                  <NavItem id="about" name="Profile" icon={User} />
+                  <NavItem id="experience" name="Experience" icon={Briefcase} />
+                  <NavItem id="projects" name="Projects" icon={Code} />
+                  <NavItem id="publications" name="Publications" icon={BookOpen} />
+                </nav>
+                <div className="mt-auto pt-6 border-t border-slate-100 text-xs text-slate-400 text-center md:text-left">&copy; 2025 {userData.profile.name}</div>
+              </aside>
+
+              <main className="flex-1 p-6 md:p-12 max-w-4xl mx-auto w-full overflow-y-auto">{renderContent()}</main>
+            </div>
+          );
+        };
+
+        const container = document.getElementById('root');
+        const root = ReactDOM.createRoot(container);
+        root.render(<App />);
+    </script>
+</body>
+</html>
