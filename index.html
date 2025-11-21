@@ -66,12 +66,8 @@
             role: "Statistical Consultant & Researcher",
             bio: "2+ years of experience in statistical modeling, causal inference, and building reproducible Git/GitHub workflows. Proficient in R and Python, adaptable across teams, and experienced in developing interpretable models and communicating insights to diverse stakeholders.",
             location: "Vernon, CT",
-            
             email: ["kelin.zhong@uconn.edu", "kelinzhonguconn@gmail.com"],
-            
-            // MAKE SURE THIS FILE EXISTS IN AN 'images' FOLDER
-            image: "images/profile.jpg", 
-            
+            image: "./images/profile.jpg", 
             social: {
               github: "https://github.com/KelinZhong",
               linkedin: "https://www.linkedin.com/in/kelin-zhong/",
@@ -440,26 +436,9 @@
                             </div>
                         ))}
                     </div>
+                    
+                    {/* Contact Info removed from here */}
 
-                    <div className="mt-10 p-6 bg-blue-50 rounded-xl border border-blue-100">
-                      <h3 className="text-lg font-semibold text-blue-900 mb-3">Contact Info</h3>
-                      <div className="space-y-3 text-blue-800">
-                        <div className="flex items-center">
-                            <MapPin size={18} className="mr-2 flex-shrink-0"/> 
-                            {userData.profile.location}
-                        </div>
-                        
-                        <div className="flex items-start">
-                            <Mail size={18} className="mr-2 mt-1 flex-shrink-0"/> 
-                            <div className="flex flex-col gap-1">
-                                {Array.isArray(userData.profile.email) 
-                                    ? userData.profile.email.map((email, idx) => <div key={idx}>{email}</div>)
-                                    : <div>{userData.profile.email}</div>
-                                }
-                            </div>
-                        </div>
-                      </div>
-                    </div>
                   </div>
                 );
 
@@ -627,6 +606,25 @@
                     {userData.profile.social.twitter && <a href={userData.profile.social.twitter} target="_blank" className="text-slate-400 hover:text-sky-500"><Globe size={20}/></a>}
                     {userData.profile.social.website && <a href={userData.profile.social.website} target="_blank" className="text-slate-400 hover:text-purple-600"><Globe size={20}/></a>}
                   </div>
+
+                  {/* CONTACT INFO MOVED HERE */}
+                  <div className="mt-6 pt-6 border-t border-slate-100 text-sm text-slate-600 space-y-3">
+                    <div className="flex items-center justify-center md:justify-start">
+                        <MapPin size={16} className="mr-2 flex-shrink-0 text-slate-400"/> 
+                        {userData.profile.location}
+                    </div>
+                    
+                    <div className="flex items-start justify-center md:justify-start">
+                        <Mail size={16} className="mr-2 mt-1 flex-shrink-0 text-slate-400"/> 
+                        <div className="flex flex-col text-left">
+                            {Array.isArray(userData.profile.email) 
+                                ? userData.profile.email.map((email, idx) => <a key={idx} href={`mailto:${email}`} className="hover:text-blue-600 break-all">{email}</a>)
+                                : <a href={`mailto:${userData.profile.email}`} className="hover:text-blue-600 break-all">{userData.profile.email}</a>
+                            }
+                        </div>
+                    </div>
+                  </div>
+
                 </div>
                 <nav className="flex-1 space-y-2">
                   <NavItem id="about" name="Profile" icon={User} />
