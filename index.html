@@ -32,7 +32,7 @@
 
     <script type="text/babel">
         // =================================================================================
-        //  I. ICON DEFINITIONS
+        //  I. ICON DEFINITIONS (CODE BLOCK)
         // =================================================================================
         
         const Icon = ({ size = 24, className, children }) => (
@@ -57,7 +57,7 @@
         const GraduationCap = (props) => <Icon {...props}><path d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z"/><path d="M22 10v6"/><path d="M6 12.5V16a6 2 0 0 0 12 0v-3.5"/></Icon>;
 
         // =================================================================================
-        //  DATA SECTION
+        //  II. CONTENT BLOCKS (DATA SECTION)
         // =================================================================================
 
         const userData = {
@@ -316,7 +316,7 @@
         };
 
         // =================================================================================
-        //  ⛔ LOGIC SECTION
+        //  III. LOGIC SECTION (APP COMPONENT)
         // =================================================================================
 
         const App = () => {
@@ -348,7 +348,6 @@
              return <p className="text-slate-600 mb-4">{description}</p>;
           };
           
-          // Helper to bold specific author name
           const renderAuthors = (authorsString) => {
              if (!authorsString) return null;
              const parts = authorsString.split(/(Kelin Zhong|K Zhong|KK Zhong)/g);
@@ -394,7 +393,6 @@
                             {userData.profile.location}
                         </div>
                         
-                        {/* 👇 UPDATED EMAIL RENDERING Logic */}
                         <div className="flex items-start">
                             <Mail size={18} className="mr-2 mt-1 flex-shrink-0"/> 
                             <div className="flex flex-col gap-1">
