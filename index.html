@@ -202,6 +202,7 @@
             {
               id: 3,
               title: "autoMR (coming soon)",
+              tech: ["R", "Causal Inference"],
               description: "Pipeline for summary and visualization of Medelian Randomization results. Intergrated with MendelianRandomization, TwoSampleMR and mr.raps.",
               link: ""
             }
@@ -464,7 +465,7 @@
                             {renderDescription(job.description)}
                           </div>
 
-                          {/* 👇 UPDATED: Added Image Rendering for Internships */}
+                          {/* UPDATED: Added Image Rendering for Internships */}
                           {job.image && (
                             <div className="mt-4">
                               <img src={job.image} alt={`${job.company} work`} className="w-full md:w-2/3 h-48 object-cover rounded-lg shadow-sm border border-slate-100" 
@@ -544,7 +545,7 @@
                             </div>
                           </div>
                           
-                          {/* 👇 UPDATED: Added Image Rendering for Presentations */}
+                          {/* UPDATED: Added Image Rendering for Presentations */}
                           {pres.image && (
                             <div className="mt-4">
                               <img src={pres.image} alt={pres.title} className="w-full md:w-2/3 h-48 object-cover rounded-lg shadow-sm border border-slate-100" 
