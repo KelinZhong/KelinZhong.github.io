@@ -204,19 +204,19 @@
 
           projects: [
             {
-              id: 1,
-              title: "ARpLMEC",
-              tech: ["R"],
-              description: "Left, right or interval censored mixed-effects linear model with autoregressive errors of order p or DEC correlation structure using the type-EM algorithm. The error distribution can be Normal or t-Student. It provides the parameter estimates, the standard errors and prediction of future observations (available only for the normal case). Olivari et all (2021) <doi:10.1080/10543406.2020.1852246>.",
-              link: "https://github.com/cran/ARpLMEC"
-            },
-            {
               id: 2,
               title: "SMNlmec",
               tech: ["R", "Stan"],
-              description: "Bayesian analysis of censored linear mixed-effects models that replace Gaussian assumptions with a flexible class of distributions, such as the scale mixture of normal family distributions, considering a damped exponential correlation structure which was employed to account for within-subject autocorrelation among irregularly observed measures. For more details, see Kelin Zhong, Fernanda L. Schumacher, Luis M. Castro, Victor H. Lachos (2025) <doi:10.1002/sim.10295>.",
+              description: "Bayesian censored linear mixed-effects models using scale mixtures of normal distributions. Incorporates damped exponential correlation for irregularly observed measures (Zhong et al., 2025) <doi:10.1002/sim.10295>.",
               link: "https://github.com/KelinZhong/SMNlmec"
             },
+            {
+              id: 1,
+              title: "ARpLMEC",
+              tech: ["R"],
+              description: "Implements censored mixed-effects models with AR(p) or DEC errors. Supports Normal and t-Student distributions for estimation and prediction. (Olivari et al., 2021) <doi:10.1080/10543406.2020.1852246>.",
+              link: "https://github.com/cran/ARpLMEC"
+            },            
             {
               id: 3,
               title: "autoMR (coming soon)",
