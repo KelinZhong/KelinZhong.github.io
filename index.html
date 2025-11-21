@@ -5,14 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kelin Zhong - Portfolio</title>
     
-    <!-- 1. Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- 2. React & ReactDOM -->
     <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
     <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
     
-    <!-- 3. Babel -->
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     
     <style>
@@ -67,9 +64,9 @@
             bio: "2+ years of experience in statistical modeling, causal inference, and building reproducible Git/GitHub workflows. Proficient in R and Python, adaptable across teams, and experienced in developing interpretable models and communicating insights to diverse stakeholders.",
             location: "Vernon, CT",
             
-            // UPDATED: You can now list multiple emails separated by commas inside the brackets
             email: ["kelin.zhong@uconn.edu", "kelinzhonguconn@gmail.com"],
             
+            // MAKE SURE THIS FILE EXISTS IN AN 'images' FOLDER
             image: "./images/profile.jpg", 
             
             social: {
@@ -107,7 +104,6 @@
               role: "Statistical Consultant",
               company: "UConn Health",
               period: "Jan 2024 – Present",
-              // CHANGED TO BULLET POINTS
               description: [
                 "Provided statistical consulting and analytical support for 30+ research projects, contributing to over 9 peer-reviewed publications.",
                 "Built reproducible R workflows for ETL, model development, and visualization; maintained and optimized team GitHub pipelines using Git to strengthen version control, transparency, and operational efficiency.",
@@ -180,6 +176,7 @@
               description: [
                 "Applied financial indicators (PE, PB, ROE, EBITDA) to develop a predictive model for the Hang Seng Index."
               ],
+              // MAKE SURE THIS FILE EXISTS
               image: "./images/AXA.jpg"
             }
           ],
@@ -310,6 +307,7 @@
               role: "Poster Presenter",
               year: "2024",
               location: "Hartford, CT",
+              // MAKE SURE THIS FILE EXISTS
               image: "./images/aging.jpg"
             },
             {
@@ -350,28 +348,28 @@
           );
 
           const renderDescription = (description) => {
-             if (Array.isArray(description)) {
-                 return (
-                     <ul className="list-disc pl-5 space-y-2 text-slate-600">
-                        {description.map((item, idx) => (
-                            <li key={idx}>{item}</li>
-                        ))}
-                     </ul>
-                 );
-             }
-             return <p className="text-slate-600 mb-4">{description}</p>;
+              if (Array.isArray(description)) {
+                  return (
+                      <ul className="list-disc pl-5 space-y-2 text-slate-600">
+                         {description.map((item, idx) => (
+                             <li key={idx}>{item}</li>
+                         ))}
+                      </ul>
+                  );
+              }
+              return <p className="text-slate-600 mb-4">{description}</p>;
           };
           
           const renderAuthors = (authorsString) => {
-             if (!authorsString) return null;
-             const parts = authorsString.split(/(Kelin Zhong|K Zhong|KK Zhong)/g);
-             return (
+              if (!authorsString) return null;
+              const parts = authorsString.split(/(Kelin Zhong|K Zhong|KK Zhong)/g);
+              return (
                 <div className="text-sm text-slate-600 mt-1 italic">
                     {parts.map((part, i) => 
                         (part === 'K Zhong' || part === 'KK Zhong' || part === 'Kelin Zhong') ? <strong key={i} className="text-slate-800">{part}</strong> : part
                     )}
                 </div>
-             );
+              );
           };
 
           const renderContent = () => {
@@ -437,9 +435,10 @@
                             {renderDescription(job.description)}
                           </div>
                           
+                          {/* IMAGE FIX: Changed h-48 object-cover to h-auto object-contain */}
                           {job.image && (
                             <div className="mt-4">
-                              <img src={job.image} alt={`${job.company} work`} className="w-full md:w-2/3 h-48 object-cover rounded-lg shadow-sm border border-slate-100" 
+                              <img src={job.image} alt={`${job.company} work`} className="w-full h-auto max-h-96 object-contain rounded-lg shadow-sm border border-slate-100 bg-white" 
                                 onError={(e) => { e.target.style.display = 'none'; }} />
                             </div>
                           )}
@@ -465,10 +464,10 @@
                             {renderDescription(job.description)}
                           </div>
 
-                          {/* UPDATED: Added Image Rendering for Internships */}
+                          {/* IMAGE FIX: Changed h-48 object-cover to h-auto object-contain */}
                           {job.image && (
                             <div className="mt-4">
-                              <img src={job.image} alt={`${job.company} work`} className="w-full md:w-2/3 h-48 object-cover rounded-lg shadow-sm border border-slate-100" 
+                              <img src={job.image} alt={`${job.company} work`} className="w-full h-auto max-h-96 object-contain rounded-lg shadow-sm border border-slate-100 bg-white" 
                                 onError={(e) => { e.target.style.display = 'none'; }} />
                             </div>
                           )}
@@ -484,12 +483,15 @@
                     <h2 className="text-3xl font-bold text-slate-800 mb-6 border-b pb-4">Projects</h2>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       {userData.projects.map((project) => (
-                        <div key={project.id} className="bg-white p-6 rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow">
+                        <div key={project.id} className="bg-white p-6 rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow flex flex-col">
                           <div className="flex justify-between items-start mb-4">
                             <h3 className="text-xl font-bold text-slate-800">{project.title}</h3>
                             <a href={project.link} className="text-blue-500 hover:text-blue-700"><ExternalLink size={20}/></a>
                           </div>
-                          <p className="text-slate-600 mb-4 h-20 overflow-hidden">{project.description}</p>
+                          
+                          {/* TEXT FIX: Removed 'h-20 overflow-hidden' to show full text */}
+                          <p className="text-slate-600 mb-4 flex-grow">{project.description}</p>
+                          
                           <div className="flex flex-wrap gap-2 mt-auto">
                             {project.tech.map((t, i) => (
                               <span key={i} className="text-xs font-mono bg-slate-100 text-slate-600 px-2 py-1 rounded">{t}</span>
@@ -545,10 +547,10 @@
                             </div>
                           </div>
                           
-                          {/* UPDATED: Added Image Rendering for Presentations */}
+                          {/* IMAGE FIX: Changed h-48 object-cover to h-auto object-contain */}
                           {pres.image && (
                             <div className="mt-4">
-                              <img src={pres.image} alt={pres.title} className="w-full md:w-2/3 h-48 object-cover rounded-lg shadow-sm border border-slate-100" 
+                              <img src={pres.image} alt={pres.title} className="w-full h-auto max-h-96 object-contain rounded-lg shadow-sm border border-slate-100 bg-white" 
                                 onError={(e) => { e.target.style.display = 'none'; }} />
                             </div>
                           )}
@@ -572,7 +574,7 @@
               <aside className={`fixed inset-0 md:static md:inset-auto md:w-72 bg-white border-r border-slate-200 p-6 flex flex-col z-40 transition-transform duration-300 ease-in-out ${isMenuOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'}`}>
                 <div className="mb-10 text-center md:text-left">
                   {userData.profile.image && (
-                     <img src={userData.profile.image} alt={userData.profile.name} className="w-32 h-32 rounded-full mx-auto md:mx-0 mb-4 shadow-lg object-cover border-4 border-white ring-1 ring-slate-100"
+                      <img src={userData.profile.image} alt={userData.profile.name} className="w-32 h-32 rounded-full mx-auto md:mx-0 mb-4 shadow-lg object-cover border-4 border-white ring-1 ring-slate-100"
                         onError={(e) => { e.target.style.display = 'none'; e.target.nextSibling.style.display = 'flex'; }} />
                   )}
                   <div className="w-32 h-32 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full mx-auto md:mx-0 mb-4 shadow-lg flex items-center justify-center text-white text-4xl font-bold" style={{ display: userData.profile.image ? 'none' : 'flex' }}>
