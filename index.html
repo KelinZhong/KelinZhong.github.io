@@ -470,10 +470,8 @@
                                 src={job.image} 
                                 alt={`${job.company} work`} 
                                 className="w-full h-auto max-h-96 object-contain rounded-lg shadow-sm border border-slate-100 bg-white" 
-                                /* I DELETED THE ONERROR LINE HERE */
-                              /> 
-                              {/* Add this line to print the path so we can read it on screen */}
-                              <p className="text-xs text-red-500 mt-1">Debug Path: {job.image}</p>
+                                onError={(e) => { e.target.style.display = 'none'; }} 
+                              />
                             </div>
                           )}
                         </div>
