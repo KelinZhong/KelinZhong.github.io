@@ -1,0 +1,314 @@
+
+import React, { useState } from 'react';
+import { User, Briefcase, BookOpen, Code, FileText, Mail, MapPin, ExternalLink, Github, Linkedin, Globe, Menu, X } from 'lucide-react';
+
+// =================================================================================
+// YOUR DATA GOES HERE - EDIT THIS SECTION TO UPDATE YOUR WEBSITE
+// =================================================================================
+
+const userData = {
+  // 1. BASIC INFO
+  profile: {
+    name: "Kelin Zhong",
+    role: "Senior Data Scientist & Researcher",
+    bio: "2+ years of experience applying advanced statistical modeling and causal inference to support high-impact decision-making. Expert in designing reproducible workflows, maintaining and improving team pipelines on GitHub using Git, building interpretable models, and translating complex data insights for diverse stakeholders. Strong quantitative background, hands-on experience in R and Python, and a proven record of cross-disciplinary collaboration and publication.",
+    location: "Vernon, CT",
+    email: "kelin.zhong@uconn.edu",
+    
+    // PROFILE PHOTO FROM LOCAL FOLDER
+    // 1. Create a folder named 'images' in your repo.
+    // 2. Upload your photo (e.g., 'profile-pic.jpg').
+    // 3. Use the path like below:
+    image: "./images/profile-pic.jpg",
+    
+    social: {
+      github: "https://github.com",
+      linkedin: "https://linkedin.com",
+      researchgate: "https://researchgate.net/profile/your-profile",
+      twitter: "https://twitter.com/yourhandle", 
+      website: "" 
+    }
+  },
+
+  // 2. SKILLS
+  skills: [
+    "Python (PyTorch, Pandas)", "React & JavaScript", "SQL & NoSQL", "AWS Cloud", "Technical Writing", "Docker"
+  ],
+
+  // 3. EXPERIENCE (Timeline with Photos)
+  experience: [
+    {
+      id: 1,
+      role: "Senior Data Engineer",
+      company: "TechFlow Solutions",
+      period: "2022 - Present",
+      description: "Leading a team of 5 engineers to optimize data pipelines. Reduced latency by 40% using Apache Spark.",
+      // IMAGE FROM LOCAL FOLDER
+      image: "./images/techflow-screenshot.jpg" 
+    },
+    {
+      id: 2,
+      role: "Junior Developer",
+      company: "WebCorp Inc.",
+      period: "2019 - 2022",
+      description: "Developed client-facing web applications using React. Collaborated with UX teams to improve accessibility.",
+      image: "" 
+    }
+  ],
+
+  // 4. PROJECTS
+  projects: [
+    {
+      id: 1,
+      title: "Automated Market Analyzer",
+      tech: ["Python", "TensorFlow", "API"],
+      description: "A bot that predicts stock trends with 85% accuracy using sentiment analysis on news headlines.",
+      link: "#"
+    },
+    {
+      id: 2,
+      title: "Personal Cloud Dashboard",
+      tech: ["React", "Node.js", "AWS"],
+      description: "A centralized dashboard to manage files across Google Drive, Dropbox, and AWS S3 buckets.",
+      link: "#"
+    }
+  ],
+
+  // 5. PUBLICATIONS
+  publications: [
+    {
+      id: 1,
+      title: "Optimizing Neural Networks for Mobile Devices",
+      publisher: "IEEE Conference on AI",
+      year: "2023",
+      link: "#"
+    },
+    {
+      id: 2,
+      title: "The Future of Web Assembly in Data Visualization",
+      publisher: "Medium / Towards Data Science",
+      year: "2022",
+      link: "#"
+    }
+  ]
+};
+
+// =================================================================================
+//  DO NOT EDIT BELOW THIS LINE UNLESS YOU KNOW REACT 
+// =================================================================================
+
+const App = () => {
+  const [activeTab, setActiveTab] = useState('about');
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const NavItem = ({ name, id, icon: Icon }) => (
+    <button
+      onClick={() => {
+        setActiveTab(id);
+        setIsMenuOpen(false);
+      }}
+      className={`flex items-center w-full p-3 mb-2 rounded-lg transition-all duration-200 ${
+        activeTab === id 
+          ? 'bg-blue-600 text-white shadow-md' 
+          : 'text-slate-600 hover:bg-slate-100'
+      }`}
+    >
+      <Icon size={20} className="mr-3" />
+      <span className="font-medium">{name}</span>
+    </button>
+  );
+
+  const renderContent = () => {
+    switch (activeTab) {
+      case 'about':
+        return (
+          <div className="animate-fadeIn">
+            <h2 className="text-3xl font-bold text-slate-800 mb-6 border-b pb-4">About Me</h2>
+            <p className="text-lg text-slate-600 mb-8 leading-relaxed">{userData.profile.bio}</p>
+            
+            <h3 className="text-xl font-semibold text-slate-800 mb-4">Technical Skills</h3>
+            <div className="flex flex-wrap gap-2">
+              {userData.skills.map((skill, index) => (
+                <span key={index} className="px-4 py-2 bg-slate-100 text-slate-700 rounded-full text-sm font-medium border border-slate-200">
+                  {skill}
+                </span>
+              ))}
+            </div>
+
+            <div className="mt-10 p-6 bg-blue-50 rounded-xl border border-blue-100">
+              <h3 className="text-lg font-semibold text-blue-900 mb-3">Contact Info</h3>
+              <div className="space-y-2 text-blue-800">
+                <div className="flex items-center"><MapPin size={18} className="mr-2"/> {userData.profile.location}</div>
+                <div className="flex items-center"><Mail size={18} className="mr-2"/> {userData.profile.email}</div>
+              </div>
+            </div>
+          </div>
+        );
+
+      case 'experience':
+        return (
+          <div className="animate-fadeIn">
+            <h2 className="text-3xl font-bold text-slate-800 mb-6 border-b pb-4">Experience</h2>
+            <div className="space-y-12">
+              {userData.experience.map((job) => (
+                <div key={job.id} className="relative pl-8 border-l-2 border-blue-200 hover:border-blue-500 transition-colors">
+                  <div className="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-blue-500 ring-4 ring-white"></div>
+                  <div className="mb-1 text-sm text-blue-600 font-bold uppercase tracking-wider">{job.period}</div>
+                  <h3 className="text-xl font-bold text-slate-800">{job.role}</h3>
+                  <div className="text-md text-slate-500 font-medium mb-3">{job.company}</div>
+                  <p className="text-slate-600 mb-4">{job.description}</p>
+                  
+                  {job.image && (
+                    <div className="mt-4">
+                      <img 
+                        src={job.image} 
+                        alt={`${job.company} work`}
+                        className="w-full md:w-2/3 h-48 object-cover rounded-lg shadow-sm border border-slate-100 hover:shadow-md transition-shadow" 
+                        onError={(e) => {
+                          e.target.src = "https://via.placeholder.com/400x300?text=Image+Not+Found"; // Fallback
+                          e.target.alt = "Image not found";
+                        }}
+                      />
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
+        );
+
+      case 'projects':
+        return (
+          <div className="animate-fadeIn">
+            <h2 className="text-3xl font-bold text-slate-800 mb-6 border-b pb-4">Projects</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {userData.projects.map((project) => (
+                <div key={project.id} className="bg-white p-6 rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow">
+                  <div className="flex justify-between items-start mb-4">
+                    <h3 className="text-xl font-bold text-slate-800">{project.title}</h3>
+                    <a href={project.link} className="text-blue-500 hover:text-blue-700"><ExternalLink size={20}/></a>
+                  </div>
+                  <p className="text-slate-600 mb-4 h-20 overflow-hidden">{project.description}</p>
+                  <div className="flex flex-wrap gap-2 mt-auto">
+                    {project.tech.map((t, i) => (
+                      <span key={i} className="text-xs font-mono bg-slate-100 text-slate-600 px-2 py-1 rounded">
+                        {t}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        );
+
+      case 'publications':
+        return (
+          <div className="animate-fadeIn">
+            <h2 className="text-3xl font-bold text-slate-800 mb-6 border-b pb-4">Publications</h2>
+            <div className="space-y-4">
+              {userData.publications.map((pub) => (
+                <div key={pub.id} className="group flex items-start justify-between p-5 bg-slate-50 rounded-lg border border-slate-100 hover:bg-white hover:border-blue-200 transition-all">
+                  <div>
+                    <h3 className="text-lg font-semibold text-slate-800 group-hover:text-blue-600 transition-colors">
+                      {pub.title}
+                    </h3>
+                    <div className="text-slate-500 mt-1 flex items-center gap-2">
+                      <span>{pub.publisher}</span>
+                      <span className="w-1 h-1 bg-slate-400 rounded-full"></span>
+                      <span>{pub.year}</span>
+                    </div>
+                  </div>
+                  <a href={pub.link} className="text-slate-400 group-hover:text-blue-500">
+                    <ExternalLink size={18} />
+                  </a>
+                </div>
+              ))}
+            </div>
+          </div>
+        );
+        
+      default: return null;
+    }
+  };
+
+  return (
+    <div className="min-h-screen bg-slate-50 flex flex-col md:flex-row font-sans text-slate-900">
+      {/* Mobile Header */}
+      <div className="md:hidden bg-white p-4 shadow-sm flex justify-between items-center sticky top-0 z-50">
+        <span className="font-bold text-xl text-slate-800">{userData.profile.name}</span>
+        <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="text-slate-600">
+          {isMenuOpen ? <X /> : <Menu />}
+        </button>
+      </div>
+
+      {/* Sidebar / Navigation */}
+      <aside className={`
+        fixed inset-0 md:static md:inset-auto md:w-72 bg-white border-r border-slate-200 p-6 flex flex-col z-40 transition-transform duration-300 ease-in-out
+        ${isMenuOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'}
+      `}>
+        <div className="mb-10 text-center md:text-left">
+          {/* Profile Image Rendering */}
+          {userData.profile.image ? (
+             <img 
+                src={userData.profile.image} 
+                alt={userData.profile.name} 
+                className="w-32 h-32 rounded-full mx-auto md:mx-0 mb-4 shadow-lg object-cover border-4 border-white ring-1 ring-slate-100"
+                onError={(e) => {
+                  e.target.style.display = 'none';
+                  e.target.nextSibling.style.display = 'flex';
+                }}
+             />
+          ) : null}
+          
+          {/* Fallback Initial if image fails or isn't present */}
+          <div 
+            className="w-24 h-24 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full mx-auto md:mx-0 mb-4 shadow-lg flex items-center justify-center text-white text-2xl font-bold"
+            style={{ display: userData.profile.image ? 'none' : 'flex' }}
+          >
+            {userData.profile.name.charAt(0)}
+          </div>
+
+          <h1 className="text-2xl font-bold text-slate-900">{userData.profile.name}</h1>
+          <p className="text-slate-500 text-sm mt-1">{userData.profile.role}</p>
+          
+          <div className="flex gap-4 mt-4 justify-center md:justify-start flex-wrap">
+            {userData.profile.social.github && (
+              <a href={userData.profile.social.github} target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-slate-900 transition-colors"><Github size={20}/></a>
+            )}
+            {userData.profile.social.linkedin && (
+              <a href={userData.profile.social.linkedin} target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-blue-700 transition-colors"><Linkedin size={20}/></a>
+            )}
+            {userData.profile.social.researchgate && (
+              <a href={userData.profile.social.researchgate} target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-emerald-600 transition-colors" title="ResearchGate"><BookOpen size={20}/></a>
+            )}
+            {userData.profile.social.twitter && (
+              <a href={userData.profile.social.twitter} target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-sky-500 transition-colors" title="Twitter"><Globe size={20}/></a>
+            )}
+            {userData.profile.social.website && (
+              <a href={userData.profile.social.website} target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-purple-600 transition-colors" title="Website"><Globe size={20}/></a>
+            )}
+          </div>
+        </div>
+
+        <nav className="flex-1 space-y-2">
+          <NavItem id="about" name="Profile" icon={User} />
+          <NavItem id="experience" name="Experience" icon={Briefcase} />
+          <NavItem id="projects" name="Projects" icon={Code} />
+          <NavItem id="publications" name="Publications" icon={BookOpen} />
+        </nav>
+
+        <div className="mt-auto pt-6 border-t border-slate-100 text-xs text-slate-400 text-center md:text-left">
+          &copy; 2025 {userData.profile.name}
+        </div>
+      </aside>
+
+      {/* Main Content Area */}
+      <main className="flex-1 p-6 md:p-12 max-w-4xl mx-auto w-full overflow-y-auto">
+        {renderContent()}
+      </main>
+    </div>
+  );
+};
+
+export default App;
