@@ -5,11 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kelin Zhong - Portfolio</title>
     
+    <!-- 1. Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
+    <!-- 2. React & ReactDOM -->
     <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
     <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
     
+    <!-- 3. Babel -->
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     
     <style>
@@ -76,6 +79,28 @@
               website: ""
             }
           },
+
+          // EDUCATION DATA
+          education: [
+            {
+                degree: "Ph.D. Candidate in Statistics",
+                school: "University of Connecticut",
+                year: "2020 – Present",
+                details: "Research: Bayesian inference & Longitudinal data"
+            },
+            {
+                degree: "M.S in Statistics", 
+                school: "University of Connecticut", 
+                year: "2018 – 2020", 
+                details: ""
+            },
+            {
+                degree: "B.S. in Statistics", 
+                school: "Sun Yat-sen University", 
+                year: "2013 – 2018", 
+                details: ""
+            }
+          ],
 
           skills: {
             "Statistical Methods": [
@@ -380,6 +405,25 @@
                     <h2 className="text-3xl font-bold text-slate-800 mb-6 border-b pb-4">About Me</h2>
                     <p className="text-lg text-slate-600 mb-8 leading-relaxed">{userData.profile.bio}</p>
                     
+                    {/* NEW EDUCATION SECTION */}
+                    <div className="mb-8">
+                        <h3 className="text-xl font-semibold text-slate-800 mb-4 flex items-center">
+                            <GraduationCap className="mr-2 text-blue-600"/> Education
+                        </h3>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            {userData.education.map((edu, idx) => (
+                                <div key={idx} className="bg-white p-4 rounded-lg border border-slate-200 shadow-sm">
+                                    <h4 className="font-bold text-slate-800">{edu.degree}</h4>
+                                    <div className="text-blue-600 font-medium text-sm">{edu.school}</div>
+                                    <div className="flex justify-between items-center mt-2 text-sm text-slate-500">
+                                        <span>{edu.year}</span>
+                                    </div>
+                                    {edu.details && <p className="text-xs text-slate-500 mt-2 italic">{edu.details}</p>}
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                    
                     <h3 className="text-xl font-semibold text-slate-800 mb-6">Technical Skills</h3>
                     
                     <div className="space-y-6">
@@ -435,7 +479,6 @@
                             {renderDescription(job.description)}
                           </div>
                           
-                          {/* IMAGE FIX: Changed h-48 object-cover to h-auto object-contain */}
                           {job.image && (
                             <div className="mt-4">
                               <img src={job.image} alt={`${job.company} work`} className="w-full h-auto max-h-96 object-contain rounded-lg shadow-sm border border-slate-100 bg-white" 
@@ -464,15 +507,10 @@
                             {renderDescription(job.description)}
                           </div>
 
-                          {/* IMAGE FIX: Changed h-48 object-cover to h-auto object-contain */}
                           {job.image && (
                             <div className="mt-4">
-                              <img 
-                                src={job.image} 
-                                alt={`${job.company} work`} 
-                                className="w-full h-auto max-h-96 object-contain rounded-lg shadow-sm border border-slate-100 bg-white" 
-                                onError={(e) => { e.target.style.display = 'none'; }} 
-                              />
+                              <img src={job.image} alt={`${job.company} work`} className="w-full h-auto max-h-96 object-contain rounded-lg shadow-sm border border-slate-100 bg-white" 
+                                onError={(e) => { e.target.style.display = 'none'; }} />
                             </div>
                           )}
                         </div>
@@ -493,7 +531,6 @@
                             <a href={project.link} className="text-blue-500 hover:text-blue-700"><ExternalLink size={20}/></a>
                           </div>
                           
-                          {/* TEXT FIX: Removed 'h-20 overflow-hidden' to show full text */}
                           <p className="text-slate-600 mb-4 flex-grow">{project.description}</p>
                           
                           <div className="flex flex-wrap gap-2 mt-auto">
@@ -517,9 +554,7 @@
                           <div className="flex justify-between items-start">
                             <div>
                                 <h3 className="text-lg font-semibold text-slate-800 group-hover:text-blue-600 transition-colors">{pub.title}</h3>
-                                {/* Render Authors */}
                                 {renderAuthors(pub.authors)}
-                                
                                 <div className="text-slate-500 mt-2 flex items-center gap-2 text-sm">
                                     <span className="font-medium text-slate-700">{pub.publisher}</span>
                                     <span className="w-1 h-1 bg-slate-400 rounded-full"></span>
@@ -551,7 +586,6 @@
                             </div>
                           </div>
                           
-                          {/* IMAGE FIX: Changed h-48 object-cover to h-auto object-contain */}
                           {pres.image && (
                             <div className="mt-4">
                               <img src={pres.image} alt={pres.title} className="w-full h-auto max-h-96 object-contain rounded-lg shadow-sm border border-slate-100 bg-white" 
