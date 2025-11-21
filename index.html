@@ -74,7 +74,7 @@
             
             social: {
               github: "https://github.com/KelinZhong",
-              linkedin: "www.linkedin.com/in/kelin-zhong",
+              linkedin: "https://www.linkedin.com/in/kelin-zhong/",
               researchgate: "https://www.researchgate.net/profile/Kelin-Zhong",
               website: ""
             }
@@ -200,24 +200,21 @@
               title: "Autoregressive Bayesian modeling of censored HIV longitudinal data using the multivariate Student’s-t distribution",
               authors: "K Zhong, LM Castro, P Zhang, VH Lachos",
               publisher: "Japanese Journal of Statistics and Data Science",
-              year: "2025",
-              link: "#"
+              year: "2025"
             },
             {
               id: 2,
               title: "Bayesian Analysis of Censored Linear Mixed‐Effects Models for Heavy‐Tailed Irregularly Observed Repeated Measures",
               authors: "K Zhong, FL Schumacher, LM Castro, VH Lachos",
               publisher: "Statistics in Medicine",
-              year: "2025",
-              link: "#"
+              year: "2025"
             },
              {
               id: 3,
               title: "Linear Mixed-effects Models for Censored Data with Serial Correlation Errors Using the Multivariate Student’s t-distribution",
               authors: "K Zhong, RC Olivari, AM Garay, VH Lachos",
               publisher: "The New England Journal of Statistics in Data Science",
-              year: "2024",
-              link: "#"
+              year: "2024"
             },
             // Co-Author Papers
             {
@@ -225,72 +222,63 @@
               title: "A Five-Year Review of Temporal Bone Fractures at a Level One Trauma Center and Examination of the Impact of the COVID-19 Pandemic",
               authors: "WM Jongbloed, D Campbell, CL Kuo, K Zhong, NJ Cavanagh",
               publisher: "Surgeries",
-              year: "2025",
-              link: "#"
+              year: "2025"
             },
             {
               id: 5,
               title: "Angiographic Characteristics and Associated Risk Factors of Premature Coronary Artery Disease among South Asians: A Systematic Review",
               authors: "S Passey, J Jha, M Iverson, K Zhong, CL Kuo, S Arora, A Qamar...",
               publisher: "The American Journal of Cardiology",
-              year: "2025",
-              link: "#"
+              year: "2025"
             },
             {
               id: 6,
               title: "Micro-computed tomography assessment of regional and overall accuracy of thermoformed retainers and intraoral scanners",
               authors: "ML Montes, MA Zakhary, SF Cobos, CL Kuo, KK Zhong, SA Arqub...",
               publisher: "American Journal of Orthodontics and Dentofacial Orthopedics",
-              year: "2025",
-              link: "#"
+              year: "2025"
             },
             {
               id: 7,
               title: "Healthcare disparities in Merkel cell carcinoma (MCC) in immune checkpoint inhibitor (ICI) era: A SEER study of survival disparities in older adults",
               authors: "J Arunachalam, K Zhong, CL Kuo, KS Gunturu, BJ Byrne",
               publisher: "Journal of Clinical Oncology",
-              year: "2025",
-              link: "#"
+              year: "2025"
             },
             {
               id: 8,
               title: "Software Versus Cognitive Fusion For The Detection Of Clinically Significant Prostate Cancer: Does ‘Lesion Density’ Matter?",
               authors: "V Dubovik, D Buller, B Rosenfeld, W Martin, A Sherman, W Faust...",
               publisher: "Journal of Urology",
-              year: "2025",
-              link: "#"
+              year: "2025"
             },
             {
               id: 9,
               title: "Comparison of safety and efficacy of ultrasound-accelerated thrombolysis vs. standard catheter-directed thrombolysis for the management of acute pulmonary embolism-a systematic review...",
               authors: "S Passey, H Jain, J Jha, K Zhong...",
               publisher: "Journal of Thrombosis and Thrombolysis",
-              year: "2025",
-              link: "#"
+              year: "2025"
             },
             {
               id: 10,
               title: "The Influence of Sexual Orientation and Gender Identity on the Otolaryngology Residency Experience",
               authors: "WM Jongbloed, HA Newsome, L Kashat, K Parham, EA Faucett, CL Kuo, K Zhong...",
               publisher: "OTO open",
-              year: "2025",
-              link: "#"
+              year: "2025"
             },
             {
               id: 11,
               title: "A survey of general dentists on the involvement of endodontists in restorative procedures",
               authors: "GB Deese, MT Spoto, Q Zhu, RH Aseltine Jr, CL Kuo, K Zhong, O Dort...",
               publisher: "The Journal of the American Dental Association",
-              year: "2025",
-              link: "#"
+              year: "2025"
             },
             {
               id: 12,
               title: "The Effect of a Pilot Medical Humanities Curriculum and Narrative Medicine on Empathy, Connectedness, and Self-reported General Well-being in an Otolaryngology Residency Program",
               authors: "W Jongbloed, KR Kavanagh, CL Kuo, K Zhong, H Newsome",
               publisher: "Research Output",
-              year: "2024",
-              link: "#"
+              year: "2024"
             }
           ],
 
@@ -328,7 +316,7 @@
         };
 
         // =================================================================================
-        //  LOGIC SECTION
+        //  ⛔ LOGIC SECTION
         // =================================================================================
 
         const App = () => {
@@ -346,6 +334,32 @@
               <span className="font-medium">{name}</span>
             </button>
           );
+
+          const renderDescription = (description) => {
+             if (Array.isArray(description)) {
+                 return (
+                     <ul className="list-disc pl-5 space-y-2 text-slate-600">
+                        {description.map((item, idx) => (
+                            <li key={idx}>{item}</li>
+                        ))}
+                     </ul>
+                 );
+             }
+             return <p className="text-slate-600 mb-4">{description}</p>;
+          };
+          
+          // Helper to bold specific author name
+          const renderAuthors = (authorsString) => {
+             if (!authorsString) return null;
+             const parts = authorsString.split(/(Kelin Zhong|K Zhong|KK Zhong)/g);
+             return (
+                <div className="text-sm text-slate-600 mt-1 italic">
+                    {parts.map((part, i) => 
+                        (part === 'K Zhong' || part === 'KK Zhong' || part === 'Kelin Zhong') ? <strong key={i} className="text-slate-800">{part}</strong> : part
+                    )}
+                </div>
+             );
+          };
 
           const renderContent = () => {
             switch (activeTab) {
@@ -398,7 +412,7 @@
               case 'experience':
                 return (
                   <div className="animate-fadeIn">
-                    <h2 className="text-3xl font-bold text-slate-800 mb-6 border-b pb-4">Experience</h2>
+                    <h2 className="text-3xl font-bold text-slate-800 mb-6 border-b pb-4">Work Experience</h2>
                     <div className="space-y-12">
                       {userData.experience.map((job) => (
                         <div key={job.id} className="relative pl-8 border-l-2 border-blue-200 hover:border-blue-500 transition-colors">
@@ -406,13 +420,38 @@
                           <div className="mb-1 text-sm text-blue-600 font-bold uppercase tracking-wider">{job.period}</div>
                           <h3 className="text-xl font-bold text-slate-800">{job.role}</h3>
                           <div className="text-md text-slate-500 font-medium mb-3">{job.company}</div>
-                          <p className="text-slate-600 mb-4">{job.description}</p>
+                          
+                          <div className="mb-4">
+                            {renderDescription(job.description)}
+                          </div>
+                          
                           {job.image && (
                             <div className="mt-4">
                               <img src={job.image} alt={`${job.company} work`} className="w-full md:w-2/3 h-48 object-cover rounded-lg shadow-sm border border-slate-100" 
                                 onError={(e) => { e.target.style.display = 'none'; }} />
                             </div>
                           )}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                );
+
+              case 'internships':
+                return (
+                  <div className="animate-fadeIn">
+                    <h2 className="text-3xl font-bold text-slate-800 mb-6 border-b pb-4">Internship Experience</h2>
+                    <div className="space-y-12">
+                      {userData.internships.map((job) => (
+                        <div key={job.id} className="relative pl-8 border-l-2 border-purple-200 hover:border-purple-500 transition-colors">
+                          <div className="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-purple-500 ring-4 ring-white"></div>
+                          <div className="mb-1 text-sm text-purple-600 font-bold uppercase tracking-wider">{job.period}</div>
+                          <h3 className="text-xl font-bold text-slate-800">{job.role}</h3>
+                          <div className="text-md text-slate-500 font-medium mb-3">{job.company}</div>
+                          
+                          <div className="mb-4">
+                            {renderDescription(job.description)}
+                          </div>
                         </div>
                       ))}
                     </div>
@@ -448,19 +487,47 @@
                     <h2 className="text-3xl font-bold text-slate-800 mb-6 border-b pb-4">Publications</h2>
                     <div className="space-y-4">
                       {userData.publications.map((pub) => (
-                        <div key={pub.id} className="group flex items-start justify-between p-5 bg-slate-50 rounded-lg border border-slate-100 hover:bg-white hover:border-blue-200 transition-all">
-                          <div>
-                            <h3 className="text-lg font-semibold text-slate-800 group-hover:text-blue-600 transition-colors">{pub.title}</h3>
-                            <div className="text-slate-500 mt-1 flex items-center gap-2">
-                              <span>{pub.publisher}</span><span className="w-1 h-1 bg-slate-400 rounded-full"></span><span>{pub.year}</span>
+                        <div key={pub.id} className="group flex flex-col p-5 bg-slate-50 rounded-lg border border-slate-100 hover:bg-white hover:border-blue-200 transition-all">
+                          <div className="flex justify-between items-start">
+                            <div>
+                                <h3 className="text-lg font-semibold text-slate-800 group-hover:text-blue-600 transition-colors">{pub.title}</h3>
+                                {/* Render Authors */}
+                                {renderAuthors(pub.authors)}
+                                
+                                <div className="text-slate-500 mt-2 flex items-center gap-2 text-sm">
+                                    <span className="font-medium text-slate-700">{pub.publisher}</span>
+                                    <span className="w-1 h-1 bg-slate-400 rounded-full"></span>
+                                    <span>{pub.year}</span>
+                                </div>
                             </div>
+                            <a href={pub.link} className="text-slate-400 group-hover:text-blue-500 ml-4"><ExternalLink size={18} /></a>
                           </div>
-                          <a href={pub.link} className="text-slate-400 group-hover:text-blue-500"><ExternalLink size={18} /></a>
                         </div>
                       ))}
                     </div>
                   </div>
                 );
+                
+              case 'presentations':
+                return (
+                  <div className="animate-fadeIn">
+                    <h2 className="text-3xl font-bold text-slate-800 mb-6 border-b pb-4">Presentations</h2>
+                    <div className="space-y-4">
+                      {userData.presentations.map((pres) => (
+                        <div key={pres.id} className="flex items-center p-5 bg-white rounded-lg border-l-4 border-indigo-500 shadow-sm">
+                          <div className="flex-1">
+                            <h3 className="text-lg font-bold text-slate-800">{pres.title}</h3>
+                            <div className="text-slate-600 mt-1">{pres.role}</div>
+                          </div>
+                          <div className="text-indigo-600 font-bold bg-indigo-50 px-3 py-1 rounded-full text-sm">
+                            {pres.year}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                );
+
               default: return null;
             }
           };
@@ -494,8 +561,10 @@
                 <nav className="flex-1 space-y-2">
                   <NavItem id="about" name="Profile" icon={User} />
                   <NavItem id="experience" name="Experience" icon={Briefcase} />
+                  <NavItem id="internships" name="Internships" icon={GraduationCap} />
                   <NavItem id="projects" name="Projects" icon={Code} />
                   <NavItem id="publications" name="Publications" icon={BookOpen} />
+                  <NavItem id="presentations" name="Presentations" icon={Mic} />
                 </nav>
                 <div className="mt-auto pt-6 border-t border-slate-100 text-xs text-slate-400 text-center md:text-left">&copy; 2025 {userData.profile.name}</div>
               </aside>
