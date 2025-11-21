@@ -32,7 +32,7 @@
 
     <script type="text/babel">
         // =================================================================================
-        //  I. ICON DEFINITIONS (CODE BLOCK)
+        //  I. ICON DEFINITIONS
         // =================================================================================
         
         const Icon = ({ size = 24, className, children }) => (
@@ -187,10 +187,23 @@
           projects: [
             {
               id: 1,
-              title: "Automated Market Analyzer",
-              tech: ["Python", "TensorFlow", "API"],
-              description: "A bot that predicts stock trends with 85% accuracy using sentiment analysis on news headlines.",
-              link: "#"
+              title: "ARpLMEC",
+              tech: ["R"],
+              description: "Left, right or interval censored mixed-effects linear model with autoregressive errors of order p or DEC correlation structure using the type-EM algorithm. The error distribution can be Normal or t-Student. It provides the parameter estimates, the standard errors and prediction of future observations (available only for the normal case). Olivari et all (2021) <doi:10.1080/10543406.2020.1852246>.",
+              link: "https://github.com/cran/ARpLMEC"
+            },
+            {
+              id: 2,
+              title: "SMNlmec",
+              tech: ["R", "Stan"],
+              description: "Bayesian analysis of censored linear mixed-effects models that replace Gaussian assumptions with a flexible class of distributions, such as the scale mixture of normal family distributions, considering a damped exponential correlation structure which was employed to account for within-subject autocorrelation among irregularly observed measures. For more details, see Kelin Zhong, Fernanda L. Schumacher, Luis M. Castro, Victor H. Lachos (2025) <doi:10.1002/sim.10295>.",
+              link: "https://github.com/KelinZhong/SMNlmec"
+            },
+            {
+              id: 3,
+              title: "autoMR (coming soon)",
+              description: "Pipeline for summary and visualization of Medelian Randomization results. Intergrated with MendelianRandomization, TwoSampleMR and mr.raps.",
+              link: ""
             }
           ],
 
@@ -450,6 +463,14 @@
                           <div className="mb-4">
                             {renderDescription(job.description)}
                           </div>
+
+                          {/* 👇 UPDATED: Added Image Rendering for Internships */}
+                          {job.image && (
+                            <div className="mt-4">
+                              <img src={job.image} alt={`${job.company} work`} className="w-full md:w-2/3 h-48 object-cover rounded-lg shadow-sm border border-slate-100" 
+                                onError={(e) => { e.target.style.display = 'none'; }} />
+                            </div>
+                          )}
                         </div>
                       ))}
                     </div>
@@ -512,14 +533,24 @@
                     <h2 className="text-3xl font-bold text-slate-800 mb-6 border-b pb-4">Presentations</h2>
                     <div className="space-y-4">
                       {userData.presentations.map((pres) => (
-                        <div key={pres.id} className="flex items-center p-5 bg-white rounded-lg border-l-4 border-indigo-500 shadow-sm">
-                          <div className="flex-1">
-                            <h3 className="text-lg font-bold text-slate-800">{pres.title}</h3>
-                            <div className="text-slate-600 mt-1">{pres.role}</div>
+                        <div key={pres.id} className="p-5 bg-white rounded-lg border-l-4 border-indigo-500 shadow-sm flex flex-col">
+                          <div className="flex items-center justify-between">
+                            <div>
+                                <h3 className="text-lg font-bold text-slate-800">{pres.title}</h3>
+                                <div className="text-slate-600 mt-1">{pres.role}</div>
+                            </div>
+                            <div className="text-indigo-600 font-bold bg-indigo-50 px-3 py-1 rounded-full text-sm">
+                                {pres.year}
+                            </div>
                           </div>
-                          <div className="text-indigo-600 font-bold bg-indigo-50 px-3 py-1 rounded-full text-sm">
-                            {pres.year}
-                          </div>
+                          
+                          {/* 👇 UPDATED: Added Image Rendering for Presentations */}
+                          {pres.image && (
+                            <div className="mt-4">
+                              <img src={pres.image} alt={pres.title} className="w-full md:w-2/3 h-48 object-cover rounded-lg shadow-sm border border-slate-100" 
+                                onError={(e) => { e.target.style.display = 'none'; }} />
+                            </div>
+                          )}
                         </div>
                       ))}
                     </div>
