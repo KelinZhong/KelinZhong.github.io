@@ -209,14 +209,14 @@
             {
               id: 2,
               title: "SMNlmec",
-              tech: ["R", "Stan"],
+              tech: ["R", "Stan", "Bayesian Modeling", "Longitudinal Data Analysis", "Linear Mix-Effects Model"],
               description: "Bayesian censored linear mixed-effects models using scale mixtures of normal distributions. Incorporates damped exponential correlation for irregularly observed measures (Zhong et al., 2025) <doi:10.1002/sim.10295>.",
               link: "https://github.com/KelinZhong/SMNlmec"
             },
             {
               id: 1,
               title: "ARpLMEC",
-              tech: ["R"],
+              tech: ["R", "Longitudinal Data Analysis", "Linear Mix-Effects Model"],
               description: "Implements censored mixed-effects models with AR(p) or DEC errors. Supports Normal and t-Student distributions for estimation and prediction. (Olivari et al., 2021) <doi:10.1080/10543406.2020.1852246>.",
               link: "https://github.com/cran/ARpLMEC"
             },            
@@ -232,24 +232,24 @@
           selectedProjects: [
             {
               id: 1,
-              title: "Bayesian Modeling of Censored HIV Longitudinal Data",
+              title: "Bayesian Analysis of Censored Linear Mixed‐Effects Models for Heavy‐Tailed Irregularly Observed Repeated Measures",
               period: "2023 - 2024",
-              link: "https://doi.org/10.1007/s42081-024-00262-w",
+              link: "",
               description: [
-                "Developed a novel multivariate Student’s-t distribution framework to handle heavy-tailed noise and detection limits in viral load measurements.",
-                "Reduced computational overhead by 30% through optimized MCMC sampling in Stan, enabling large-scale analysis of clinical trial datasets.",
-                "Published findings in the Japanese Journal of Statistics and Data Science, demonstrating superior predictive accuracy over standard Gaussian models."
+                "Developed a Scale Mixture Normal (SMN) distribution framework to handle heavy-tailed noise and detection limits in viral load measurements.",
+                "Reduced computational overhead through optimized MCMC sampling in Stan, enabling large-scale analysis of clinical trial datasets.",
+                "Published findings in Statistics in Medicine, create and develop R package SMNlmec."
               ]
             },
             {
               id: 2,
-              title: "Target Trial Emulation for Cardiovascular Outcomes",
-              period: "2024 - Present",
-              link: "https://doi.org/10.1016/j.amjcard.2024.11.042",
+              title: "Target Trial Emulation (TTE) for the Targeting Aging with Metformin (TAME) Trial",
+              period: "2023 - Present",
+              link: "",
               description: [
-                "Designed and emulated a target trial using clinical EHR data to evaluate the impact of specific interventions on premature coronary artery disease.",
-                "Managed immortal time bias and confounding through propensity score matching and G-computation methods.",
-                "Collaborated with clinicians at UConn Health to translate statistical findings into actionable clinical insights for South Asian populations."
+                "Designed and emulated a target trial using clinical EHR data to evaluate the impact of specific intervention (using Metformin) on aging-related disease.",
+                "Managed immortal time bias and confounding through propensity score matching, setting eligibility criteria and Time Zero.",
+                "Generating evidence that improved the grant proposal’s evaluation from the top 50% to the top 25%."
               ]
             }
           ],
