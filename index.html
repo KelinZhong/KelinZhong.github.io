@@ -55,6 +55,8 @@
         const X = (props) => <Icon {...props}><path d="M18 6 6 18"/><path d="m6 6 12 12"/></Icon>;
         const Mic = (props) => <Icon {...props}><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" x2="12" y1="19" y2="22"/><line x1="8" x2="16" y1="22" y2="22"/></Icon>;
         const GraduationCap = (props) => <Icon {...props}><path d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z"/><path d="M22 10v6"/><path d="M6 12.5V16a6 2 0 0 0 12 0v-3.5"/></Icon>;
+        const Filter = (props) => <Icon {...props}><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></Icon>;
+        const Folder = (props) => <Icon {...props}><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></Icon>;
 
         // =================================================================================
         //  II. CONTENT BLOCKS (DATA SECTION)
@@ -76,7 +78,6 @@
             }
           },
 
-          // EDUCATION DATA
           education: [
             {
                 degree: "Ph.D. Candidate in Statistics",
@@ -204,7 +205,7 @@
             }
           ],
 
-          projects: [
+          openSourceTools: [
             {
               id: 2,
               title: "SMNlmec",
@@ -228,91 +229,164 @@
             }
           ],
 
-          publications: [
+          selectedProjects: [
             {
               id: 1,
+              title: "Bayesian Modeling of Censored HIV Longitudinal Data",
+              period: "2023 - 2024",
+              link: "https://doi.org/10.1007/s42081-024-00262-w",
+              description: [
+                "Developed a novel multivariate Student’s-t distribution framework to handle heavy-tailed noise and detection limits in viral load measurements.",
+                "Reduced computational overhead by 30% through optimized MCMC sampling in Stan, enabling large-scale analysis of clinical trial datasets.",
+                "Published findings in the Japanese Journal of Statistics and Data Science, demonstrating superior predictive accuracy over standard Gaussian models."
+              ]
+            },
+            {
+              id: 2,
+              title: "Target Trial Emulation for Cardiovascular Outcomes",
+              period: "2024 - Present",
+              link: "https://doi.org/10.1016/j.amjcard.2024.11.042",
+              description: [
+                "Designed and emulated a target trial using clinical EHR data to evaluate the impact of specific interventions on premature coronary artery disease.",
+                "Managed immortal time bias and confounding through propensity score matching and G-computation methods.",
+                "Collaborated with clinicians at UConn Health to translate statistical findings into actionable clinical insights for South Asian populations."
+              ]
+            }
+          ],
+
+          publications: [
+             {
+              id: 1,
+              title: "‘OrthoQA’ semantic search and question-answering tool for orthodontic education",
+              authors: "SA Arqub, Q Zhao, P Akolkar, D Al-Moghrabi, CL Kuo, K Zhong, D Alomair, ...",
+              publisher: "Journal of Dentistry",
+              year: "2026"
+            },
+            {
+              id: 2,
+              title: "Tele-orthodontics in Real-World Practice: A Clinical Audit of Its Impact on Treatment Efficiency and Orthodontic Business Performance.",
+              authors: "B Engert, H Chheda, B Layman, CL Kuo, K Zhong, C Dolce, X Yang, ...",
+              publisher: "Seminars in Orthodontics",
+              year: "2026"
+            },
+            {
+              id: 3,
+              title: "The nonlinear U-shaped association between vitamin D deficiency and biological aging acceleration is enhanced in individuals with higher inflammation levels",
+              authors: "J Kositsawat, GA Kuchel, K Zhong, S Zhao, RH Fortinsky, CL Kuo",
+              publisher: "The Journals of Gerontology, Series A: Biological Sciences and Medical Sciences",
+              year: "2026"
+            },
+            {
+              id: 4,
+              title: "Effect of Location of Minilaparotomy for Morcellation at the time of Myomectomy and Hysterectomy on Postoperative Pain",
+              authors: "L Kowalski, M Buchman, H Bian, K Zhong, CL Kuo, A Newmark, ...",
+              publisher: "Journal of Minimally Invasive Gynecology",
+              year: "2026"
+            },
+            {
+              id: 5,
+              title: "VA-ECMO in high-risk pulmonary embolism: outcomes and role as bridge to recovery",
+              authors: "S Arvind, H Wagner, CL Kuo, K Zhong, J Gluck, J Ingrassia",
+              publisher: "Resuscitation Plus",
+              year: "2025"
+            },
+            {
+              id: 6,
+              title: "Exploring the Relationship Between Zinc Status and Frailty: Observational and Genetic Analyses",
+              authors: "S Choi, K Zhong, CL Kuo",
+              publisher: "Innovation in Aging",
+              year: "2025"
+            },
+            {
+              id: 7,
+              title: "Angiographic Characteristics and Associated Risk Factors of Premature Coronary Artery Disease among South Asians: A Systematic Review",
+              authors: "S Passey, J Jha, M Iverson, K Zhong, CL Kuo, S Arora, A Qamar, ...",
+              publisher: "The American Journal of Cardiology",
+              year: "2025"
+            },
+            {
+              id: 8,
+              title: "Micro-computed tomography assessment of regional and overall accuracy of thermoformed retainers and intraoral scanners",
+              authors: "ML Montes, MA Zakhary, SF Cobos, CL Kuo, KK Zhong, SA Arqub, ...",
+              publisher: "American Journal of Orthodontics and Dentofacial Orthopedics",
+              year: "2025"
+            },
+            {
+              id: 9,
+              title: "Healthcare disparities in Merkel cell carcinoma (MCC) in immune checkpoint inhibitor (ICI) era: A SEER study of survival disparities in older adults.",
+              authors: "J Arunachalam, K Zhong, CL Kuo, KS Gunturu, BJ Byrne",
+              publisher: "Journal of Clinical Oncology",
+              year: "2025"
+            },
+            {
+              id: 10,
+              title: "Comparison of safety and efficacy of ultrasound-accelerated thrombolysis vs. standard catheter-directed thrombolysis for the management of acute pulmonary embolism-a systematic review",
+              authors: "S Passey, H Jain, J Jha, K Zhong, CL Kuo, M Iverson, H Patail, S Joshi, ...",
+              publisher: "Journal of Thrombosis and Thrombolysis",
+              year: "2025"
+            },
+            {
+              id: 11,
               title: "Autoregressive Bayesian modeling of censored HIV longitudinal data using the multivariate Student’s-t distribution",
               authors: "K Zhong, LM Castro, P Zhang, VH Lachos",
               publisher: "Japanese Journal of Statistics and Data Science",
               year: "2025"
             },
             {
-              id: 2,
-              title: "Bayesian Analysis of Censored Linear Mixed‐Effects Models for Heavy‐Tailed Irregularly Observed Repeated Measures",
-              authors: "K Zhong, FL Schumacher, LM Castro, VH Lachos",
-              publisher: "Statistics in Medicine",
+              id: 12,
+              title: "Software versus Cognitive Fusion for the Detection of Clinically Significant Prostate Cancer: Does ‘Lesion Density’ Matter?",
+              authors: "V Dubovik, D Buller, B Rosenfeld, W Martin, A Sherman, W Faust, ...",
+              publisher: "Journal of Urology",
               year: "2025"
             },
-             {
-              id: 3,
-              title: "Linear Mixed-effects Models for Censored Data with Serial Correlation Errors Using the Multivariate Student’s t-distribution",
-              authors: "K Zhong, RC Olivari, AM Garay, VH Lachos",
-              publisher: "The New England Journal of Statistics in Data Science",
-              year: "2024"
-            },
-            // Co-Author Papers
             {
-              id: 4,
-              title: "A Five-Year Review of Temporal Bone Fractures at a Level One Trauma Center and Examination of the Impact of the COVID-19 Pandemic",
+              id: 13,
+              title: "A five-year review of temporal bone fractures at a level one trauma center and examination of the impact of the COVID-19 pandemic",
               authors: "WM Jongbloed, D Campbell, CL Kuo, K Zhong, NJ Cavanagh",
               publisher: "Surgeries",
               year: "2025"
             },
             {
-              id: 5,
-              title: "Angiographic Characteristics and Associated Risk Factors of Premature Coronary Artery Disease among South Asians: A Systematic Review",
-              authors: "S Passey, J Jha, M Iverson, K Zhong, CL Kuo, S Arora, A Qamar...",
-              publisher: "The American Journal of Cardiology",
-              year: "2025"
-            },
-            {
-              id: 6,
-              title: "Micro-computed tomography assessment of regional and overall accuracy of thermoformed retainers and intraoral scanners",
-              authors: "ML Montes, MA Zakhary, SF Cobos, CL Kuo, K Zhong, SA Arqub...",
-              publisher: "American Journal of Orthodontics and Dentofacial Orthopedics",
-              year: "2025"
-            },
-            {
-              id: 7,
-              title: "Healthcare disparities in Merkel cell carcinoma (MCC) in immune checkpoint inhibitor (ICI) era: A SEER study of survival disparities in older adults",
-              authors: "J Arunachalam, K Zhong, CL Kuo, KS Gunturu, BJ Byrne",
-              publisher: "Journal of Clinical Oncology",
-              year: "2025"
-            },
-            {
-              id: 8,
-              title: "Software Versus Cognitive Fusion For The Detection Of Clinically Significant Prostate Cancer: Does ‘Lesion Density’ Matter?",
-              authors: "V Dubovik, D Buller, B Rosenfeld, W Martin, A Sherman, W Faust...",
-              publisher: "Journal of Urology",
-              year: "2025"
-            },
-            {
-              id: 9,
-              title: "Comparison of safety and efficacy of ultrasound-accelerated thrombolysis vs. standard catheter-directed thrombolysis for the management of acute pulmonary embolism-a systematic review...",
-              authors: "S Passey, H Jain, J Jha, K Zhong...",
-              publisher: "Journal of Thrombosis and Thrombolysis",
-              year: "2025"
-            },
-            {
-              id: 10,
+              id: 14,
               title: "The Influence of Sexual Orientation and Gender Identity on the Otolaryngology Residency Experience",
-              authors: "WM Jongbloed, HA Newsome, L Kashat, K Parham, EA Faucett, CL Kuo, K Zhong...",
+              authors: "WM Jongbloed, HA Newsome, L Kashat, K Parham, EA Faucett, CL Kuo, K Zhong, ...",
               publisher: "OTO open",
               year: "2025"
             },
             {
-              id: 11,
+              id: 15,
               title: "A survey of general dentists on the involvement of endodontists in restorative procedures",
-              authors: "GB Deese, MT Spoto, Q Zhu, RH Aseltine Jr, CL Kuo, K Zhong, O Dort...",
+              authors: "GB Deese, MT Spoto, Q Zhu, RH Aseltine Jr, CL Kuo, K Zhong, O Dort, ...",
               publisher: "The Journal of the American Dental Association",
               year: "2025"
             },
             {
-              id: 12,
+              id: 16,
+              title: "Bayesian Analysis of Censored Linear Mixed‐Effects Models for Heavy‐Tailed Irregularly Observed Repeated Measures",
+              authors: "K Zhong, FL Schumacher, LM Castro, VH Lachos",
+              publisher: "Statistics in Medicine",
+              year: "2025"
+            },
+            {
+              id: 17,
               title: "The Effect of a Pilot Medical Humanities Curriculum and Narrative Medicine on Empathy, Connectedness, and Self-reported General Well-being in an Otolaryngology Residency Program",
               authors: "W Jongbloed, KR Kavanagh, CL Kuo, K Zhong, H Newsome",
-              publisher: "Research Output",
+              publisher: "Authorea Preprints",
               year: "2024"
+            },
+            {
+              id: 18,
+              title: "Linear Mixed-effects Models for Censored Data with Serial Correlation Errors Using the multivariate Student’s t-distribution",
+              authors: "K Zhong, RC Olivari, AM Garay, VH Lachos",
+              publisher: "The New England Journal of Statistics in Data Science",
+              year: "2024"
+            },
+            {
+              id: 19,
+              title: "Package ‘ARpLMEC’",
+              authors: "RC Olivari, K Zhong, AM Garay, VH Lachos, MRC Olivari",
+              publisher: "CRAN",
+              year: "2022"
             }
           ],
 
@@ -358,6 +432,10 @@
           const [activeTab, setActiveTab] = React.useState('about');
           const [isMenuOpen, setIsMenuOpen] = React.useState(false);
 
+          // Publication Filter States
+          const [pubRoleFilter, setPubRoleFilter] = React.useState('all');
+          const [pubYearFilter, setPubYearFilter] = React.useState('all');
+
           const NavItem = ({ name, id, icon: Icon }) => (
             <button
               onClick={() => { setActiveTab(id); setIsMenuOpen(false); }}
@@ -383,6 +461,13 @@
               return <p className="text-slate-600 mb-4">{description}</p>;
           };
           
+          const isFirstAuthor = (authorsString) => {
+              if (!authorsString) return false;
+              const names = ['Kelin Zhong', 'K Zhong', 'KK Zhong'];
+              const trimmed = authorsString.trim();
+              return names.some(name => trimmed.startsWith(name));
+          };
+
           const renderAuthors = (authorsString) => {
               if (!authorsString) return null;
               const parts = authorsString.split(/(Kelin Zhong|K Zhong|KK Zhong)/g);
@@ -403,7 +488,6 @@
                     <h2 className="text-3xl font-bold text-slate-800 mb-6 border-b pb-4">About Me</h2>
                     <p className="text-lg text-slate-600 mb-8 leading-relaxed">{userData.profile.bio}</p>
                     
-                    {/* NEW EDUCATION SECTION */}
                     <div className="mb-8">
                         <h3 className="text-xl font-semibold text-slate-800 mb-4 flex items-center">
                             <GraduationCap className="mr-2 text-blue-600"/> Education
@@ -438,9 +522,6 @@
                             </div>
                         ))}
                     </div>
-                    
-                    {/* Contact Info removed from here */}
-
                   </div>
                 );
 
@@ -500,16 +581,54 @@
                   </div>
                 );
 
-              case 'projects':
+              case 'selectedProjects':
                 return (
                   <div className="animate-fadeIn">
-                    <h2 className="text-3xl font-bold text-slate-800 mb-6 border-b pb-4">Projects</h2>
+                    <h2 className="text-3xl font-bold text-slate-800 mb-6 border-b pb-4">Selected Projects</h2>
+                    <div className="space-y-12">
+                      {userData.selectedProjects.map((project) => (
+                        <div key={project.id} className="relative pl-8 border-l-2 border-emerald-200 hover:border-emerald-500 transition-colors">
+                          <div className="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-emerald-500 ring-4 ring-white"></div>
+                          <div className="mb-1 text-sm text-emerald-600 font-bold uppercase tracking-wider">{project.period}</div>
+                          <div className="flex justify-between items-start mb-3">
+                              <h3 className="text-xl font-bold text-slate-800">{project.title}</h3>
+                              {project.link ? (
+                                  <a href={project.link} target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:text-blue-700 transition-colors p-1 hover:bg-slate-50 rounded-full">
+                                      <ExternalLink size={20}/>
+                                  </a>
+                              ) : (
+                                  <span className="text-slate-300 p-1 cursor-not-allowed" title="No link available">
+                                      <ExternalLink size={20}/>
+                                  </span>
+                              )}
+                          </div>
+                          <div className="mb-4">
+                            {renderDescription(project.description)}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                );
+
+              case 'openSourceTools':
+                return (
+                  <div className="animate-fadeIn">
+                    <h2 className="text-3xl font-bold text-slate-800 mb-6 border-b pb-4">Open-Source Tools</h2>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                      {userData.projects.map((project) => (
+                      {userData.openSourceTools.map((project) => (
                         <div key={project.id} className="bg-white p-6 rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow flex flex-col">
                           <div className="flex justify-between items-start mb-4">
                             <h3 className="text-xl font-bold text-slate-800">{project.title}</h3>
-                            <a href={project.link} className="text-blue-500 hover:text-blue-700"><ExternalLink size={20}/></a>
+                            {project.link ? (
+                              <a href={project.link} target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:text-blue-700 transition-colors p-1 hover:bg-slate-50 rounded-full">
+                                <ExternalLink size={20}/>
+                              </a>
+                            ) : (
+                              <span className="text-slate-300 p-1 cursor-not-allowed" title="No link available">
+                                <ExternalLink size={20}/>
+                              </span>
+                            )}
                           </div>
                           
                           <p className="text-slate-600 mb-4 flex-grow">{project.description}</p>
@@ -526,26 +645,124 @@
                 );
 
               case 'publications':
+                const uniqueYears = [...new Set(userData.publications.map(p => p.year))].sort((a, b) => b - a);
+                const filteredPubs = userData.publications.filter(pub => {
+                    const matchesRole = pubRoleFilter === 'all' || 
+                        (pubRoleFilter === 'first' && isFirstAuthor(pub.authors)) ||
+                        (pubRoleFilter === 'co' && !isFirstAuthor(pub.authors));
+                    const matchesYear = pubYearFilter === 'all' || pub.year === pubYearFilter;
+                    return matchesRole && matchesYear;
+                });
+
                 return (
                   <div className="animate-fadeIn">
-                    <h2 className="text-3xl font-bold text-slate-800 mb-6 border-b pb-4">Publications</h2>
-                    <div className="space-y-4">
-                      {userData.publications.map((pub) => (
-                        <div key={pub.id} className="group flex flex-col p-5 bg-slate-50 rounded-lg border border-slate-100 hover:bg-white hover:border-blue-200 transition-all">
-                          <div className="flex justify-between items-start">
+                    <div className="flex flex-col md:flex-row md:items-end justify-between mb-6 border-b pb-4 gap-4">
+                        <h2 className="text-3xl font-bold text-slate-800">Publications</h2>
+                        <div className="text-sm font-medium text-slate-500">
+                            Showing {filteredPubs.length} of {userData.publications.length} papers
+                        </div>
+                    </div>
+
+                    <div className="bg-white border border-slate-200 rounded-xl p-4 mb-8 shadow-sm">
+                        <div className="flex items-center gap-2 mb-4 text-slate-800 font-semibold">
+                            <Filter size={18} className="text-blue-600" />
+                            <span>Filters</span>
+                        </div>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <div>
-                                <h3 className="text-lg font-semibold text-slate-800 group-hover:text-blue-600 transition-colors">{pub.title}</h3>
-                                {renderAuthors(pub.authors)}
-                                <div className="text-slate-500 mt-2 flex items-center gap-2 text-sm">
-                                    <span className="font-medium text-slate-700">{pub.publisher}</span>
-                                    <span className="w-1 h-1 bg-slate-400 rounded-full"></span>
-                                    <span>{pub.year}</span>
+                                <label className="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Author Role</label>
+                                <div className="flex flex-wrap gap-2">
+                                    {[
+                                        { id: 'all', label: 'All' },
+                                        { id: 'first', label: 'First Author' },
+                                        { id: 'co', label: 'Co-Author' }
+                                    ].map(role => (
+                                        <button 
+                                            key={role.id}
+                                            onClick={() => setPubRoleFilter(role.id)}
+                                            className={`px-3 py-1.5 rounded-md text-sm font-medium transition-all ${
+                                                pubRoleFilter === role.id 
+                                                ? 'bg-blue-600 text-white shadow-sm' 
+                                                : 'bg-slate-50 text-slate-600 hover:bg-slate-100 border border-slate-200'
+                                            }`}
+                                        >
+                                            {role.label}
+                                        </button>
+                                    ))}
                                 </div>
                             </div>
-                            <a href={pub.link} className="text-slate-400 group-hover:text-blue-500 ml-4"><ExternalLink size={18} /></a>
-                          </div>
+                            <div>
+                                <label className="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Publication Year</label>
+                                <div className="flex flex-wrap gap-2">
+                                    <button 
+                                        onClick={() => setPubYearFilter('all')}
+                                        className={`px-3 py-1.5 rounded-md text-sm font-medium transition-all ${
+                                            pubYearFilter === 'all' 
+                                            ? 'bg-blue-600 text-white shadow-sm' 
+                                            : 'bg-slate-50 text-slate-600 hover:bg-slate-100 border border-slate-200'
+                                        }`}
+                                    >
+                                        All
+                                    </button>
+                                    {uniqueYears.map(year => (
+                                        <button 
+                                            key={year}
+                                            onClick={() => setPubYearFilter(year)}
+                                            className={`px-3 py-1.5 rounded-md text-sm font-medium transition-all ${
+                                                pubYearFilter === year 
+                                                ? 'bg-blue-600 text-white shadow-sm' 
+                                                : 'bg-slate-50 text-slate-600 hover:bg-slate-100 border border-slate-200'
+                                            }`}
+                                        >
+                                            {year}
+                                        </button>
+                                    ))}
+                                </div>
+                            </div>
                         </div>
-                      ))}
+                    </div>
+
+                    <div className="space-y-4">
+                      {filteredPubs.length > 0 ? (
+                        filteredPubs.map((pub) => (
+                            <div key={pub.id} className="group flex flex-col p-5 bg-white rounded-lg border border-slate-200 hover:border-blue-300 hover:shadow-md transition-all">
+                            <div className="flex justify-between items-start">
+                                <div className="flex-1">
+                                    <div className="flex items-center gap-2 mb-1">
+                                        <span className={`text-[10px] uppercase font-bold px-1.5 py-0.5 rounded ${
+                                            isFirstAuthor(pub.authors) 
+                                            ? 'bg-blue-100 text-blue-700' 
+                                            : 'bg-slate-100 text-slate-600'
+                                        }`}>
+                                            {isFirstAuthor(pub.authors) ? 'First Author' : 'Co-Author'}
+                                        </span>
+                                    </div>
+                                    <h3 className="text-lg font-semibold text-slate-800 group-hover:text-blue-600 transition-colors leading-tight">{pub.title}</h3>
+                                    {renderAuthors(pub.authors)}
+                                    <div className="text-slate-500 mt-2 flex items-center gap-2 text-sm">
+                                        <span className="font-medium text-slate-700">{pub.publisher}</span>
+                                        <span className="w-1 h-1 bg-slate-400 rounded-full"></span>
+                                        <span>{pub.year}</span>
+                                    </div>
+                                </div>
+                                {pub.link ? (
+                                    <a href={pub.link} target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:text-blue-700 ml-4 p-2 hover:bg-slate-50 rounded-full transition-colors">
+                                        <ExternalLink size={18} />
+                                    </a>
+                                ) : (
+                                    <span className="text-slate-300 ml-4 p-2 cursor-not-allowed" title="No link available">
+                                        <ExternalLink size={18} />
+                                    </span>
+                                )}
+                            </div>
+                            </div>
+                        ))
+                      ) : (
+                        <div className="text-center py-20 bg-slate-50 rounded-xl border border-dashed border-slate-300">
+                            <p className="text-slate-500">No publications found matching the selected filters.</p>
+                            <button onClick={() => {setPubRoleFilter('all'); setPubYearFilter('all');}} className="mt-4 text-blue-600 font-semibold hover:underline">Clear all filters</button>
+                        </div>
+                      )}
                     </div>
                   </div>
                 );
@@ -602,42 +819,29 @@
                   <h1 className="text-2xl font-bold text-slate-900">{userData.profile.name}</h1>
                   <p className="text-slate-500 text-sm mt-1">{userData.profile.role}</p>
                   
-                  {/* MODIFIED SOCIAL LINKS - NOW BUTTONS */}
                   <div className="flex flex-wrap gap-2 mt-6 justify-center md:justify-start">
                     {userData.profile.social.github && (
-                        <a href={userData.profile.social.github} target="_blank" className="flex items-center px-3 py-2 bg-gray-900 text-white rounded-md hover:bg-gray-700 transition-colors text-sm font-medium w-full md:w-auto mb-1">
+                        <a href={userData.profile.social.github} target="_blank" rel="noopener noreferrer" className="flex items-center px-3 py-2 bg-gray-900 text-white rounded-md hover:bg-gray-700 transition-colors text-sm font-medium w-full md:w-auto mb-1">
                             <Github size={16} className="mr-2"/> GitHub
                         </a>
                     )}
                     {userData.profile.social.linkedin && (
-                        <a href={userData.profile.social.linkedin} target="_blank" className="flex items-center px-3 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors text-sm font-medium w-full md:w-auto mb-1">
+                        <a href={userData.profile.social.linkedin} target="_blank" rel="noopener noreferrer" className="flex items-center px-3 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors text-sm font-medium w-full md:w-auto mb-1">
                             <Linkedin size={16} className="mr-2"/> LinkedIn
                         </a>
                     )}
                     {userData.profile.social.researchgate && (
-                        <a href={userData.profile.social.researchgate} target="_blank" className="flex items-center px-3 py-2 bg-emerald-500 text-white rounded-md hover:bg-emerald-600 transition-colors text-sm font-medium w-full md:w-auto mb-1">
+                        <a href={userData.profile.social.researchgate} target="_blank" rel="noopener noreferrer" className="flex items-center px-3 py-2 bg-emerald-500 text-white rounded-md hover:bg-emerald-600 transition-colors text-sm font-medium w-full md:w-auto mb-1">
                             <BookOpen size={16} className="mr-2"/> ResearchGate
-                        </a>
-                    )}
-                    {userData.profile.social.twitter && (
-                         <a href={userData.profile.social.twitter} target="_blank" className="flex items-center px-3 py-2 bg-sky-500 text-white rounded-md hover:bg-sky-600 transition-colors text-sm font-medium w-full md:w-auto mb-1">
-                            <Globe size={16} className="mr-2"/> Twitter
-                        </a>
-                    )}
-                    {userData.profile.social.website && (
-                         <a href={userData.profile.social.website} target="_blank" className="flex items-center px-3 py-2 bg-purple-600 text-white rounded-md hover:bg-purple-700 transition-colors text-sm font-medium w-full md:w-auto mb-1">
-                            <Globe size={16} className="mr-2"/> Website
                         </a>
                     )}
                   </div>
 
-                  {/* CONTACT INFO MOVED HERE */}
                   <div className="mt-6 pt-6 border-t border-slate-100 text-sm text-slate-600 space-y-3">
                     <div className="flex items-center justify-center md:justify-start">
                         <MapPin size={16} className="mr-2 flex-shrink-0 text-slate-400"/> 
                         {userData.profile.location}
                     </div>
-                    
                     <div className="flex items-start justify-center md:justify-start">
                         <Mail size={16} className="mr-2 mt-1 flex-shrink-0 text-slate-400"/> 
                         <div className="flex flex-col text-left">
@@ -648,17 +852,18 @@
                         </div>
                     </div>
                   </div>
-
                 </div>
+
                 <nav className="flex-1 space-y-2">
                   <NavItem id="about" name="Profile" icon={User} />
                   <NavItem id="experience" name="Experience" icon={Briefcase} />
+                  <NavItem id="selectedProjects" name="Selected Projects" icon={Folder} />
                   <NavItem id="internships" name="Internships" icon={GraduationCap} />
-                  <NavItem id="projects" name="Projects" icon={Code} />
+                  <NavItem id="openSourceTools" name="Open-Source Tools" icon={Code} />
                   <NavItem id="publications" name="Publications" icon={BookOpen} />
                   <NavItem id="presentations" name="Presentations" icon={Mic} />
                 </nav>
-                <div className="mt-auto pt-6 border-t border-slate-100 text-xs text-slate-400 text-center md:text-left">&copy; 2025 {userData.profile.name}</div>
+                <div className="mt-auto pt-6 border-t border-slate-100 text-xs text-slate-400 text-center md:text-left">&copy; 2026 {userData.profile.name}</div>
               </aside>
 
               <main className="flex-1 p-6 md:p-12 max-w-4xl mx-auto w-full overflow-y-auto">{renderContent()}</main>
