@@ -1,3 +1,6 @@
+import React from 'react';
+import { userData } from '../../data.js';
+
 const OpenSourceTools = ({ renderLinkIcon }) => (
     <div className="animate-fadeIn">
         <h2 className="text-3xl font-bold text-slate-800 mb-6 border-b pb-4">Open-Source Tools</h2>
@@ -19,3 +22,5 @@ const OpenSourceTools = ({ renderLinkIcon }) => (
         </div>
     </div>
 );
+
+export default OpenSourceTools;

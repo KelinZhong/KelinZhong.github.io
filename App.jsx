@@ -1,8 +1,23 @@
+import React, { useState } from 'react';
+import ReactDOM from 'react-dom/client';
+import { userData } from './data.js';
+import { ExternalLink, Menu, X } from './icons.jsx';
+import Sidebar from './components/Sidebar.jsx';
+import About from './components/sections/About.jsx';
+import Experience from './components/sections/Experience.jsx';
+import SelectedProjects from './components/sections/SelectedProjects.jsx';
+import Internships from './components/sections/Internships.jsx';
+import OpenSourceTools from './components/sections/OpenSourceTools.jsx';
+import Certifications from './components/sections/Certifications.jsx';
+import Publications from './components/sections/Publications.jsx';
+import Presentations from './components/sections/Presentations.jsx';
+import './styles.css';
+
 const App = () => {
-    const [activeTab, setActiveTab] = React.useState('about');
-    const [isMenuOpen, setIsMenuOpen] = React.useState(false);
-    const [pubRoleFilter, setPubRoleFilter] = React.useState('all');
-    const [pubYearFilter, setPubYearFilter] = React.useState('all');
+    const [activeTab, setActiveTab] = useState('about');
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const [pubRoleFilter, setPubRoleFilter] = useState('all');
+    const [pubYearFilter, setPubYearFilter] = useState('all');
 
     const renderDescription = (description) => {
         if (Array.isArray(description)) {
@@ -30,7 +45,9 @@ const App = () => {
         return (
             <div className="text-sm text-slate-600 mt-1 italic">
                 {parts.map((part, i) =>
-                    (part === 'K Zhong' || part === 'KK Zhong' || part === 'Kelin Zhong') ? <strong key={i} className="text-slate-800">{part}</strong> : part
+                    (part === 'K Zhong' || part === 'KK Zhong' || part === 'Kelin Zhong')
+                        ? <strong key={i} className="text-slate-800">{part}</strong>
+                        : part
                 )}
             </div>
         );

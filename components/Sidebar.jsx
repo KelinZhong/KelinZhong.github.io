@@ -1,3 +1,8 @@
+import React from 'react';
+import { userData } from '../data.js';
+import { Github, Linkedin, BookOpen, MapPin, Mail, User, Briefcase, Folder, GraduationCap, Code, Award, Mic } from '../icons.jsx';
+import NavItem from './NavItem.jsx';
+
 const Sidebar = ({ activeTab, setActiveTab, isMenuOpen, setIsMenuOpen }) => {
     const Nav = ({ name, id, icon }) => (
         <NavItem name={name} id={id} icon={icon} activeTab={activeTab} setActiveTab={setActiveTab} setIsMenuOpen={setIsMenuOpen} />
@@ -68,3 +73,5 @@ const Sidebar = ({ activeTab, setActiveTab, isMenuOpen, setIsMenuOpen }) => {
         </aside>
     );
 };
+
+export default Sidebar;

@@ -1,3 +1,6 @@
+import React from 'react';
+import { userData } from '../../data.js';
+
 const SelectedProjects = ({ renderDescription, renderLinkIcon }) => (
     <div className="animate-fadeIn">
         <h2 className="text-3xl font-bold text-slate-800 mb-6 border-b pb-4">Selected Projects</h2>
@@ -10,11 +13,11 @@ const SelectedProjects = ({ renderDescription, renderLinkIcon }) => (
                         <h3 className="text-xl font-bold text-slate-800">{project.title}</h3>
                         {renderLinkIcon(project.link, 20)}
                     </div>
-                    <div className="mb-4">
-                        {renderDescription(project.description)}
-                    </div>
+                    <div className="mb-4">{renderDescription(project.description)}</div>
                 </div>
             ))}
         </div>
     </div>
 );
+
+export default SelectedProjects;

@@ -1,3 +1,5 @@
+import React from 'react';
+
 const NavItem = ({ name, id, icon: IconComponent, activeTab, setActiveTab, setIsMenuOpen }) => (
     <button
         onClick={() => { setActiveTab(id); setIsMenuOpen(false); }}
@@ -9,3 +11,5 @@ const NavItem = ({ name, id, icon: IconComponent, activeTab, setActiveTab, setIs
         <span className="font-medium">{name}</span>
     </button>
 );
+
+export default NavItem;

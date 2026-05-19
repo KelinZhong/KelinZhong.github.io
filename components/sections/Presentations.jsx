@@ -1,3 +1,6 @@
+import React from 'react';
+import { userData } from '../../data.js';
+
 const Presentations = () => (
     <div className="animate-fadeIn">
         <h2 className="text-3xl font-bold text-slate-800 mb-6 border-b pb-4">Presentations</h2>
@@ -24,3 +27,5 @@ const Presentations = () => (
         </div>
     </div>
 );
+
+export default Presentations;

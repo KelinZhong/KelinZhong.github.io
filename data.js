@@ -1,4 +1,4 @@
-const userData = {
+export const userData = {
   profile: {
     name: "Kelin Zhong",
     role: "Statistical Consultant & Researcher",
@@ -102,7 +102,7 @@ const userData = {
       company: "University of Connecticut",
       period: "Feb 2023 – Dec 2023",
       description: [
-        "Independently designed and delivered an undergraduate statistics course, creating structured slides, assignments, and exams to teach statistical reasoning and applied problem-solving to non-expert audiences. "
+        "Independently designed and delivered an undergraduate statistics course, creating structured slides, assignments, and exams to teach statistical reasoning and applied problem-solving to non-expert audiences."
       ],
       image: ""
     }
@@ -223,7 +223,7 @@ const userData = {
       description: [
         "Led the development of a research plan to guide data collection, exploratory data analysis (EDA), and evaluation of industry structure across all 50 U.S. states; delivered structured datasets for downstream predictive modeling.",
         "Identified and evaluated key predictors of new listing counts at both national and state levels using Principal Component Analysis (PCA) and literature-informed feature selection.",
-        "Developed and implemented time series forecasting models for new listing counts at national and state levels using SARIMAX and XGBoost, enabling comparative model evaluation.",
+        "Developed and implemented time series forecasting models for new listing counts at national and state levels using SARIMAX and XGBoost, enabling comparative model evaluation."
       ]
     }
   ],

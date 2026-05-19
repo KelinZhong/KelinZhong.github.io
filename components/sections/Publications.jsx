@@ -1,3 +1,7 @@
+import React from 'react';
+import { userData } from '../../data.js';
+import { Filter } from '../../icons.jsx';
+
 const Publications = ({ pubRoleFilter, setPubRoleFilter, pubYearFilter, setPubYearFilter, isFirstAuthor, renderAuthors, renderLinkIcon }) => {
     const uniqueYears = [...new Set(userData.publications.map(p => p.year))].sort((a, b) => b - a);
     const filteredPubs = userData.publications.filter(pub => {
@@ -113,3 +117,5 @@ const Publications = ({ pubRoleFilter, setPubRoleFilter, pubYearFilter, setPubYe
         </div>
     );
 };
+
+export default Publications;

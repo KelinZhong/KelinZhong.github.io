@@ -1,3 +1,6 @@
+import React from 'react';
+import { userData } from '../../data.js';
+
 const Certifications = ({ renderLinkIcon }) => (
     <div className="animate-fadeIn">
         <h2 className="text-3xl font-bold text-slate-800 mb-6 border-b pb-4">Certifications</h2>
@@ -15,3 +18,5 @@ const Certifications = ({ renderLinkIcon }) => (
         </div>
     </div>
 );
+
+export default Certifications;

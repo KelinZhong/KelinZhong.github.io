@@ -1,3 +1,7 @@
+import React from 'react';
+import { userData } from '../../data.js';
+import { GraduationCap } from '../../icons.jsx';
+
 const About = () => (
     <div className="animate-fadeIn">
         <h2 className="text-3xl font-bold text-slate-800 mb-6 border-b pb-4">About Me</h2>
@@ -38,3 +42,5 @@ const About = () => (
         </div>
     </div>
 );
+
+export default About;
