@@ -24,6 +24,10 @@ const FilterIcon = (props) => <Icon {...props}><polygon points="22 3 2 3 10 12.4
 const Folder = (props) => <Icon {...props}><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></Icon>;
 const Award = (props) => <Icon {...props}><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></Icon>;
 
+// =================================================================================
+// 2. REUSABLE COMPONENTS
+// =================================================================================
+
 // Profile image with initials fallback
 const ProfileImage = ({ name, image }) => {
   const [failed, setFailed] = React.useState(false);
@@ -45,19 +49,33 @@ const ProfileImage = ({ name, image }) => {
   );
 };
 
-// Helper for External Links
+// Section image — renders only if src is non-empty; silently hides on error
+const SectionImage = ({ src, alt }) => {
+  const [failed, setFailed] = React.useState(false);
+  if (!src || failed) return null;
+  return (
+    <img
+      src={src}
+      alt={alt}
+      className="w-full h-auto max-h-96 object-contain rounded-lg shadow-sm border border-slate-100 bg-white mt-4"
+      onError={() => setFailed(true)}
+    />
+  );
+};
+
+// External link icon button
 const RenderLinkIcon = ({ link, size = 18 }) => {
   if (link) return <a href={link} target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:text-blue-700 p-1 hover:bg-slate-50 rounded-full"><ExternalLink size={size} /></a>;
   return <span className="text-slate-300 p-1 cursor-not-allowed"><ExternalLink size={size} /></span>;
 };
 
-// Helper for Descriptions (Strings or Arrays)
+// Description renderer — array → bullet list, string → paragraph
 const renderDescription = (description) => {
-    if (Array.isArray(description)) return <ul className="list-disc pl-5 space-y-2 text-slate-600">{description.map((item, idx) => <li key={idx}>{item}</li>)}</ul>;
-    return <p className="text-slate-600 mb-4">{description}</p>;
+  if (Array.isArray(description)) return <ul className="list-disc pl-5 space-y-2 text-slate-600">{description.map((item, idx) => <li key={idx}>{item}</li>)}</ul>;
+  return <p className="text-slate-600 mb-4">{description}</p>;
 };
 
-// NavItem defined OUTSIDE App to avoid re-creation on every render
+// NavItem defined outside App to avoid re-creation on every render
 const NavItem = ({ name, id, icon: NavIcon, activeTab, setActiveTab, setIsMenuOpen }) => (
   <button
     onClick={() => { setActiveTab(id); setIsMenuOpen(false); }}
@@ -71,7 +89,7 @@ const NavItem = ({ name, id, icon: NavIcon, activeTab, setActiveTab, setIsMenuOp
 );
 
 // =================================================================================
-// 2. MAIN APPLICATION COMPONENT
+// 3. MAIN APPLICATION COMPONENT
 // =================================================================================
 const App = () => {
   const [activeTab, setActiveTab] = useState('about');
@@ -81,34 +99,35 @@ const App = () => {
 
   const renderContent = () => {
     switch (activeTab) {
+
       case 'about':
         return (
           <div className="animate-fadeIn">
             <h2 className="text-3xl font-bold text-slate-800 mb-6 border-b pb-4">About Me</h2>
             <p className="text-lg text-slate-600 mb-8 leading-relaxed">{userData.profile.bio}</p>
             <div className="mb-8">
-                <h3 className="text-xl font-semibold text-slate-800 mb-4 flex items-center"><GraduationCap className="mr-2 text-blue-600"/> Education</h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    {userData.education.map((edu, idx) => (
-                        <div key={idx} className="bg-white p-4 rounded-lg border border-slate-200 shadow-sm">
-                            <h4 className="font-bold text-slate-800">{edu.degree}</h4>
-                            <div className="text-blue-600 font-medium text-sm">{edu.school}</div>
-                            <div className="flex justify-between items-center mt-2 text-sm text-slate-500"><span>{edu.year}</span></div>
-                            {edu.details && <p className="text-xs text-slate-500 mt-2 italic">{edu.details}</p>}
-                        </div>
-                    ))}
-                </div>
+              <h3 className="text-xl font-semibold text-slate-800 mb-4 flex items-center"><GraduationCap className="mr-2 text-blue-600"/> Education</h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {userData.education.map((edu, idx) => (
+                  <div key={idx} className="bg-white p-4 rounded-lg border border-slate-200 shadow-sm">
+                    <h4 className="font-bold text-slate-800">{edu.degree}</h4>
+                    <div className="text-blue-600 font-medium text-sm">{edu.school}</div>
+                    <div className="flex justify-between items-center mt-2 text-sm text-slate-500"><span>{edu.year}</span></div>
+                    {edu.details && <p className="text-xs text-slate-500 mt-2 italic">{edu.details}</p>}
+                  </div>
+                ))}
+              </div>
             </div>
             <h3 className="text-xl font-semibold text-slate-800 mb-6">Technical Skills</h3>
             <div className="space-y-6">
-                {Object.entries(userData.skills).map(([category, skillList]) => (
-                    <div key={category}>
-                        <h4 className="text-sm font-bold text-slate-500 uppercase tracking-wider mb-3">{category}</h4>
-                        <div className="flex flex-wrap gap-2">
-                            {skillList.map((skill, index) => <span key={index} className="px-3 py-1.5 bg-white text-slate-700 rounded-md text-sm font-medium border border-slate-200 shadow-sm">{skill}</span>)}
-                        </div>
-                    </div>
-                ))}
+              {Object.entries(userData.skills).map(([category, skillList]) => (
+                <div key={category}>
+                  <h4 className="text-sm font-bold text-slate-500 uppercase tracking-wider mb-3">{category}</h4>
+                  <div className="flex flex-wrap gap-2">
+                    {skillList.map((skill, index) => <span key={index} className="px-3 py-1.5 bg-white text-slate-700 rounded-md text-sm font-medium border border-slate-200 shadow-sm">{skill}</span>)}
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         );
@@ -125,7 +144,7 @@ const App = () => {
                   <h3 className="text-xl font-bold text-slate-800">{job.role}</h3>
                   <div className="text-md text-slate-500 font-medium mb-3">{job.company}</div>
                   <div className="mb-4">{renderDescription(job.description)}</div>
-                  {job.image && <img src={job.image} alt="work" className="w-full h-auto max-h-96 object-contain rounded-lg shadow-sm border border-slate-100 bg-white" onError={(e) => e.target.style.display = 'none'} />}
+                  <SectionImage src={job.image} alt={`${job.role} at ${job.company}`} />
                 </div>
               ))}
             </div>
@@ -144,6 +163,7 @@ const App = () => {
                   <h3 className="text-xl font-bold text-slate-800">{job.role}</h3>
                   <div className="text-md text-slate-500 font-medium mb-3">{job.company}</div>
                   <div className="mb-4">{renderDescription(job.description)}</div>
+                  <SectionImage src={job.image} alt={`${job.role} at ${job.company}`} />
                 </div>
               ))}
             </div>
@@ -160,8 +180,8 @@ const App = () => {
                   <div className="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-emerald-500 ring-4 ring-white"></div>
                   <div className="mb-1 text-sm text-emerald-600 font-bold uppercase tracking-wider">{project.period}</div>
                   <div className="flex justify-between items-start mb-3">
-                      <h3 className="text-xl font-bold text-slate-800">{project.title}</h3>
-                      <RenderLinkIcon link={project.link} size={20} />
+                    <h3 className="text-xl font-bold text-slate-800">{project.title}</h3>
+                    <RenderLinkIcon link={project.link} size={20} />
                   </div>
                   <div className="mb-4">{renderDescription(project.description)}</div>
                 </div>
@@ -199,8 +219,8 @@ const App = () => {
               {userData.certifications.map((cert) => (
                 <div key={cert.id} className="bg-white p-6 rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow flex flex-col">
                   <div className="flex justify-between items-start mb-4">
-                      <h3 className="text-xl font-bold text-slate-800">{cert.title}</h3>
-                      <RenderLinkIcon link={cert.link} size={20} />
+                    <h3 className="text-xl font-bold text-slate-800">{cert.title}</h3>
+                    <RenderLinkIcon link={cert.link} size={20} />
                   </div>
                   <div className="text-blue-600 font-medium text-sm mb-1">{cert.issuer}</div>
                   <div className="text-slate-500 text-sm">{cert.date}</div>
@@ -211,58 +231,54 @@ const App = () => {
         );
 
       case 'publications': {
-        // FIX: wrapped in {} block to allow const declarations inside switch
         const uniqueYears = [...new Set(userData.publications.map(p => p.year))].sort((a, b) => b - a);
         const filteredPubs = userData.publications.filter(pub => {
-            const isFirst = pub.authors && ['Kelin Zhong', 'K Zhong', 'KK Zhong'].some(name => pub.authors.trim().startsWith(name));
-            const matchesRole = pubRoleFilter === 'all' || (pubRoleFilter === 'first' && isFirst) || (pubRoleFilter === 'co' && !isFirst);
-            const matchesYear = pubYearFilter === 'all' || String(pub.year) === String(pubYearFilter);
-            return matchesRole && matchesYear;
+          const isFirst = pub.authors && ['Kelin Zhong', 'K Zhong', 'KK Zhong'].some(name => pub.authors.trim().startsWith(name));
+          const matchesRole = pubRoleFilter === 'all' || (pubRoleFilter === 'first' && isFirst) || (pubRoleFilter === 'co' && !isFirst);
+          const matchesYear = pubYearFilter === 'all' || String(pub.year) === String(pubYearFilter);
+          return matchesRole && matchesYear;
         });
-
         return (
           <div className="animate-fadeIn">
-            <div className="flex flex-col md:flex-row md:items-end justify-between mb-6 border-b pb-4 gap-4">
-                <h2 className="text-3xl font-bold text-slate-800">Publications</h2>
-            </div>
+            <h2 className="text-3xl font-bold text-slate-800 mb-6 border-b pb-4">Publications</h2>
             <div className="bg-white border border-slate-200 rounded-xl p-4 mb-8 shadow-sm">
-                <div className="flex items-center gap-2 mb-4 text-slate-800 font-semibold"><FilterIcon size={18} className="text-blue-600" /><span>Filters</span></div>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div>
-                        <label className="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Author Role</label>
-                        <div className="flex flex-wrap gap-2">
-                            {[{ id: 'all', label: 'All' }, { id: 'first', label: 'First Author' }, { id: 'co', label: 'Co-Author' }].map(role => (
-                                <button key={role.id} onClick={() => setPubRoleFilter(role.id)} className={`px-3 py-1.5 rounded-md text-sm font-medium transition-all ${pubRoleFilter === role.id ? 'bg-blue-600 text-white shadow-sm' : 'bg-slate-50 text-slate-600 hover:bg-slate-100 border border-slate-200'}`}>{role.label}</button>
-                            ))}
-                        </div>
-                    </div>
-                    <div>
-                        <label className="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Publication Year</label>
-                        <div className="flex flex-wrap gap-2">
-                            <button onClick={() => setPubYearFilter('all')} className={`px-3 py-1.5 rounded-md text-sm font-medium transition-all ${pubYearFilter === 'all' ? 'bg-blue-600 text-white shadow-sm' : 'bg-slate-50 text-slate-600 hover:bg-slate-100 border border-slate-200'}`}>All</button>
-                            {uniqueYears.map(year => (
-                                <button key={year} onClick={() => setPubYearFilter(year)} className={`px-3 py-1.5 rounded-md text-sm font-medium transition-all ${pubYearFilter === year ? 'bg-blue-600 text-white shadow-sm' : 'bg-slate-50 text-slate-600 hover:bg-slate-100 border border-slate-200'}`}>{year}</button>
-                            ))}
-                        </div>
-                    </div>
+              <div className="flex items-center gap-2 mb-4 text-slate-800 font-semibold"><FilterIcon size={18} className="text-blue-600" /><span>Filters</span></div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                  <label className="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Author Role</label>
+                  <div className="flex flex-wrap gap-2">
+                    {[{ id: 'all', label: 'All' }, { id: 'first', label: 'First Author' }, { id: 'co', label: 'Co-Author' }].map(role => (
+                      <button key={role.id} onClick={() => setPubRoleFilter(role.id)} className={`px-3 py-1.5 rounded-md text-sm font-medium transition-all ${pubRoleFilter === role.id ? 'bg-blue-600 text-white shadow-sm' : 'bg-slate-50 text-slate-600 hover:bg-slate-100 border border-slate-200'}`}>{role.label}</button>
+                    ))}
+                  </div>
                 </div>
+                <div>
+                  <label className="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Publication Year</label>
+                  <div className="flex flex-wrap gap-2">
+                    <button onClick={() => setPubYearFilter('all')} className={`px-3 py-1.5 rounded-md text-sm font-medium transition-all ${pubYearFilter === 'all' ? 'bg-blue-600 text-white shadow-sm' : 'bg-slate-50 text-slate-600 hover:bg-slate-100 border border-slate-200'}`}>All</button>
+                    {uniqueYears.map(year => (
+                      <button key={year} onClick={() => setPubYearFilter(year)} className={`px-3 py-1.5 rounded-md text-sm font-medium transition-all ${pubYearFilter === year ? 'bg-blue-600 text-white shadow-sm' : 'bg-slate-50 text-slate-600 hover:bg-slate-100 border border-slate-200'}`}>{year}</button>
+                    ))}
+                  </div>
+                </div>
+              </div>
             </div>
             <div className="space-y-4">
               {filteredPubs.map((pub) => (
-                  <div key={pub.id} className="group flex flex-col p-5 bg-white rounded-lg border border-slate-200 hover:border-blue-300 hover:shadow-md transition-all">
-                    <div className="flex justify-between items-start">
-                        <div className="flex-1">
-                            <h3 className="text-lg font-semibold text-slate-800 group-hover:text-blue-600 transition-colors leading-tight">{pub.title}</h3>
-                            <div className="text-sm text-slate-600 mt-1 italic">{pub.authors}</div>
-                            <div className="text-slate-500 mt-2 flex items-center gap-2 text-sm">
-                                <span className="font-medium text-slate-700">{pub.publisher}</span>
-                                <span className="w-1 h-1 bg-slate-400 rounded-full"></span>
-                                <span>{pub.year}</span>
-                            </div>
-                        </div>
-                        <RenderLinkIcon link={pub.link} size={18} />
+                <div key={pub.id} className="group flex flex-col p-5 bg-white rounded-lg border border-slate-200 hover:border-blue-300 hover:shadow-md transition-all">
+                  <div className="flex justify-between items-start">
+                    <div className="flex-1">
+                      <h3 className="text-lg font-semibold text-slate-800 group-hover:text-blue-600 transition-colors leading-tight">{pub.title}</h3>
+                      <div className="text-sm text-slate-600 mt-1 italic">{pub.authors}</div>
+                      <div className="text-slate-500 mt-2 flex items-center gap-2 text-sm">
+                        <span className="font-medium text-slate-700">{pub.publisher}</span>
+                        <span className="w-1 h-1 bg-slate-400 rounded-full"></span>
+                        <span>{pub.year}</span>
+                      </div>
                     </div>
+                    <RenderLinkIcon link={pub.link} size={18} />
                   </div>
+                </div>
               ))}
             </div>
           </div>
@@ -278,11 +294,12 @@ const App = () => {
                 <div key={pres.id} className="p-5 bg-white rounded-lg border-l-4 border-indigo-500 shadow-sm flex flex-col">
                   <div className="flex items-center justify-between">
                     <div>
-                        <h3 className="text-lg font-bold text-slate-800">{pres.title}</h3>
-                        <div className="text-slate-600 mt-1">{pres.role}</div>
+                      <h3 className="text-lg font-bold text-slate-800">{pres.title}</h3>
+                      <div className="text-slate-600 mt-1">{pres.role}</div>
                     </div>
                     <div className="text-indigo-600 font-bold bg-indigo-50 px-3 py-1 rounded-full text-sm">{pres.year}</div>
                   </div>
+                  <SectionImage src={pres.image} alt={pres.title} />
                 </div>
               ))}
             </div>
@@ -295,6 +312,7 @@ const App = () => {
 
   return (
     <div className="min-h-screen bg-slate-50 flex flex-col md:flex-row font-sans text-slate-900">
+
       {/* Mobile top bar */}
       <div className="md:hidden bg-white p-4 shadow-sm flex justify-between items-center sticky top-0 z-50">
         <span className="font-bold text-xl text-slate-800">{userData.profile.name}</span>
@@ -309,14 +327,16 @@ const App = () => {
           <ProfileImage name={userData.profile.name} image={userData.profile.image} />
           <h1 className="text-2xl font-bold text-slate-900">{userData.profile.name}</h1>
           <p className="text-slate-500 text-sm mt-1">{userData.profile.role}</p>
-          
+
           <div className="flex flex-wrap gap-2 mt-6 justify-center md:justify-start">
             {userData.profile.social.github && <a href={userData.profile.social.github} target="_blank" rel="noopener noreferrer" className="flex items-center px-3 py-2 bg-gray-900 text-white rounded-md hover:bg-gray-700 transition-colors text-sm font-medium"><Github size={16} className="mr-2"/> GitHub</a>}
             {userData.profile.social.linkedin && <a href={userData.profile.social.linkedin} target="_blank" rel="noopener noreferrer" className="flex items-center px-3 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors text-sm font-medium"><Linkedin size={16} className="mr-2"/> LinkedIn</a>}
           </div>
 
           <div className="mt-6 pt-6 border-t border-slate-100 text-sm text-slate-600 space-y-3">
-            <div className="flex items-center justify-center md:justify-start"><MapPin size={16} className="mr-2 flex-shrink-0 text-slate-400"/> {userData.profile.location}</div>
+            <div className="flex items-center justify-center md:justify-start">
+              <MapPin size={16} className="mr-2 flex-shrink-0 text-slate-400"/> {userData.profile.location}
+            </div>
             {userData.profile.email.map((email, idx) => (
               <div key={idx} className="flex items-start justify-center md:justify-start">
                 <Mail size={16} className="mr-2 mt-0.5 flex-shrink-0 text-slate-400"/>
@@ -327,14 +347,14 @@ const App = () => {
         </div>
 
         <nav className="flex-1 space-y-1 overflow-y-auto">
-          <NavItem id="about" name="Profile" icon={User} activeTab={activeTab} setActiveTab={setActiveTab} setIsMenuOpen={setIsMenuOpen} />
-          <NavItem id="experience" name="Experience" icon={Briefcase} activeTab={activeTab} setActiveTab={setActiveTab} setIsMenuOpen={setIsMenuOpen} />
-          <NavItem id="selectedProjects" name="Selected Projects" icon={Folder} activeTab={activeTab} setActiveTab={setActiveTab} setIsMenuOpen={setIsMenuOpen} />
-          <NavItem id="internships" name="Internships" icon={GraduationCap} activeTab={activeTab} setActiveTab={setActiveTab} setIsMenuOpen={setIsMenuOpen} />
-          <NavItem id="openSourceTools" name="Open-Source Tools" icon={Code} activeTab={activeTab} setActiveTab={setActiveTab} setIsMenuOpen={setIsMenuOpen} />
-          <NavItem id="certifications" name="Certifications" icon={Award} activeTab={activeTab} setActiveTab={setActiveTab} setIsMenuOpen={setIsMenuOpen} />
-          <NavItem id="publications" name="Publications" icon={BookOpen} activeTab={activeTab} setActiveTab={setActiveTab} setIsMenuOpen={setIsMenuOpen} />
-          <NavItem id="presentations" name="Presentations" icon={Mic} activeTab={activeTab} setActiveTab={setActiveTab} setIsMenuOpen={setIsMenuOpen} />
+          <NavItem id="about"            name="Profile"          icon={User}          activeTab={activeTab} setActiveTab={setActiveTab} setIsMenuOpen={setIsMenuOpen} />
+          <NavItem id="experience"       name="Experience"       icon={Briefcase}     activeTab={activeTab} setActiveTab={setActiveTab} setIsMenuOpen={setIsMenuOpen} />
+          <NavItem id="selectedProjects" name="Selected Projects" icon={Folder}       activeTab={activeTab} setActiveTab={setActiveTab} setIsMenuOpen={setIsMenuOpen} />
+          <NavItem id="internships"      name="Internships"      icon={GraduationCap} activeTab={activeTab} setActiveTab={setActiveTab} setIsMenuOpen={setIsMenuOpen} />
+          <NavItem id="openSourceTools"  name="Open-Source Tools" icon={Code}         activeTab={activeTab} setActiveTab={setActiveTab} setIsMenuOpen={setIsMenuOpen} />
+          <NavItem id="certifications"   name="Certifications"   icon={Award}         activeTab={activeTab} setActiveTab={setActiveTab} setIsMenuOpen={setIsMenuOpen} />
+          <NavItem id="publications"     name="Publications"     icon={BookOpen}      activeTab={activeTab} setActiveTab={setActiveTab} setIsMenuOpen={setIsMenuOpen} />
+          <NavItem id="presentations"    name="Presentations"    icon={Mic}           activeTab={activeTab} setActiveTab={setActiveTab} setIsMenuOpen={setIsMenuOpen} />
         </nav>
       </aside>
 
