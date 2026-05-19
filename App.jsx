@@ -24,6 +24,27 @@ const FilterIcon = (props) => <Icon {...props}><polygon points="22 3 2 3 10 12.4
 const Folder = (props) => <Icon {...props}><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></Icon>;
 const Award = (props) => <Icon {...props}><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></Icon>;
 
+// Profile image with initials fallback
+const ProfileImage = ({ name, image }) => {
+  const [failed, setFailed] = React.useState(false);
+  const initials = name.split(' ').map(n => n[0]).join('').slice(0, 2).toUpperCase();
+  if (!image || failed) {
+    return (
+      <div className="w-32 h-32 rounded-full mx-auto md:mx-0 mb-4 shadow-lg border-4 border-white ring-1 ring-slate-100 bg-blue-600 flex items-center justify-center">
+        <span className="text-white text-3xl font-bold">{initials}</span>
+      </div>
+    );
+  }
+  return (
+    <img
+      src={image}
+      alt={name}
+      className="w-32 h-32 rounded-full mx-auto md:mx-0 mb-4 shadow-lg object-cover border-4 border-white ring-1 ring-slate-100"
+      onError={() => setFailed(true)}
+    />
+  );
+};
+
 // Helper for External Links
 const RenderLinkIcon = ({ link, size = 18 }) => {
   if (link) return <a href={link} target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:text-blue-700 p-1 hover:bg-slate-50 rounded-full"><ExternalLink size={size} /></a>;
@@ -285,9 +306,7 @@ const App = () => {
       {/* Sidebar */}
       <aside className={`fixed inset-0 md:static md:inset-auto md:w-72 bg-white border-r border-slate-200 p-6 flex flex-col z-40 transition-transform duration-300 ease-in-out ${isMenuOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'}`}>
         <div className="mb-10 text-center md:text-left">
-          {userData.profile.image && (
-              <img src={userData.profile.image} alt={userData.profile.name} className="w-32 h-32 rounded-full mx-auto md:mx-0 mb-4 shadow-lg object-cover border-4 border-white ring-1 ring-slate-100" onError={(e) => { e.target.style.display = 'none'; }} />
-          )}
+          <ProfileImage name={userData.profile.name} image={userData.profile.image} />
           <h1 className="text-2xl font-bold text-slate-900">{userData.profile.name}</h1>
           <p className="text-slate-500 text-sm mt-1">{userData.profile.role}</p>
           
@@ -297,8 +316,13 @@ const App = () => {
           </div>
 
           <div className="mt-6 pt-6 border-t border-slate-100 text-sm text-slate-600 space-y-3">
-            <div className="flex items-center justify-center md:justify-start"><MapPin size={16} className="mr-2 text-slate-400"/> {userData.profile.location}</div>
-            <div className="flex items-start justify-center md:justify-start"><Mail size={16} className="mr-2 mt-1 text-slate-400"/> <a href={`mailto:${userData.profile.email[0]}`} className="hover:text-blue-600">{userData.profile.email[0]}</a></div>
+            <div className="flex items-center justify-center md:justify-start"><MapPin size={16} className="mr-2 flex-shrink-0 text-slate-400"/> {userData.profile.location}</div>
+            {userData.profile.email.map((email, idx) => (
+              <div key={idx} className="flex items-start justify-center md:justify-start">
+                <Mail size={16} className="mr-2 mt-0.5 flex-shrink-0 text-slate-400"/>
+                <a href={`mailto:${email}`} className="hover:text-blue-600 break-all">{email}</a>
+              </div>
+            ))}
           </div>
         </div>
 
