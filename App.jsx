@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
-import ReactDOM from 'react-dom/client';
 import { userData } from './data';
-import './styles.css';
 
 // =================================================================================
 // 1. ICONS
@@ -38,6 +36,19 @@ const renderDescription = (description) => {
     return <p className="text-slate-600 mb-4">{description}</p>;
 };
 
+// NavItem defined OUTSIDE App to avoid re-creation on every render
+const NavItem = ({ name, id, icon: NavIcon, activeTab, setActiveTab, setIsMenuOpen }) => (
+  <button
+    onClick={() => { setActiveTab(id); setIsMenuOpen(false); }}
+    className={`flex items-center w-full p-3 mb-2 rounded-lg transition-all duration-200 ${
+      activeTab === id ? 'bg-blue-600 text-white shadow-md' : 'text-slate-600 hover:bg-slate-100'
+    }`}
+  >
+    <NavIcon size={20} className="mr-3" />
+    <span className="font-medium">{name}</span>
+  </button>
+);
+
 // =================================================================================
 // 2. MAIN APPLICATION COMPONENT
 // =================================================================================
@@ -46,18 +57,6 @@ const App = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [pubRoleFilter, setPubRoleFilter] = useState('all');
   const [pubYearFilter, setPubYearFilter] = useState('all');
-
-  const NavItem = ({ name, id, icon: NavIcon }) => (
-    <button
-      onClick={() => { setActiveTab(id); setIsMenuOpen(false); }}
-      className={`flex items-center w-full p-3 mb-2 rounded-lg transition-all duration-200 ${
-        activeTab === id ? 'bg-blue-600 text-white shadow-md' : 'text-slate-600 hover:bg-slate-100'
-      }`}
-    >
-      <NavIcon size={20} className="mr-3" />
-      <span className="font-medium">{name}</span>
-    </button>
-  );
 
   const renderContent = () => {
     switch (activeTab) {
@@ -190,12 +189,13 @@ const App = () => {
           </div>
         );
 
-      case 'publications':
+      case 'publications': {
+        // FIX: wrapped in {} block to allow const declarations inside switch
         const uniqueYears = [...new Set(userData.publications.map(p => p.year))].sort((a, b) => b - a);
         const filteredPubs = userData.publications.filter(pub => {
             const isFirst = pub.authors && ['Kelin Zhong', 'K Zhong', 'KK Zhong'].some(name => pub.authors.trim().startsWith(name));
             const matchesRole = pubRoleFilter === 'all' || (pubRoleFilter === 'first' && isFirst) || (pubRoleFilter === 'co' && !isFirst);
-            const matchesYear = pubYearFilter === 'all' || pub.year === pubYearFilter;
+            const matchesYear = pubYearFilter === 'all' || String(pub.year) === String(pubYearFilter);
             return matchesRole && matchesYear;
         });
 
@@ -246,6 +246,7 @@ const App = () => {
             </div>
           </div>
         );
+      }
 
       case 'presentations':
         return (
@@ -273,6 +274,7 @@ const App = () => {
 
   return (
     <div className="min-h-screen bg-slate-50 flex flex-col md:flex-row font-sans text-slate-900">
+      {/* Mobile top bar */}
       <div className="md:hidden bg-white p-4 shadow-sm flex justify-between items-center sticky top-0 z-50">
         <span className="font-bold text-xl text-slate-800">{userData.profile.name}</span>
         <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="text-slate-600">
@@ -280,6 +282,7 @@ const App = () => {
         </button>
       </div>
 
+      {/* Sidebar */}
       <aside className={`fixed inset-0 md:static md:inset-auto md:w-72 bg-white border-r border-slate-200 p-6 flex flex-col z-40 transition-transform duration-300 ease-in-out ${isMenuOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'}`}>
         <div className="mb-10 text-center md:text-left">
           {userData.profile.image && (
@@ -299,15 +302,15 @@ const App = () => {
           </div>
         </div>
 
-        <nav className="flex-1 space-y-2">
-          <NavItem id="about" name="Profile" icon={User} />
-          <NavItem id="experience" name="Experience" icon={Briefcase} />
-          <NavItem id="selectedProjects" name="Selected Projects" icon={Folder} />
-          <NavItem id="internships" name="Internships" icon={GraduationCap} />
-          <NavItem id="openSourceTools" name="Open-Source Tools" icon={Code} />
-          <NavItem id="certifications" name="Certifications" icon={Award} />
-          <NavItem id="publications" name="Publications" icon={BookOpen} />
-          <NavItem id="presentations" name="Presentations" icon={Mic} />
+        <nav className="flex-1 space-y-1 overflow-y-auto">
+          <NavItem id="about" name="Profile" icon={User} activeTab={activeTab} setActiveTab={setActiveTab} setIsMenuOpen={setIsMenuOpen} />
+          <NavItem id="experience" name="Experience" icon={Briefcase} activeTab={activeTab} setActiveTab={setActiveTab} setIsMenuOpen={setIsMenuOpen} />
+          <NavItem id="selectedProjects" name="Selected Projects" icon={Folder} activeTab={activeTab} setActiveTab={setActiveTab} setIsMenuOpen={setIsMenuOpen} />
+          <NavItem id="internships" name="Internships" icon={GraduationCap} activeTab={activeTab} setActiveTab={setActiveTab} setIsMenuOpen={setIsMenuOpen} />
+          <NavItem id="openSourceTools" name="Open-Source Tools" icon={Code} activeTab={activeTab} setActiveTab={setActiveTab} setIsMenuOpen={setIsMenuOpen} />
+          <NavItem id="certifications" name="Certifications" icon={Award} activeTab={activeTab} setActiveTab={setActiveTab} setIsMenuOpen={setIsMenuOpen} />
+          <NavItem id="publications" name="Publications" icon={BookOpen} activeTab={activeTab} setActiveTab={setActiveTab} setIsMenuOpen={setIsMenuOpen} />
+          <NavItem id="presentations" name="Presentations" icon={Mic} activeTab={activeTab} setActiveTab={setActiveTab} setIsMenuOpen={setIsMenuOpen} />
         </nav>
       </aside>
 
@@ -317,11 +320,5 @@ const App = () => {
     </div>
   );
 };
-
-const container = document.getElementById('root');
-if (container) {
-    const root = ReactDOM.createRoot(container);
-    root.render(<App />);
-}
 
 export default App;

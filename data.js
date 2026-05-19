@@ -5,7 +5,7 @@ export const userData = {
       bio: "Statistical consultant and applied researcher with 2+ years of experience and expertise in causal inference, supported by top-tier peer-reviewed publications. Experienced in end-to-end research on large, noisy, and censored panel data, from model design through validation and cross-audience communication.",
       location: "Vernon, CT",
       email: ["kelin.zhong@uconn.edu", "kelinzhonguconn@gmail.com"],
-      image: "./images/profile.jpg", 
+      image: "/images/profile.jpg", 
       social: {
         github: "https://github.com/KelinZhong",
         linkedin: "https://www.linkedin.com/in/kelin-zhong/",
@@ -137,7 +137,7 @@ export const userData = {
         description: [
           "Applied time-series volatility modeling to 13 constituent stocks of the Hang Seng Index, using financial indicators (PE, PB, ROE, EBITDA) to examine time-varying risk patterns."
         ],
-        image: "./images/AXA.JPG"
+        image: "/images/AXA.JPG"
       }
     ],
 
@@ -389,7 +389,7 @@ export const userData = {
         role: "Poster Presenter",
         year: "2024",
         location: "Hartford, CT",
-        image: "./images/aging.jpg"
+        image: "/images/aging.jpg"
       },
       {
         id: 3,
@@ -397,7 +397,7 @@ export const userData = {
         role: "Invited Speaker",
         year: "2024",
         location: "Storrs, CT",
-        image: "./images/ness2024.jpg"
+        image: "/images/ness2024.jpg"
       },
       {
         id: 4,
