@@ -23,6 +23,12 @@ const GraduationCap = (props) => <Icon {...props}><path d="M21.42 10.922a1 1 0 0
 const FilterIcon = (props) => <Icon {...props}><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></Icon>;
 const Folder = (props) => <Icon {...props}><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></Icon>;
 const Award = (props) => <Icon {...props}><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></Icon>;
+// ResearchGate uses a custom SVG path (not in standard icon sets)
+const ResearchGate = ({ size = 24, className }) => (
+  <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="currentColor" className={className}>
+    <path d="M19.586 0H4.414C1.973 0 0 1.973 0 4.414v15.172C0 22.027 1.973 24 4.414 24h15.172C22.027 24 24 22.027 24 19.586V4.414C24 1.973 22.027 0 19.586 0zm-5.33 17.938c-.307.492-.76.77-1.338.77-.44 0-.832-.163-1.13-.476-.234-.245-.38-.558-.467-.95-.09-.405-.09-.988-.09-1.801v-.613c0-.593.005-1.04.045-1.373.04-.33.118-.594.243-.8.26-.434.688-.664 1.222-.664.51 0 .93.207 1.21.598.175.244.283.54.33.898.048.36.048.876.048 1.583v.613c0 .79-.007 1.364-.073 1.215zm-1.337-6.647c-1.18 0-2.128.383-2.815 1.138-.688.756-1.036 1.792-1.036 3.083 0 1.29.348 2.322 1.036 3.073.687.75 1.635 1.13 2.815 1.13 1.17 0 2.11-.383 2.796-1.138.688-.756 1.033-1.79 1.033-3.065 0-1.29-.345-2.327-1.033-3.083-.688-.755-1.626-1.138-2.796-1.138zm-4.88.156H6.544v7.928h1.496v-7.928zm-.748-3.563c-.51 0-.928.165-1.24.49-.314.324-.473.73-.473 1.207 0 .476.16.882.473 1.207.312.324.73.49 1.24.49.512 0 .93-.166 1.245-.49.314-.325.473-.73.473-1.207 0-.478-.16-.883-.473-1.207-.314-.325-.733-.49-1.245-.49zm8.856-.563h-2.254l-1.84 3.16V6.28h-1.49v2.04h1.49v5.888h1.49V8.32h.95l2.21-3.716-.556-.283z"/>
+  </svg>
+);
 
 // =================================================================================
 // 2. REUSABLE COMPONENTS
@@ -331,6 +337,7 @@ const App = () => {
           <div className="flex flex-wrap gap-2 mt-6 justify-center md:justify-start">
             {userData.profile.social.github && <a href={userData.profile.social.github} target="_blank" rel="noopener noreferrer" className="flex items-center px-3 py-2 bg-gray-900 text-white rounded-md hover:bg-gray-700 transition-colors text-sm font-medium"><Github size={16} className="mr-2"/> GitHub</a>}
             {userData.profile.social.linkedin && <a href={userData.profile.social.linkedin} target="_blank" rel="noopener noreferrer" className="flex items-center px-3 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors text-sm font-medium"><Linkedin size={16} className="mr-2"/> LinkedIn</a>}
+            {userData.profile.social.researchgate && <a href={userData.profile.social.researchgate} target="_blank" rel="noopener noreferrer" className="flex items-center px-3 py-2 bg-teal-600 text-white rounded-md hover:bg-teal-700 transition-colors text-sm font-medium"><ResearchGate size={16} className="mr-2"/> ResearchGate</a>}
           </div>
 
           <div className="mt-6 pt-6 border-t border-slate-100 text-sm text-slate-600 space-y-3">
