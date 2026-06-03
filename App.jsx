@@ -217,17 +217,22 @@ const App = () => {
           </div>
         );
 
-      case 'certifications':
+      case 'certificationsAndAwards':
         return (
           <div className="animate-fadeIn">
-            <h2 className="text-3xl font-bold text-slate-800 mb-6 border-b pb-4">Certifications</h2>
+            <h2 className="text-3xl font-bold text-slate-800 mb-6 border-b pb-4">Certifications & Awards</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {userData.certifications.map((cert) => (
+              {userData.certificationsAndAwards.map((cert) => (
                 <div key={cert.id} className="bg-white p-6 rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow flex flex-col">
-                  <div className="flex justify-between items-start mb-4">
+                  <div className="flex justify-between items-start mb-3">
                     <h3 className="text-xl font-bold text-slate-800">{cert.title}</h3>
                     <RenderLinkIcon link={cert.link} size={20} />
                   </div>
+                  <span className={`self-start text-xs font-medium px-2 py-0.5 rounded-full mb-3 ${
+                    cert.type === 'award' ? 'bg-amber-100 text-amber-700' : 'bg-blue-100 text-blue-700'
+                  }`}>
+                    {cert.type === 'award' ? 'Award' : 'Certification'}
+                  </span>
                   <div className="text-blue-600 font-medium text-sm mb-1">{cert.issuer}</div>
                   <div className="text-slate-500 text-sm">{cert.date}</div>
                 </div>
@@ -354,14 +359,14 @@ const App = () => {
         </div>
 
         <nav className="flex-1 space-y-1 overflow-y-auto">
-          <NavItem id="about"            name="Profile"          icon={User}          activeTab={activeTab} setActiveTab={setActiveTab} setIsMenuOpen={setIsMenuOpen} />
-          <NavItem id="experience"       name="Experience"       icon={Briefcase}     activeTab={activeTab} setActiveTab={setActiveTab} setIsMenuOpen={setIsMenuOpen} />
-          <NavItem id="selectedProjects" name="Selected Projects" icon={Folder}       activeTab={activeTab} setActiveTab={setActiveTab} setIsMenuOpen={setIsMenuOpen} />
-          <NavItem id="internships"      name="Internships"      icon={GraduationCap} activeTab={activeTab} setActiveTab={setActiveTab} setIsMenuOpen={setIsMenuOpen} />
-          <NavItem id="openSourceTools"  name="Open-Source Tools" icon={Code}         activeTab={activeTab} setActiveTab={setActiveTab} setIsMenuOpen={setIsMenuOpen} />
-          <NavItem id="certifications"   name="Certifications"   icon={Award}         activeTab={activeTab} setActiveTab={setActiveTab} setIsMenuOpen={setIsMenuOpen} />
-          <NavItem id="publications"     name="Publications"     icon={BookOpen}      activeTab={activeTab} setActiveTab={setActiveTab} setIsMenuOpen={setIsMenuOpen} />
-          <NavItem id="presentations"    name="Presentations"    icon={Mic}           activeTab={activeTab} setActiveTab={setActiveTab} setIsMenuOpen={setIsMenuOpen} />
+          <NavItem id="about"                   name="Profile"                  icon={User}          activeTab={activeTab} setActiveTab={setActiveTab} setIsMenuOpen={setIsMenuOpen} />
+          <NavItem id="experience"              name="Experience"               icon={Briefcase}     activeTab={activeTab} setActiveTab={setActiveTab} setIsMenuOpen={setIsMenuOpen} />
+          <NavItem id="selectedProjects"        name="Selected Projects"        icon={Folder}        activeTab={activeTab} setActiveTab={setActiveTab} setIsMenuOpen={setIsMenuOpen} />
+          <NavItem id="internships"             name="Internships"              icon={GraduationCap} activeTab={activeTab} setActiveTab={setActiveTab} setIsMenuOpen={setIsMenuOpen} />
+          <NavItem id="openSourceTools"         name="Open-Source Tools"        icon={Code}          activeTab={activeTab} setActiveTab={setActiveTab} setIsMenuOpen={setIsMenuOpen} />
+          <NavItem id="certificationsAndAwards" name="Certifications & Awards"  icon={Award}         activeTab={activeTab} setActiveTab={setActiveTab} setIsMenuOpen={setIsMenuOpen} />
+          <NavItem id="publications"            name="Publications"             icon={BookOpen}      activeTab={activeTab} setActiveTab={setActiveTab} setIsMenuOpen={setIsMenuOpen} />
+          <NavItem id="presentations"           name="Presentations"            icon={Mic}           activeTab={activeTab} setActiveTab={setActiveTab} setIsMenuOpen={setIsMenuOpen} />
         </nav>
       </aside>
 
