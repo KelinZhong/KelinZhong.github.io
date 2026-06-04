@@ -18,7 +18,7 @@ export const userData = {
       {
           degree: "PhD in Statistics",
           school: "University of Connecticut",
-          year: "May 2020 – Jun 2026",
+          year: "Aug 2020 – Jun 2026",
           details: "Bayesian Inference, Longitudinal Data Analysis, Causal Inference, Survival Analysis"
       },
       {
