@@ -4,7 +4,7 @@ export const userData = {
       role: "Applied Data Scientist & Quantitative Modeler",
       bio: "Applied data scientist and quantitative modeler with 2+ years of experience building predictive models, causal inference workflows, and statistical modeling solutions for large-scale real-world data. Skilled in feature engineering, model validation, uncertainty quantification, and translating complex analyses into decision-ready insights for cross-functional stakeholders. Hands-on experience with Python, R, PyTorch, SQL, Stan, Git, Linux, and reproducible analytics.",
       location: "Vernon, CT",
-      email: ["kelinzhonguconn@gmail.com", "kelin.zhong@uconn.edu"],
+      email: ["kelinzhonguconn@gmail.com"],
       image: "/images/profile.jpg", 
       social: {
         github: "https://github.com/kelinzhong",
