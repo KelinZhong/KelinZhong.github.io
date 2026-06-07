@@ -23,7 +23,6 @@ const GraduationCap = (props) => <Icon {...props}><path d="M21.42 10.922a1 1 0 0
 const FilterIcon = (props) => <Icon {...props}><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></Icon>;
 const Folder = (props) => <Icon {...props}><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></Icon>;
 const Award = (props) => <Icon {...props}><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></Icon>;
-// ResearchGate uses a custom SVG path (not in standard icon sets)
 const ResearchGate = ({ size = 24, className }) => (
   <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="currentColor" className={className}>
     <path d="M19.586 0H4.414C1.973 0 0 1.973 0 4.414v15.172C0 22.027 1.973 24 4.414 24h15.172C22.027 24 24 22.027 24 19.586V4.414C24 1.973 22.027 0 19.586 0zm-5.33 17.938c-.307.492-.76.77-1.338.77-.44 0-.832-.163-1.13-.476-.234-.245-.38-.558-.467-.95-.09-.405-.09-.988-.09-1.801v-.613c0-.593.005-1.04.045-1.373.04-.33.118-.594.243-.8.26-.434.688-.664 1.222-.664.51 0 .93.207 1.21.598.175.244.283.54.33.898.048.36.048.876.048 1.583v.613c0 .79-.007 1.364-.073 1.215zm-1.337-6.647c-1.18 0-2.128.383-2.815 1.138-.688.756-1.036 1.792-1.036 3.083 0 1.29.348 2.322 1.036 3.073.687.75 1.635 1.13 2.815 1.13 1.17 0 2.11-.383 2.796-1.138.688-.756 1.033-1.79 1.033-3.065 0-1.29-.345-2.327-1.033-3.083-.688-.755-1.626-1.138-2.796-1.138zm-4.88.156H6.544v7.928h1.496v-7.928zm-.748-3.563c-.51 0-.928.165-1.24.49-.314.324-.473.73-.473 1.207 0 .476.16.882.473 1.207.312.324.73.49 1.24.49.512 0 .93-.166 1.245-.49.314-.325.473-.73.473-1.207 0-.478-.16-.883-.473-1.207-.314-.325-.733-.49-1.245-.49zm8.856-.563h-2.254l-1.84 3.16V6.28h-1.49v2.04h1.49v5.888h1.49V8.32h.95l2.21-3.716-.556-.283z"/>
@@ -34,7 +33,6 @@ const ResearchGate = ({ size = 24, className }) => (
 // 2. REUSABLE COMPONENTS
 // =================================================================================
 
-// Profile image with initials fallback
 const ProfileImage = ({ name, image }) => {
   const [failed, setFailed] = React.useState(false);
   const initials = name.split(' ').map(n => n[0]).join('').slice(0, 2).toUpperCase();
@@ -46,42 +44,45 @@ const ProfileImage = ({ name, image }) => {
     );
   }
   return (
-    <img
-      src={image}
-      alt={name}
+    <img src={image} alt={name}
       className="w-32 h-32 rounded-full mx-auto md:mx-0 mb-4 shadow-lg object-cover border-4 border-white ring-1 ring-slate-100"
-      onError={() => setFailed(true)}
-    />
+      onError={() => setFailed(true)} />
   );
 };
 
-// Section image — renders only if src is non-empty; silently hides on error
 const SectionImage = ({ src, alt }) => {
   const [failed, setFailed] = React.useState(false);
   if (!src || failed) return null;
   return (
-    <img
-      src={src}
-      alt={alt}
+    <img src={src} alt={alt}
       className="w-full h-auto max-h-96 object-contain rounded-lg shadow-sm border border-slate-100 bg-white mt-4"
-      onError={() => setFailed(true)}
-    />
+      onError={() => setFailed(true)} />
   );
 };
 
-// External link icon button
 const RenderLinkIcon = ({ link, size = 18 }) => {
   if (link) return <a href={link} target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:text-blue-700 p-1 hover:bg-slate-50 rounded-full"><ExternalLink size={size} /></a>;
   return <span className="text-slate-300 p-1 cursor-not-allowed"><ExternalLink size={size} /></span>;
 };
 
-// Description renderer — array → bullet list, string → paragraph
 const renderDescription = (description) => {
   if (Array.isArray(description)) return <ul className="list-disc pl-5 space-y-2 text-slate-600">{description.map((item, idx) => <li key={idx}>{item}</li>)}</ul>;
   return <p className="text-slate-600 mb-4">{description}</p>;
 };
 
-// NavItem defined outside App to avoid re-creation on every render
+// Publication type badge
+const PubTypeBadge = ({ type }) => {
+  const config = {
+    journal:    { label: 'Journal Article',      cls: 'bg-blue-100 text-blue-700' },
+    conference: { label: 'Conference Abstract',  cls: 'bg-purple-100 text-purple-700' },
+    preprint:   { label: 'Preprint',             cls: 'bg-amber-100 text-amber-700' },
+  };
+  const { label, cls } = config[type] || { label: type, cls: 'bg-slate-100 text-slate-600' };
+  return (
+    <span className={`inline-block text-xs font-medium px-2 py-0.5 rounded-full mt-2 ${cls}`}>{label}</span>
+  );
+};
+
 const NavItem = ({ name, id, icon: NavIcon, activeTab, setActiveTab, setIsMenuOpen }) => (
   <button
     onClick={() => { setActiveTab(id); setIsMenuOpen(false); }}
@@ -102,6 +103,7 @@ const App = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [pubRoleFilter, setPubRoleFilter] = useState('all');
   const [pubYearFilter, setPubYearFilter] = useState('all');
+  const [pubTypeFilter, setPubTypeFilter] = useState('all');
 
   const renderContent = () => {
     switch (activeTab) {
@@ -247,35 +249,97 @@ const App = () => {
           const isFirst = pub.authors && ['Kelin Zhong', 'K Zhong', 'KK Zhong'].some(name => pub.authors.trim().startsWith(name));
           const matchesRole = pubRoleFilter === 'all' || (pubRoleFilter === 'first' && isFirst) || (pubRoleFilter === 'co' && !isFirst);
           const matchesYear = pubYearFilter === 'all' || String(pub.year) === String(pubYearFilter);
-          return matchesRole && matchesYear;
+          const matchesType = pubTypeFilter === 'all' || pub.type === pubTypeFilter;
+          return matchesRole && matchesYear && matchesType;
         });
+
+        // Summary counts derived from filteredPubs — automatically reflect active filters
+        const journalCount    = filteredPubs.filter(p => p.type === 'journal').length;
+        const conferenceCount = filteredPubs.filter(p => p.type === 'conference').length;
+        const preprintCount   = filteredPubs.filter(p => p.type === 'preprint').length;
+        const summaryLabel    = pubYearFilter === 'all' ? 'All Years' : pubYearFilter;
+
         return (
           <div className="animate-fadeIn">
             <h2 className="text-3xl font-bold text-slate-800 mb-6 border-b pb-4">Publications</h2>
-            <div className="bg-white border border-slate-200 rounded-xl p-4 mb-8 shadow-sm">
-              <div className="flex items-center gap-2 mb-4 text-slate-800 font-semibold"><FilterIcon size={18} className="text-blue-600" /><span>Filters</span></div>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+            {/* Summary Statistics */}
+            <div className="mb-6">
+              <p className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3">
+                Summary — {summaryLabel} · {filteredPubs.length} total
+              </p>
+              <div className="grid grid-cols-3 gap-3">
+                <div className="bg-white rounded-xl border border-blue-100 p-4 text-center shadow-sm">
+                  <div className="text-3xl font-bold text-blue-600">{journalCount}</div>
+                  <div className="text-xs text-slate-500 mt-1 font-medium">Journal Articles</div>
+                </div>
+                <div className="bg-white rounded-xl border border-purple-100 p-4 text-center shadow-sm">
+                  <div className="text-3xl font-bold text-purple-600">{conferenceCount}</div>
+                  <div className="text-xs text-slate-500 mt-1 font-medium">Conference Abstracts</div>
+                </div>
+                <div className="bg-white rounded-xl border border-amber-100 p-4 text-center shadow-sm">
+                  <div className="text-3xl font-bold text-amber-600">{preprintCount}</div>
+                  <div className="text-xs text-slate-500 mt-1 font-medium">Preprints</div>
+                </div>
+              </div>
+            </div>
+
+            {/* Filters */}
+            <div className="bg-white border border-slate-200 rounded-xl p-4 mb-6 shadow-sm">
+              <div className="flex items-center gap-2 mb-4 text-slate-800 font-semibold">
+                <FilterIcon size={18} className="text-blue-600" /><span>Filters</span>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
                 <div>
                   <label className="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Author Role</label>
                   <div className="flex flex-wrap gap-2">
                     {[{ id: 'all', label: 'All' }, { id: 'first', label: 'First Author' }, { id: 'co', label: 'Co-Author' }].map(role => (
-                      <button key={role.id} onClick={() => setPubRoleFilter(role.id)} className={`px-3 py-1.5 rounded-md text-sm font-medium transition-all ${pubRoleFilter === role.id ? 'bg-blue-600 text-white shadow-sm' : 'bg-slate-50 text-slate-600 hover:bg-slate-100 border border-slate-200'}`}>{role.label}</button>
+                      <button key={role.id} onClick={() => setPubRoleFilter(role.id)}
+                        className={`px-3 py-1.5 rounded-md text-sm font-medium transition-all ${pubRoleFilter === role.id ? 'bg-blue-600 text-white shadow-sm' : 'bg-slate-50 text-slate-600 hover:bg-slate-100 border border-slate-200'}`}>
+                        {role.label}
+                      </button>
                     ))}
                   </div>
                 </div>
                 <div>
                   <label className="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Publication Year</label>
                   <div className="flex flex-wrap gap-2">
-                    <button onClick={() => setPubYearFilter('all')} className={`px-3 py-1.5 rounded-md text-sm font-medium transition-all ${pubYearFilter === 'all' ? 'bg-blue-600 text-white shadow-sm' : 'bg-slate-50 text-slate-600 hover:bg-slate-100 border border-slate-200'}`}>All</button>
+                    <button onClick={() => setPubYearFilter('all')}
+                      className={`px-3 py-1.5 rounded-md text-sm font-medium transition-all ${pubYearFilter === 'all' ? 'bg-blue-600 text-white shadow-sm' : 'bg-slate-50 text-slate-600 hover:bg-slate-100 border border-slate-200'}`}>
+                      All
+                    </button>
                     {uniqueYears.map(year => (
-                      <button key={year} onClick={() => setPubYearFilter(year)} className={`px-3 py-1.5 rounded-md text-sm font-medium transition-all ${pubYearFilter === year ? 'bg-blue-600 text-white shadow-sm' : 'bg-slate-50 text-slate-600 hover:bg-slate-100 border border-slate-200'}`}>{year}</button>
+                      <button key={year} onClick={() => setPubYearFilter(year)}
+                        className={`px-3 py-1.5 rounded-md text-sm font-medium transition-all ${pubYearFilter === year ? 'bg-blue-600 text-white shadow-sm' : 'bg-slate-50 text-slate-600 hover:bg-slate-100 border border-slate-200'}`}>
+                        {year}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+                <div>
+                  <label className="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Publication Type</label>
+                  <div className="flex flex-wrap gap-2">
+                    {[
+                      { id: 'all',        label: 'All' },
+                      { id: 'journal',    label: 'Journal' },
+                      { id: 'conference', label: 'Conference' },
+                      { id: 'preprint',   label: 'Preprint' },
+                    ].map(t => (
+                      <button key={t.id} onClick={() => setPubTypeFilter(t.id)}
+                        className={`px-3 py-1.5 rounded-md text-sm font-medium transition-all ${pubTypeFilter === t.id ? 'bg-blue-600 text-white shadow-sm' : 'bg-slate-50 text-slate-600 hover:bg-slate-100 border border-slate-200'}`}>
+                        {t.label}
+                      </button>
                     ))}
                   </div>
                 </div>
               </div>
             </div>
+
+            {/* Publication List */}
             <div className="space-y-4">
-              {filteredPubs.map((pub) => (
+              {filteredPubs.length === 0 ? (
+                <div className="text-center py-12 text-slate-400">No publications match the selected filters.</div>
+              ) : filteredPubs.map((pub) => (
                 <div key={pub.id} className="group flex flex-col p-5 bg-white rounded-lg border border-slate-200 hover:border-blue-300 hover:shadow-md transition-all">
                   <div className="flex justify-between items-start">
                     <div className="flex-1">
@@ -286,6 +350,7 @@ const App = () => {
                         <span className="w-1 h-1 bg-slate-400 rounded-full"></span>
                         <span>{pub.year}</span>
                       </div>
+                      <PubTypeBadge type={pub.type} />
                     </div>
                     <RenderLinkIcon link={pub.link} size={18} />
                   </div>
@@ -340,9 +405,9 @@ const App = () => {
           <p className="text-slate-500 text-sm mt-1">{userData.profile.role}</p>
 
           <div className="flex flex-wrap gap-2 mt-6 justify-center md:justify-start">
-            {userData.profile.social.github && <a href={userData.profile.social.github} target="_blank" rel="noopener noreferrer" className="flex items-center px-3 py-2 bg-gray-900 text-white rounded-md hover:bg-gray-700 transition-colors text-sm font-medium"><Github size={16} className="mr-2"/> GitHub</a>}
-            {userData.profile.social.linkedin && <a href={userData.profile.social.linkedin} target="_blank" rel="noopener noreferrer" className="flex items-center px-3 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors text-sm font-medium"><Linkedin size={16} className="mr-2"/> LinkedIn</a>}
-            {userData.profile.social.researchgate && <a href={userData.profile.social.researchgate} target="_blank" rel="noopener noreferrer" className="flex items-center px-3 py-2 bg-teal-600 text-white rounded-md hover:bg-teal-700 transition-colors text-sm font-medium"><ResearchGate size={16} className="mr-2"/> ResearchGate</a>}
+            {userData.profile.social.github     && <a href={userData.profile.social.github}       target="_blank" rel="noopener noreferrer" className="flex items-center px-3 py-2 bg-gray-900  text-white rounded-md hover:bg-gray-700  transition-colors text-sm font-medium"><Github      size={16} className="mr-2"/> GitHub</a>}
+            {userData.profile.social.linkedin   && <a href={userData.profile.social.linkedin}     target="_blank" rel="noopener noreferrer" className="flex items-center px-3 py-2 bg-blue-600  text-white rounded-md hover:bg-blue-700  transition-colors text-sm font-medium"><Linkedin    size={16} className="mr-2"/> LinkedIn</a>}
+            {userData.profile.social.researchgate && <a href={userData.profile.social.researchgate} target="_blank" rel="noopener noreferrer" className="flex items-center px-3 py-2 bg-teal-600  text-white rounded-md hover:bg-teal-700  transition-colors text-sm font-medium"><ResearchGate size={16} className="mr-2"/> ResearchGate</a>}
           </div>
 
           <div className="mt-6 pt-6 border-t border-slate-100 text-sm text-slate-600 space-y-3">
@@ -359,14 +424,14 @@ const App = () => {
         </div>
 
         <nav className="flex-1 space-y-1 overflow-y-auto">
-          <NavItem id="about"                   name="Profile"                  icon={User}          activeTab={activeTab} setActiveTab={setActiveTab} setIsMenuOpen={setIsMenuOpen} />
-          <NavItem id="experience"              name="Experience"               icon={Briefcase}     activeTab={activeTab} setActiveTab={setActiveTab} setIsMenuOpen={setIsMenuOpen} />
-          <NavItem id="selectedProjects"        name="Selected Projects"        icon={Folder}        activeTab={activeTab} setActiveTab={setActiveTab} setIsMenuOpen={setIsMenuOpen} />
-          <NavItem id="internships"             name="Internships"              icon={GraduationCap} activeTab={activeTab} setActiveTab={setActiveTab} setIsMenuOpen={setIsMenuOpen} />
-          <NavItem id="openSourceTools"         name="Open-Source Tools"        icon={Code}          activeTab={activeTab} setActiveTab={setActiveTab} setIsMenuOpen={setIsMenuOpen} />
-          <NavItem id="certificationsAndAwards" name="Certifications & Awards"  icon={Award}         activeTab={activeTab} setActiveTab={setActiveTab} setIsMenuOpen={setIsMenuOpen} />
-          <NavItem id="publications"            name="Publications"             icon={BookOpen}      activeTab={activeTab} setActiveTab={setActiveTab} setIsMenuOpen={setIsMenuOpen} />
-          <NavItem id="presentations"           name="Presentations"            icon={Mic}           activeTab={activeTab} setActiveTab={setActiveTab} setIsMenuOpen={setIsMenuOpen} />
+          <NavItem id="about"                   name="Profile"                 icon={User}          activeTab={activeTab} setActiveTab={setActiveTab} setIsMenuOpen={setIsMenuOpen} />
+          <NavItem id="experience"              name="Experience"              icon={Briefcase}     activeTab={activeTab} setActiveTab={setActiveTab} setIsMenuOpen={setIsMenuOpen} />
+          <NavItem id="selectedProjects"        name="Selected Projects"       icon={Folder}        activeTab={activeTab} setActiveTab={setActiveTab} setIsMenuOpen={setIsMenuOpen} />
+          <NavItem id="internships"             name="Internships"             icon={GraduationCap} activeTab={activeTab} setActiveTab={setActiveTab} setIsMenuOpen={setIsMenuOpen} />
+          <NavItem id="openSourceTools"         name="Open-Source Tools"       icon={Code}          activeTab={activeTab} setActiveTab={setActiveTab} setIsMenuOpen={setIsMenuOpen} />
+          <NavItem id="certificationsAndAwards" name="Certifications & Awards" icon={Award}         activeTab={activeTab} setActiveTab={setActiveTab} setIsMenuOpen={setIsMenuOpen} />
+          <NavItem id="publications"            name="Publications"            icon={BookOpen}      activeTab={activeTab} setActiveTab={setActiveTab} setIsMenuOpen={setIsMenuOpen} />
+          <NavItem id="presentations"           name="Presentations"           icon={Mic}           activeTab={activeTab} setActiveTab={setActiveTab} setIsMenuOpen={setIsMenuOpen} />
         </nav>
       </aside>
 

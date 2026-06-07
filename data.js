@@ -4,7 +4,7 @@ export const userData = {
       role: "Applied Data Scientist & Quantitative Modeler",
       bio: "Applied data scientist and quantitative modeler with 2+ years of experience building predictive models, causal inference workflows, and statistical modeling solutions for large-scale real-world data. Skilled in feature engineering, model validation, uncertainty quantification, and translating complex analyses into decision-ready insights for cross-functional stakeholders. Hands-on experience with Python, R, PyTorch, SQL, Stan, Git, Linux, and reproducible analytics.",
       location: "Vernon, CT",
-      email: ["kelinzhonguconn@gmail.com"],
+      email: ["kelinzhonguconn@gmail.com", "kelin.zhong@uconn.edu"],
       image: "/images/profile.jpg", 
       social: {
         github: "https://github.com/kelinzhong",
@@ -80,7 +80,7 @@ export const userData = {
         company: "UConn Health",
         period: "Oct 2023 – Jun 2026",
         description: [
-          "Led causal inference and quantitative modeling projects on large-scale EHR, UK Biobank, panel, and genetic datasets, improving a grant proposal’s evaluation from the top 50% to the top 25%.",
+          "Led causal inference and quantitative modeling projects on large-scale EHR, UK Biobank, panel, and genetic datasets, improving a grant proposal's evaluation from the top 50% to the top 25%.",
           "Designed end-to-end modeling workflows on datasets with up to 500K records, including cohort construction, feature definition, time-window design, and confounder adjustment.",
           "Estimated treatment effects and risk associations using regression models, target trial emulation, out-of-sample validation, uncertainty quantification, and robustness checks.",
           "Applied Mendelian randomization (genetics-based causal analysis) to translate experimental findings into human-scale evidence."
@@ -256,6 +256,7 @@ export const userData = {
     publications: [
       {
         id: 1,
+        type: "journal",
         title: "Ethics of Rising Trends in Dermatology Publications Using Large-Scale Databases",
         authors: "M Tessier-Kay, AE Zhou, K Zhong, CL Kuo, B Sloan, H Feng",
         publisher: "Clinics in Dermatology",
@@ -264,7 +265,8 @@ export const userData = {
       },
       {
         id: 2,
-        title: "‘OrthoQA’ Semantic Search and Question-Answering Tool for Orthodontic Education",
+        type: "journal",
+        title: "'OrthoQA' Semantic Search and Question-Answering Tool for Orthodontic Education",
         authors: "SA Arqub, Q Zhao, P Akolkar, D Al-Moghrabi, CL Kuo, K Zhong, D Alomair, M Adel, Y Zhang",
         publisher: "Journal of Dentistry",
         year: "2026",
@@ -272,6 +274,7 @@ export const userData = {
       },
       {
         id: 3,
+        type: "journal",
         title: "Tele-orthodontics in Real-World Practice: A Clinical Audit of Its Impact on Treatment Efficiency and Orthodontic Business Performance",
         authors: "B Engert, H Chheda, B Layman, CL Kuo, K Zhong, C Dolce, X Yang, SA Arqub",
         publisher: "Seminars in Orthodontics",
@@ -280,6 +283,7 @@ export const userData = {
       },
       {
         id: 4,
+        type: "journal",
         title: "Effect of Location of Minilaparotomy for Morcellation at the Time of Myomectomy and Hysterectomy on Postoperative Pain",
         authors: "L Kowalski, M Buchman, H Bian, K Zhong, CL Kuo, A Newmark, D Luciano, A Ulrich",
         publisher: "Journal of Minimally Invasive Gynecology",
@@ -288,6 +292,7 @@ export const userData = {
       },
       {
         id: 5,
+        type: "conference",
         title: "Impact of the MyChart Sleep Care Plan on Continuous Positive Airway Pressure Adherence",
         authors: "K Nakamura, CL Kuo, K Zhong, J Langstengel, E Bernstein, A Salmon",
         publisher: "Sleep",
@@ -296,6 +301,7 @@ export const userData = {
       },
       {
         id: 6,
+        type: "journal",
         title: "Safety and Efficacy of Modern Large Bore Mechanical Thrombectomy for Intermediate and High-Risk Pulmonary Embolism",
         authors: "S Passey, K Zhong, CL Kuo, J Ingrassia",
         publisher: "Journal of the Society for Cardiovascular Angiography & Interventions",
@@ -304,6 +310,7 @@ export const userData = {
       },
       {
         id: 7,
+        type: "journal",
         title: "The Nonlinear U-Shaped Association Between Vitamin D Deficiency and Biological Aging Acceleration Is Enhanced in Individuals with Higher Inflammation Levels",
         authors: "J Kositsawat, GA Kuchel, K Zhong, S Zhao, RH Fortinsky, CL Kuo",
         publisher: "The Journals of Gerontology: Series A",
@@ -312,6 +319,7 @@ export const userData = {
       },
       {
         id: 8,
+        type: "journal",
         title: "VA-ECMO in High-Risk Pulmonary Embolism: Outcomes and Role as Bridge to Recovery",
         authors: "S Arvind, H Wagner, CL Kuo, K Zhong, J Gluck, J Ingrassia",
         publisher: "Resuscitation Plus",
@@ -320,6 +328,7 @@ export const userData = {
       },
       {
         id: 9,
+        type: "conference",
         title: "Exploring the Relationship Between Zinc Status and Frailty: Observational and Genetic Analyses",
         authors: "S Choi, K Zhong, CL Kuo",
         publisher: "Innovation in Aging",
@@ -328,6 +337,7 @@ export const userData = {
       },
       {
         id: 10,
+        type: "journal",
         title: "Angiographic Characteristics and Associated Risk Factors of Premature Coronary Artery Disease Among South Asians: A Systematic Review",
         authors: "S Passey, J Jha, M Iverson, K Zhong, CL Kuo, S Arora, A Qamar, N Beohar",
         publisher: "The American Journal of Cardiology",
@@ -336,6 +346,7 @@ export const userData = {
       },
       {
         id: 11,
+        type: "journal",
         title: "Micro-computed Tomography Assessment of Regional and Overall Accuracy of Thermoformed Retainers and Intraoral Scanners",
         authors: "ML Montes, MA Zakhary, SF Cobos, CL Kuo, KK Zhong, SA Arqub, F Uribe",
         publisher: "American Journal of Orthodontics and Dentofacial Orthopedics",
@@ -344,6 +355,7 @@ export const userData = {
       },
       {
         id: 12,
+        type: "conference",
         title: "Healthcare Disparities in Merkel Cell Carcinoma in the Immune Checkpoint Inhibitor Era: A SEER Study of Survival Disparities in Older Adults",
         authors: "J Arunachalam, K Zhong, CL Kuo, KS Gunturu, BJ Byrne",
         publisher: "Journal of Clinical Oncology",
@@ -352,7 +364,8 @@ export const userData = {
       },
       {
         id: 13,
-        title: "Software Versus Cognitive Fusion for the Detection of Clinically Significant Prostate Cancer: Does ‘Lesion Density’ Matter?",
+        type: "conference",
+        title: "Software Versus Cognitive Fusion for the Detection of Clinically Significant Prostate Cancer: Does 'Lesion Density' Matter?",
         authors: "V Dubovik, D Buller, B Rosenfeld, W Martin, A Sherman, W Faust, K Zhong, CL Kuo, B Ristau",
         publisher: "Journal of Urology",
         year: "2025",
@@ -360,6 +373,7 @@ export const userData = {
       },
       {
         id: 14,
+        type: "journal",
         title: "Comparison of Safety and Efficacy of Ultrasound-Accelerated Thrombolysis vs. Standard Catheter-Directed Thrombolysis for the Management of Acute Pulmonary Embolism: A Systematic Review and Meta-Analysis",
         authors: "S Passey, H Jain, J Jha, K Zhong, CL Kuo, M Iverson, H Patail, S Joshi, J Ingrassia",
         publisher: "Journal of Thrombosis and Thrombolysis",
@@ -368,6 +382,7 @@ export const userData = {
       },
       {
         id: 15,
+        type: "journal",
         title: "A Five-Year Review of Temporal Bone Fractures at a Level One Trauma Center and Examination of the Impact of the COVID-19 Pandemic",
         authors: "WM Jongbloed, D Campbell, CL Kuo, K Zhong, NJ Cavanagh",
         publisher: "Surgeries",
@@ -376,6 +391,7 @@ export const userData = {
       },
       {
         id: 16,
+        type: "journal",
         title: "The Influence of Sexual Orientation and Gender Identity on the Otolaryngology Residency Experience",
         authors: "WM Jongbloed, HA Newsome, L Kashat, K Parham, EA Faucett, CL Kuo, K Zhong, KR Kavanagh",
         publisher: "OTO Open",
@@ -384,14 +400,16 @@ export const userData = {
       },
       {
         id: 17,
+        type: "journal",
         title: "A Survey of General Dentists on the Involvement of Endodontists in Restorative Procedures",
         authors: "GB Deese, MT Spoto, Q Zhu, RH Aseltine Jr, CL Kuo, K Zhong, O Dort, B Kaufman",
         publisher: "The Journal of the American Dental Association",
         year: "2025",
         link: "https://doi.org/10.1016/j.adaj.2025.01.007"
       },
-{
+      {
         id: 18,
+        type: "journal",
         title: "Autoregressive Bayesian Modeling of Censored HIV Longitudinal Data Using the Multivariate Student's-t Distribution",
         authors: "K Zhong, LM Castro, P Zhang, VH Lachos",
         publisher: "Japanese Journal of Statistics and Data Science",
@@ -400,6 +418,7 @@ export const userData = {
       },
       {
         id: 19,
+        type: "journal",
         title: "Bayesian Analysis of Censored Linear Mixed-Effects Models for Heavy-Tailed Irregularly Observed Repeated Measures",
         authors: "K Zhong, FL Schumacher, LM Castro, VH Lachos",
         publisher: "Statistics in Medicine",
@@ -408,6 +427,7 @@ export const userData = {
       },
       {
         id: 20,
+        type: "preprint",
         title: "The Effect of a Pilot Medical Humanities Curriculum and Narrative Medicine on Empathy, Connectedness, and Self-Reported General Well-Being in an Otolaryngology Residency Program",
         authors: "W Jongbloed, KR Kavanagh, CL Kuo, K Zhong, H Newsome",
         publisher: "Authorea Preprints",
@@ -416,7 +436,8 @@ export const userData = {
       },
       {
         id: 21,
-        title: "Linear Mixed-Effects Models for Censored Data with Serial Correlation Errors Using the Multivariate Student’s t-Distribution",
+        type: "journal",
+        title: "Linear Mixed-Effects Models for Censored Data with Serial Correlation Errors Using the Multivariate Student's t-Distribution",
         authors: "K Zhong, RC Olivari, AM Garay, VH Lachos",
         publisher: "The New England Journal of Statistics in Data Science",
         year: "2025",
