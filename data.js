@@ -451,7 +451,8 @@ export const userData = {
         title: "39th New England Statistics Symposium Statathon",
         role: "Finalist",
         year: "2026",
-        location: ""
+        location: "",
+        image: "/images/statathon.jpg"
       },
       {
         id: 1,
