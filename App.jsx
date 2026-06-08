@@ -87,14 +87,13 @@ const PubTypeBadge = ({ type }) => {
 const AUTHOR_NAMES = ['Kelin Zhong', 'KK Zhong', 'K Zhong'];
 const HighlightedAuthors = ({ authors }) => {
   if (!authors) return null;
-  // Build a regex that matches any of the name variants (longest first to avoid partial matches)
   const pattern = new RegExp(`(${AUTHOR_NAMES.join('|')})`, 'g');
   const parts = authors.split(pattern);
   return (
     <span>
       {parts.map((part, i) =>
         AUTHOR_NAMES.includes(part)
-          ? <strong key={i} className="font-bold text-slate-800">{part}</strong>
+          ? <strong key={i} className="not-italic font-bold text-blue-700 underline underline-offset-2">{part}</strong>
           : <span key={i}>{part}</span>
       )}
     </span>
