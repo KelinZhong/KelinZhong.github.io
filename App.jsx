@@ -83,6 +83,24 @@ const PubTypeBadge = ({ type }) => {
   );
 };
 
+// Highlights Kelin Zhong's name variants in the author string
+const AUTHOR_NAMES = ['Kelin Zhong', 'KK Zhong', 'K Zhong'];
+const HighlightedAuthors = ({ authors }) => {
+  if (!authors) return null;
+  // Build a regex that matches any of the name variants (longest first to avoid partial matches)
+  const pattern = new RegExp(`(${AUTHOR_NAMES.join('|')})`, 'g');
+  const parts = authors.split(pattern);
+  return (
+    <span>
+      {parts.map((part, i) =>
+        AUTHOR_NAMES.includes(part)
+          ? <strong key={i} className="font-bold text-slate-800">{part}</strong>
+          : <span key={i}>{part}</span>
+      )}
+    </span>
+  );
+};
+
 const NavItem = ({ name, id, icon: NavIcon, activeTab, setActiveTab, setIsMenuOpen }) => (
   <button
     onClick={() => { setActiveTab(id); setIsMenuOpen(false); }}
@@ -344,7 +362,7 @@ const App = () => {
                   <div className="flex justify-between items-start">
                     <div className="flex-1">
                       <h3 className="text-lg font-semibold text-slate-800 group-hover:text-blue-600 transition-colors leading-tight">{pub.title}</h3>
-                      <div className="text-sm text-slate-600 mt-1 italic">{pub.authors}</div>
+                      <div className="text-sm text-slate-600 mt-1 italic"><HighlightedAuthors authors={pub.authors} /></div>
                       <div className="text-slate-500 mt-2 flex items-center gap-2 text-sm">
                         <span className="font-medium text-slate-700">{pub.publisher}</span>
                         <span className="w-1 h-1 bg-slate-400 rounded-full"></span>
