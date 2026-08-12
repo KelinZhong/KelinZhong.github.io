@@ -10,7 +10,7 @@ export const userData = {
         github: "https://github.com/kelinzhong",
         linkedin: "https://www.linkedin.com/in/kelin-zhong/",
         researchgate: "https://www.researchgate.net/profile/Kelin-Zhong",
-        website: "https://kelinzhong.github.io/index.html"
+        scholar: "https://scholar.google.com/citations?user=NzoerhwAAAAJ&hl=en&authuser=1"
       }
     },
 
