@@ -384,7 +384,7 @@ export const userData = {
         id: 11,
         type: "journal",
         title: "Micro-computed Tomography Assessment of Regional and Overall Accuracy of Thermoformed Retainers and Intraoral Scanners",
-        authors: "ML Montes, MA Zakhary, SF Cobos, CL Kuo, KK Zhong, SA Arqub, F Uribe",
+        authors: "ML Montes, MA Zakhary, SF Cobos, CL Kuo, K Zhong, SA Arqub, F Uribe",
         publisher: "American Journal of Orthodontics and Dentofacial Orthopedics",
         year: "2025",
         doi: "10.1016/j.ajodo.2025.07.014",
