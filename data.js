@@ -41,9 +41,8 @@ export const userData = {
           "Propensity Score Matching (PSM)", "Bayesian Modeling", "Markov Chain Monte Carlo (MCMC)"
       ],
       "Machine Learning & Deep Learning Methods": [
-          "Random Forest", "Extreme Gradient Boosting (XGBoost)", "LightGBM", "Regularization (Ridge/Lasso)",
-          "Principal Component Analysis (PCA)", "FT-Transformer (Tabular Deep Learning)", "Neural Additive Models (NAM)",
-          "Ensemble Methods / Model Stacking"
+          "Random Forest", "Extreme Gradient Boosting (XGBoost)", "LightGBM", "CatBoost", "Regularization (Ridge/Lasso)",
+          "Principal Component Analysis (PCA)", "FT-Transformer (Tabular Deep Learning)", "Ensemble Methods / Model Stacking"
       ],
       "Programming & Tools": [
           "R", "Python", "PyTorch", "CUDA", "Git", "SQL", "Stan", "LaTeX", "Linux", "HPC", "Version Control"
@@ -61,8 +60,16 @@ export const userData = {
     },
 
     experience: [
+      // {
+      //   id: 5,
+      //   role: "Data Scientist II, Algorithm",
+      //   company: "Pinterest",
+      //   period: "Sep 2026 – Present",
+      //   description: [],
+      //   image: "" 
+      // },
       {
-        id: 1,
+        id: 4,
         role: "Statistical Consultant",
         company: "UConn Health",
         period: "Jan 2024 – Jun 2026",
@@ -75,7 +82,7 @@ export const userData = {
         image: "" 
       },
       {
-        id: 2,
+        id: 3,
         role: "Research Assistant",
         company: "UConn Health",
         period: "Oct 2023 – Jun 2026",
@@ -88,7 +95,7 @@ export const userData = {
         image: "" 
       },
       {
-        id: 3,
+        id: 2,
         role: "Research Assistant",
         company: "University of Connecticut",
         period: "May 2021 – Jun 2026",
@@ -100,7 +107,7 @@ export const userData = {
         image: ""
       },
       {
-        id: 4,
+        id: 1,
         role: "Instructor",
         company: "University of Connecticut",
         period: "Feb 2023 – Dec 2023",
@@ -113,7 +120,7 @@ export const userData = {
 
     internships: [
       {
-        id: 1,
+        id: 3,
         role: "Manager Assistant",
         company: "Guangzhou Rural Commercial Bank",
         period: "Jun 2019 – Jul 2019",
@@ -133,7 +140,7 @@ export const userData = {
         image: ""
       },
       {
-        id: 3,
+        id: 1,
         role: "Intern & Trainee",
         company: "Axa China Region Insurance Company Limited",
         period: "Aug 2015 – Aug 2015",
@@ -146,21 +153,21 @@ export const userData = {
 
     openSourceTools: [
       {
-        id: 2,
+        id: 3,
         title: "SMNlmec",
         tech: ["R", "Stan", "Bayesian Modeling", "Longitudinal Data Analysis", "Linear Mixed-Effects Model"],
         description: "Bayesian censored linear mixed-effects models using scale mixtures of normal distributions. Incorporates damped exponential correlation for irregularly observed measures (Zhong et al., 2025) <doi:10.1002/sim.10295>.",
         link: "https://github.com/KelinZhong/SMNlmec"
       },
       {
-        id: 1,
+        id: 2,
         title: "ARpLMEC",
         tech: ["R", "Longitudinal Data Analysis", "Linear Mixed-Effects Model"],
         description: "Implements censored mixed-effects models with AR(p) or DEC errors. Supports Normal and Student-t distributions for estimation and prediction. (Olivari et al., 2021) <doi:10.1080/10543406.2020.1852246>.",
         link: "https://github.com/cran/ARpLMEC"
       },            
       {
-        id: 3,
+        id: 1,
         title: "autoMR",
         tech: ["R", "Causal Inference", "Mendelian Randomization"],
         description: "Pipeline for automated summary and visualization of Mendelian randomization results. Supports methods from MendelianRandomization, TwoSampleMR, and mr.raps.",
@@ -170,7 +177,7 @@ export const userData = {
 
     certificationsAndAwards: [
       {
-        id: 1,
+        id: 3,
         type: "award",
         title: "NESS 2026 Statathon 1st Place",
         issuer: "New England Statistics Symposium",
@@ -187,7 +194,7 @@ export const userData = {
         link: "https://credentials.cfainstitute.org/f0c666d8-f4f7-404a-8399-8fef3c6b35fd#acc.cenvQmGb"
       },
       {
-        id: 3,
+        id: 1,
         type: "certification",
         title: "Spring 2026 Data Science Boot Camp",
         issuer: "The Erdős Institute",
@@ -209,7 +216,7 @@ export const userData = {
         ]
       },
       {
-        id: 3,
+        id: 4,
         title: "Exploring the Relationship Between Zinc Status and Frailty: Observational and Genetic Analyses",
         period: "2024 – 2025",
         link: "https://doi.org/10.1093/geroni/igaf122.3587",
@@ -220,7 +227,7 @@ export const userData = {
         ]
       },
       {
-        id: 1,
+        id: 3,
         title: "Bayesian Analysis of Censored Linear Mixed-Effects Models for Heavy-Tailed Irregularly Observed Repeated Measures",
         period: "2023 – 2024",
         link: "https://doi.org/10.1002/sim.10295",
@@ -241,7 +248,7 @@ export const userData = {
         ]
       },
       {
-        id: 4,
+        id: 1,
         title: "The Golden Handcuffs - A Study on Lock-in Effect with New Listing Count in Nation Level and State Level",
         period: "2026-02 – 2026-03",
         link: "https://github.com/TheErdosInstitute/data-science",
@@ -255,93 +262,122 @@ export const userData = {
 
     publications: [
       {
-        id: 1,
+        id: 23,
         type: "journal",
-        title: "Ethics of Rising Trends in Dermatology Publications Using Large-Scale Databases",
-        authors: "M Tessier-Kay, AE Zhou, K Zhong, CL Kuo, B Sloan, H Feng",
-        publisher: "Clinics in Dermatology",
+        title: "Two-Dimensional vs Three-Dimensional Facial Visualization: Effects on Perceived Attractiveness, Treatment Need, and Modality Selection Across Sagittal and Vertical Facial Patterns",
+        authors: "M Chitre Carlisle, J Botello-Escalante, K Zhong, CL Kuo, A Gohel",
+        publisher: "Digital and Aligner Orthodontics",
         year: "2026",
-        link: "https://doi.org/10.1016/j.clindermatol.2026.05.001"
+        doi: "10.5281/zenodo.14977225",
+        link: "https://doi.org/10.5281/zenodo.14977225"
       },
       {
-        id: 2,
+        id: 22,
         type: "journal",
         title: "'OrthoQA' Semantic Search and Question-Answering Tool for Orthodontic Education",
         authors: "SA Arqub, Q Zhao, P Akolkar, D Al-Moghrabi, CL Kuo, K Zhong, D Alomair, M Adel, Y Zhang",
         publisher: "Journal of Dentistry",
         year: "2026",
+        doi: "10.1016/j.jdent.2026.106590",
         link: "https://doi.org/10.1016/j.jdent.2026.106590"
       },
       {
-        id: 3,
-        type: "journal",
-        title: "Tele-orthodontics in Real-World Practice: A Clinical Audit of Its Impact on Treatment Efficiency and Orthodontic Business Performance",
-        authors: "B Engert, H Chheda, B Layman, CL Kuo, K Zhong, C Dolce, X Yang, SA Arqub",
-        publisher: "Seminars in Orthodontics",
-        year: "2026",
-        link: "https://doi.org/10.1053/j.sodo.2026.02.002"
-      },
-      {
-        id: 4,
-        type: "journal",
-        title: "Effect of Location of Minilaparotomy for Morcellation at the Time of Myomectomy and Hysterectomy on Postoperative Pain",
-        authors: "L Kowalski, M Buchman, H Bian, K Zhong, CL Kuo, A Newmark, D Luciano, A Ulrich",
-        publisher: "Journal of Minimally Invasive Gynecology",
-        year: "2026",
-        link: "https://doi.org/10.1016/j.jmig.2026.01.053"
-      },
-      {
-        id: 5,
+        id: 21,
         type: "conference",
-        title: "Impact of the MyChart Sleep Care Plan on Continuous Positive Airway Pressure Adherence",
-        authors: "K Nakamura, CL Kuo, K Zhong, J Langstengel, E Bernstein, A Salmon",
+        title: "Racial and Ethnic Differences in Melanoma Survival in the Era of Immunotherapy",
+        authors: "N Sequeira, K Zhong, CL Kuo, MK Callahan",
+        publisher: "Journal of Clinical Oncology",
+        year: "2026",
+        doi: "10.1200/JCO.2026.44.16_suppl.e21588",
+        link: "https://doi.org/10.1200/JCO.2026.44.16_suppl.e21588"
+      },
+      {
+        id: 20,
+        type: "journal",
+        title: "Ethics of Rising Trends in Dermatology Publications Using Large-Scale Databases",
+        authors: "M Tessier-Kay, AE Zhou, K Zhong, CL Kuo, B Sloan, JM Grant-Kels, H Feng",
+        publisher: "Clinics in Dermatology",
+        year: "2026",
+        doi: "10.1016/j.clindermatol.2026.05.001",
+        link: "https://doi.org/10.1016/j.clindermatol.2026.05.001"
+      },
+      {
+        id: 19,
+        type: "conference",
+        title: "Impact of the MyChart Sleep Care Plan on Continuous Positive Airway Pressure Adherence: A Pilot Study",
+        authors: "H Oo, P Fish, N Jain, P Addanki, CL Kuo, K Zhong, J Langstengel, E Bernstein, A Salmon",
         publisher: "Sleep",
         year: "2026",
+        doi: "10.1093/sleep/zsag091.0592",
         link: "https://doi.org/10.1093/sleep/zsag091.0592"
       },
       {
-        id: 6,
-        type: "journal",
-        title: "Safety and Efficacy of Modern Large Bore Mechanical Thrombectomy for Intermediate and High-Risk Pulmonary Embolism",
-        authors: "S Passey, K Zhong, CL Kuo, J Ingrassia",
+        id: 18,
+        type: "conference",
+        title: "Safety and Efficacy of Modern Large Bore Mechanical Thrombectomy Devices in Acute Pulmonary Embolism: Systematic Review and Meta-Analysis of Investigational Device Exemption Trials",
+        authors: "S Passey, A Ahern, A Mehta, K Zhong, CL Kuo, M Iverson, S Joshi, J Ingrassia",
         publisher: "Journal of the Society for Cardiovascular Angiography & Interventions",
         year: "2026",
         link: "https://www.jscai.org/article/S2772-9303(26)00206-1/fulltext"
       },
       {
-        id: 7,
+        id: 17,
+        type: "journal",
+        title: "Tele-orthodontics in Real-World Practice: A Clinical Audit of Its Impact on Treatment Efficiency and Orthodontic Business Performance",
+        authors: "B Engert, H Chheda, B Layman, CL Kuo, K Zhong, C Dolce, X Yang, SA Arqub",
+        publisher: "Seminars in Orthodontics",
+        year: "2026",
+        doi: "10.1053/j.sodo.2026.02.002",
+        link: "https://doi.org/10.1053/j.sodo.2026.02.002"
+      },
+      {
+        id: 16,
         type: "journal",
         title: "The Nonlinear U-Shaped Association Between Vitamin D Deficiency and Biological Aging Acceleration Is Enhanced in Individuals with Higher Inflammation Levels",
         authors: "J Kositsawat, GA Kuchel, K Zhong, S Zhao, RH Fortinsky, CL Kuo",
         publisher: "The Journals of Gerontology: Series A",
-        year: "2025",
+        year: "2026",
+        doi: "10.1093/gerona/glaf272",
         link: "https://doi.org/10.1093/gerona/glaf272"
       },
       {
-        id: 8,
+        id: 15,
+        type: "journal",
+        title: "Effect of Location of Minilaparotomy for Morcellation at the Time of Myomectomy and Hysterectomy on Postoperative Pain",
+        authors: "L Kowalski, M Buchman, H Bian, K Zhong, CL Kuo, A Newmark, D Luciano, A Ulrich",
+        publisher: "Journal of Minimally Invasive Gynecology",
+        year: "2026",
+        doi: "10.1016/j.jmig.2026.01.053",
+        link: "https://doi.org/10.1016/j.jmig.2026.01.053"
+      },
+      {
+        id: 14,
         type: "journal",
         title: "VA-ECMO in High-Risk Pulmonary Embolism: Outcomes and Role as Bridge to Recovery",
         authors: "S Arvind, H Wagner, CL Kuo, K Zhong, J Gluck, J Ingrassia",
         publisher: "Resuscitation Plus",
         year: "2025",
+        doi: "10.1016/j.resplu.2025.101196",
         link: "https://doi.org/10.1016/j.resplu.2025.101196"
       },
       {
-        id: 9,
+        id: 13,
         type: "conference",
         title: "Exploring the Relationship Between Zinc Status and Frailty: Observational and Genetic Analyses",
         authors: "S Choi, K Zhong, CL Kuo",
         publisher: "Innovation in Aging",
         year: "2025",
+        doi: "10.1093/geroni/igaf122.3587",
         link: "https://doi.org/10.1093/geroni/igaf122.3587"
       },
       {
-        id: 10,
+        id: 12,
         type: "journal",
         title: "Angiographic Characteristics and Associated Risk Factors of Premature Coronary Artery Disease Among South Asians: A Systematic Review",
         authors: "S Passey, J Jha, M Iverson, K Zhong, CL Kuo, S Arora, A Qamar, N Beohar",
         publisher: "The American Journal of Cardiology",
         year: "2025",
+        doi: "10.1016/j.amjcard.2025.09.015",
         link: "https://doi.org/10.1016/j.amjcard.2025.09.015"
       },
       {
@@ -351,82 +387,91 @@ export const userData = {
         authors: "ML Montes, MA Zakhary, SF Cobos, CL Kuo, KK Zhong, SA Arqub, F Uribe",
         publisher: "American Journal of Orthodontics and Dentofacial Orthopedics",
         year: "2025",
+        doi: "10.1016/j.ajodo.2025.07.014",
         link: "https://doi.org/10.1016/j.ajodo.2025.07.014"
       },
       {
-        id: 12,
+        id: 10,
         type: "conference",
         title: "Healthcare Disparities in Merkel Cell Carcinoma in the Immune Checkpoint Inhibitor Era: A SEER Study of Survival Disparities in Older Adults",
         authors: "J Arunachalam, K Zhong, CL Kuo, KS Gunturu, BJ Byrne",
         publisher: "Journal of Clinical Oncology",
         year: "2025",
+        doi: "10.1200/JCO.2025.43.16_suppl.e21602",
         link: "https://doi.org/10.1200/JCO.2025.43.16_suppl.e21602"
       },
       {
-        id: 13,
-        type: "conference",
-        title: "Software Versus Cognitive Fusion for the Detection of Clinically Significant Prostate Cancer: Does 'Lesion Density' Matter?",
-        authors: "V Dubovik, D Buller, B Rosenfeld, W Martin, A Sherman, W Faust, K Zhong, CL Kuo, B Ristau",
-        publisher: "Journal of Urology",
-        year: "2025",
-        link: "https://doi.org/10.1097/01.JU.0001110100.38838.c8.16"
-      },
-      {
-        id: 14,
+        id: 9,
         type: "journal",
         title: "Comparison of Safety and Efficacy of Ultrasound-Accelerated Thrombolysis vs. Standard Catheter-Directed Thrombolysis for the Management of Acute Pulmonary Embolism: A Systematic Review and Meta-Analysis",
         authors: "S Passey, H Jain, J Jha, K Zhong, CL Kuo, M Iverson, H Patail, S Joshi, J Ingrassia",
         publisher: "Journal of Thrombosis and Thrombolysis",
         year: "2025",
+        doi: "10.1007/s11239-025-03100-7",
         link: "https://doi.org/10.1007/s11239-025-03100-7"
       },
       {
-        id: 15,
-        type: "journal",
-        title: "A Five-Year Review of Temporal Bone Fractures at a Level One Trauma Center and Examination of the Impact of the COVID-19 Pandemic",
-        authors: "WM Jongbloed, D Campbell, CL Kuo, K Zhong, NJ Cavanagh",
-        publisher: "Surgeries",
-        year: "2025",
-        link: "https://doi.org/10.3390/surgeries6020033"
-      },
-      {
-        id: 16,
-        type: "journal",
-        title: "The Influence of Sexual Orientation and Gender Identity on the Otolaryngology Residency Experience",
-        authors: "WM Jongbloed, HA Newsome, L Kashat, K Parham, EA Faucett, CL Kuo, K Zhong, KR Kavanagh",
-        publisher: "OTO Open",
-        year: "2025",
-        link: "https://doi.org/10.1002/oto2.70095"
-      },
-      {
-        id: 17,
-        type: "journal",
-        title: "A Survey of General Dentists on the Involvement of Endodontists in Restorative Procedures",
-        authors: "GB Deese, MT Spoto, Q Zhu, RH Aseltine Jr, CL Kuo, K Zhong, O Dort, B Kaufman",
-        publisher: "The Journal of the American Dental Association",
-        year: "2025",
-        link: "https://doi.org/10.1016/j.adaj.2025.01.007"
-      },
-      {
-        id: 18,
+        id: 8,
         type: "journal",
         title: "Autoregressive Bayesian Modeling of Censored HIV Longitudinal Data Using the Multivariate Student's-t Distribution",
         authors: "K Zhong, LM Castro, P Zhang, VH Lachos",
         publisher: "Japanese Journal of Statistics and Data Science",
         year: "2025",
+        doi: "10.1007/s42081-025-00299-w",
         link: "https://doi.org/10.1007/s42081-025-00299-w"
       },
       {
-        id: 19,
+        id: 7,
+        type: "conference",
+        title: "Software Versus Cognitive Fusion for the Detection of Clinically Significant Prostate Cancer: Does 'Lesion Density' Matter?",
+        authors: "V Dubovik, D Buller, B Rosenfeld, W Martin, A Sherman, W Faust, K Zhong, CL Kuo, B Ristau",
+        publisher: "Journal of Urology",
+        year: "2025",
+        doi: "10.1097/01.JU.0001110100.38838.c8.16",
+        link: "https://doi.org/10.1097/01.JU.0001110100.38838.c8.16"
+      },
+      {
+        id: 6,
+        type: "journal",
+        title: "A Five-Year Review of Temporal Bone Fractures at a Level One Trauma Center and Examination of the Impact of the COVID-19 Pandemic",
+        authors: "WM Jongbloed, D Campbell, CL Kuo, K Zhong, NJ Cavanagh",
+        publisher: "Surgeries",
+        year: "2025",
+        doi: "10.3390/surgeries6020033",
+        link: "https://doi.org/10.3390/surgeries6020033"
+      },
+      {
+        id: 5,
+        type: "journal",
+        title: "The Influence of Sexual Orientation and Gender Identity on the Otolaryngology Residency Experience",
+        authors: "WM Jongbloed, HA Newsome, L Kashat, K Parham, EA Faucett, CL Kuo, K Zhong, KR Kavanagh",
+        publisher: "OTO Open",
+        year: "2025",
+        doi: "10.1002/oto2.70095",
+        link: "https://doi.org/10.1002/oto2.70095"
+      },
+      {
+        id: 4,
+        type: "journal",
+        title: "A Survey of General Dentists on the Involvement of Endodontists in Restorative Procedures",
+        authors: "GB Deese, MT Spoto, Q Zhu, RH Aseltine Jr, CL Kuo, K Zhong, O Dort, B Kaufman",
+        publisher: "The Journal of the American Dental Association",
+        year: "2025",
+        doi: "10.1016/j.adaj.2025.01.007",
+        link: "https://doi.org/10.1016/j.adaj.2025.01.007"
+      },
+      {
+        id: 3,
         type: "journal",
         title: "Bayesian Analysis of Censored Linear Mixed-Effects Models for Heavy-Tailed Irregularly Observed Repeated Measures",
         authors: "K Zhong, FL Schumacher, LM Castro, VH Lachos",
         publisher: "Statistics in Medicine",
         year: "2025",
+        doi: "10.1002/sim.10295",
         link: "https://doi.org/10.1002/sim.10295"
       },
       {
-        id: 20,
+        id: 2,
         type: "preprint",
         title: "The Effect of a Pilot Medical Humanities Curriculum and Narrative Medicine on Empathy, Connectedness, and Self-Reported General Well-Being in an Otolaryngology Residency Program",
         authors: "W Jongbloed, KR Kavanagh, CL Kuo, K Zhong, H Newsome",
@@ -435,12 +480,13 @@ export const userData = {
         link: "https://wiley.authorea.com/users/830014/articles/1223926-the-effect-of-a-pilot-medical-humanities-curriculum-and-narrative-medicine-on-empathy-connectedness-and-self-reported-general-well-being-in-an-otolaryngology-residency-program"
       },
       {
-        id: 21,
+        id: 1,
         type: "journal",
         title: "Linear Mixed-Effects Models for Censored Data with Serial Correlation Errors Using the Multivariate Student's t-Distribution",
         authors: "K Zhong, RC Olivari, AM Garay, VH Lachos",
         publisher: "The New England Journal of Statistics in Data Science",
-        year: "2025",
+        year: "2024",
+        doi: "10.51387/24-NEJSDS68",
         link: "https://doi.org/10.51387/24-NEJSDS68"
       }
     ],
@@ -455,14 +501,14 @@ export const userData = {
         image: "/images/statathon.jpg"
       },
       {
-        id: 1,
+        id: 4,
         title: "ICSA Applied Statistics Symposium",
         role: "Invited Speaker",
         year: "2025",
         location: "Storrs, CT"
       },
       {
-        id: 2,
+        id: 3,
         title: "2024 Annual Aging Research Day",
         role: "Poster Presenter",
         year: "2024",
@@ -470,7 +516,7 @@ export const userData = {
         image: "/images/aging.jpg"
       },
       {
-        id: 3,
+        id: 2,
         title: "37th New England Statistics Symposium",
         role: "Invited Speaker",
         year: "2024",
@@ -478,7 +524,7 @@ export const userData = {
         image: "/images/ness2024.jpg"
       },
       {
-        id: 4,
+        id: 1,
         title: "ICSA Applied Statistics Symposium",
         role: "Invited Speaker",
         year: "2022",
