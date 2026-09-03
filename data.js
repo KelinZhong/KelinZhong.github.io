@@ -262,14 +262,24 @@ export const userData = {
 
     publications: [
       {
+        id: 24,
+        type: "journal",
+        title: "Impact of Reducing Aligners' Wear Schedule from 7-Days to 3-Days on the Predictability of Tooth Movement and Treatment Efficiency: A Randomized Controlled Trial",
+        authors: "A Brown, M Rifai, K Saadatmand, K Zhong, CL Kuo, F Uribe, C Dolce",
+        publisher: "Clinical Oral Investigations",
+        year: "2026",
+        doi: "10.1007/s00784-026-07088-z",
+        link: "https://doi.org/10.1007/s00784-026-07088-z"
+      },
+      {
         id: 23,
         type: "journal",
         title: "Two-Dimensional vs Three-Dimensional Facial Visualization: Effects on Perceived Attractiveness, Treatment Need, and Modality Selection Across Sagittal and Vertical Facial Patterns",
         authors: "M Chitre Carlisle, J Botello-Escalante, K Zhong, CL Kuo, A Gohel",
         publisher: "Digital and Aligner Orthodontics",
         year: "2026",
-        doi: "10.5281/zenodo.14977225",
-        link: "https://doi.org/10.5281/zenodo.14977225"
+        doi: "10.1007/s44525-026-00007-3",
+        link: "https://doi.org/10.1007/s44525-026-00007-3"
       },
       {
         id: 22,
