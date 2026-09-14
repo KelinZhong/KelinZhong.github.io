@@ -60,14 +60,14 @@ export const userData = {
     },
 
     experience: [
-      // {
-      //   id: 5,
-      //   role: "Data Scientist II, Algorithm",
-      //   company: "Pinterest",
-      //   period: "Sep 2026 – Present",
-      //   description: [],
-      //   image: "" 
-      // },
+      {
+        id: 5,
+        role: "Data Scientist II, Algorithm",
+        company: "Pinterest",
+        period: "Sep 2026 – Present",
+        description: [],
+        image: "" 
+      },
       {
         id: 4,
         role: "Statistical Consultant",
