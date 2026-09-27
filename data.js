@@ -88,7 +88,7 @@ export const userData = {
         period: "Oct 2023 – Jun 2026",
         description: [
           "Led causal inference and quantitative modeling projects on large-scale EHR, UK Biobank, panel, and genetic datasets, improving a grant proposal's evaluation from the top 50% to the top 25%.",
-          "Designed end-to-end modeling workflows on datasets with up to 500K records, including cohort construction, feature definition, time-window design, and confounder adjustment.",
+          "Designed end-to-end modeling pipelines on datasets with up to 500K records, including cohort construction, feature definition, time-window design, and confounder adjustment.",
           "Estimated treatment effects and risk associations using regression models, target trial emulation, out-of-sample validation, uncertainty quantification, and robustness checks.",
           "Applied Mendelian randomization (genetics-based causal analysis) to translate experimental findings into human-scale evidence."
         ],
@@ -101,7 +101,7 @@ export const userData = {
         period: "May 2021 – Jun 2026",
         description: [
           "Developed robust quantitative models for noisy, censored, and irregular longitudinal data; first author on 3 peer-reviewed publications.",
-          "Built Bayesian inference workflows for non-Normal mixed-effects models, improving robustness and uncertainty estimation for real-world longitudinal datasets.",
+          "Built Bayesian inference pipelines for non-Normal mixed-effects models, improving robustness and uncertainty estimation for real-world longitudinal datasets.",
           "Designed and maintained scalable R packages, including ARpLMEC and SMNlmec, with Stan-based backends for reusable statistical modeling and analytics."
         ],
         image: ""
